@@ -1,0 +1,301 @@
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-LightItalic.eot');
+src: local('Urbane Light Italic'), local('Urbane-LightItalic'),
+url('font/Urbane-LightItalic.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-LightItalic.woff2') format('woff2'),
+url('font/Urbane-LightItalic.woff') format('woff'),
+url('font/Urbane-LightItalic.ttf') format('truetype');
+font-weight: 300;
+font-style: italic;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-Medium.eot');
+src: local('Urbane Medium'), local('Urbane-Medium'),
+url('font/Urbane-Medium.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-Medium.woff2') format('woff2'),
+url('font/Urbane-Medium.woff') format('woff'),
+url('font/Urbane-Medium.ttf') format('truetype');
+font-weight: 500;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-ThinItalic.eot');
+src: local('Urbane Thin Italic'), local('Urbane-ThinItalic'),
+url('font/Urbane-ThinItalic.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-ThinItalic.woff2') format('woff2'),
+url('font/Urbane-ThinItalic.woff') format('woff'),
+url('font/Urbane-ThinItalic.ttf') format('truetype');
+font-weight: 100;
+font-style: italic;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane Demi';
+src: url('font/Urbane-DemiBold.eot');
+src: local('Urbane Demi Bold'), local('Urbane-DemiBold'),
+url('font/Urbane-DemiBold.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-DemiBold.woff2') format('woff2'),
+url('font/Urbane-DemiBold.woff') format('woff'),
+url('font/Urbane-DemiBold.ttf') format('truetype');
+font-weight: 600;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-Heavy.eot');
+src: local('Urbane Heavy'), local('Urbane-Heavy'),
+url('font/Urbane-Heavy.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-Heavy.woff2') format('woff2'),
+url('font/Urbane-Heavy.woff') format('woff'),
+url('font/Urbane-Heavy.ttf') format('truetype');
+font-weight: 900;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-Thin.eot');
+src: local('Urbane Thin'), local('Urbane-Thin'),
+url('font/Urbane-Thin.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-Thin.woff2') format('woff2'),
+url('font/Urbane-Thin.woff') format('woff'),
+url('font/Urbane-Thin.ttf') format('truetype');
+font-weight: 100;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-BoldItalic.eot');
+src: local('Urbane Bold Italic'), local('Urbane-BoldItalic'),
+url('font/Urbane-BoldItalic.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-BoldItalic.woff2') format('woff2'),
+url('font/Urbane-BoldItalic.woff') format('woff'),
+url('font/Urbane-BoldItalic.ttf') format('truetype');
+font-weight: bold;
+font-style: italic;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane Extra';
+src: url('font/Urbane-ExtraLight.eot');
+src: local('Urbane Extra Light'), local('Urbane-ExtraLight'),
+url('font/Urbane-ExtraLight.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-ExtraLight.woff2') format('woff2'),
+url('font/Urbane-ExtraLight.woff') format('woff'),
+url('font/Urbane-ExtraLight.ttf') format('truetype');
+font-weight: 200;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-HeavyItalic.eot');
+src: local('Urbane Heavy Italic'), local('Urbane-HeavyItalic'),
+url('font/Urbane-HeavyItalic.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-HeavyItalic.woff2') format('woff2'),
+url('font/Urbane-HeavyItalic.woff') format('woff'),
+url('font/Urbane-HeavyItalic.ttf') format('truetype');
+font-weight: 900;
+font-style: italic;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-Bold.eot');
+src: local('font/Urbane Bold'), local('Urbane-Bold'),
+url('font/Urbane-Bold.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-Bold.woff2') format('woff2'),
+url('font/Urbane-Bold.woff') format('woff'),
+url('font/Urbane-Bold.ttf') format('truetype');
+font-weight: bold;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-MediumItalic.eot');
+src: local('font/Urbane Medium Italic'), local('Urbane-MediumItalic'),
+url('font/Urbane-MediumItalic.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-MediumItalic.woff2') format('woff2'),
+url('font/Urbane-MediumItalic.woff') format('woff'),
+url('font/Urbane-MediumItalic.ttf') format('truetype');
+font-weight: 500;
+font-style: italic;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane Demi';
+src: url('font/Urbane-DemiBoldItalic.eot');
+src: local('font/Urbane Demi Bold Italic'), local('Urbane-DemiBoldItalic'),
+url('font/Urbane-DemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-DemiBoldItalic.woff2') format('woff2'),
+url('font/Urbane-DemiBoldItalic.woff') format('woff'),
+url('font/Urbane-DemiBoldItalic.ttf') format('truetype');
+font-weight: 600;
+font-style: italic;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane';
+src: url('font/Urbane-Light.eot');
+src: local('font/Urbane Light'), local('Urbane-Light'),
+url('font/Urbane-Light.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-Light.woff2') format('woff2'),
+url('font/Urbane-Light.woff') format('woff'),
+url('font/Urbane-Light.ttf') format('truetype');
+font-weight: 300;
+font-style: normal;
+font-display: swap;
+}
+
+@font-face {
+font-family: 'Urbane Extra';
+src: url('font/Urbane-ExtraLightItalic.eot');
+src: local('font/Urbane Extra Light Italic'), local('Urbane-ExtraLightItalic'),
+url('font/Urbane-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+url('font/Urbane-ExtraLightItalic.woff2') format('woff2'),
+url('font/Urbane-ExtraLightItalic.woff') format('woff'),
+url('font/Urbane-ExtraLightItalic.ttf') format('truetype');
+font-weight: 200;
+font-style: italic;
+font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli-Light.eot');
+    src: url('font/Muli-Light.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli-Light.woff2') format('woff2'),
+        url('font/Muli-Light.woff') format('woff'),
+        url('font/Muli-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli.eot');
+    src: url('font/Muli.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli.woff2') format('woff2'),
+        url('font/Muli.woff') format('woff'),
+        url('font/Muli.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli-LightItalic.eot');
+    src: url('font/Muli-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli-LightItalic.woff2') format('woff2'),
+        url('font/Muli-LightItalic.woff') format('woff'),
+        url('font/Muli-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli-Bold.eot');
+    src: url('font/Muli-Bold.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli-Bold.woff2') format('woff2'),
+        url('font/Muli-Bold.woff') format('woff'),
+        url('font/Muli-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli-Italic.eot');
+    src: url('font/Muli-Italic.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli-Italic.woff2') format('woff2'),
+        url('font/Muli-Italic.woff') format('woff'),
+        url('font/Muli-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli-BoldItalic.eot');
+    src: url('font/Muli-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli-BoldItalic.woff2') format('woff2'),
+        url('font/Muli-BoldItalic.woff') format('woff'),
+        url('font/Muli-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli-ExtraLight.eot');
+    src: url('font/Muli-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli-ExtraLight.woff2') format('woff2'),
+        url('font/Muli-ExtraLight.woff') format('woff'),
+        url('font/Muli-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli-ExtraLightItalic.eot');
+    src: url('font/Muli-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli-ExtraLightItalic.woff2') format('woff2'),
+        url('font/Muli-ExtraLightItalic.woff') format('woff'),
+        url('font/Muli-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli-SemiBold.eot');
+    src: url('font/Muli-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli-SemiBold.woff2') format('woff2'),
+        url('font/Muli-SemiBold.woff') format('woff'),
+        url('font/Muli-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Muli';
+    src: url('font/Muli-Semi-BoldItalic.eot');
+    src: url('font/Muli-Semi-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('font/Muli-Semi-BoldItalic.woff2') format('woff2'),
+        url('font/Muli-Semi-BoldItalic.woff') format('woff'),
+        url('font/Muli-Semi-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
