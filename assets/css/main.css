@@ -2035,7 +2035,7 @@ pre code {
 .form-control {
   display: block;
   width: 100%;
-  height: calc(1.5em + 0.75rem + 4px);
+  height: calc(1.5em + 0.75rem + 6px);
   padding: 0.375rem 0.75rem;
   font-size: 0.875rem;
   font-weight: 400;
@@ -17015,7 +17015,7 @@ select,
 textarea {
   background-color: #fff;
   border: 1px solid #87c6d4;
-  padding: 2px;
+  padding: 12px;
   color: #20292f;
 }
 
@@ -17379,6 +17379,12 @@ select {
   font-size: 36px; 
 color: #000;
 }
+/* form label css  */
+.form-head {
+  font-size: 17px;
+  font-weight: 400;
+}
+/* form label css end  */
 
 @media screen and (max-width: 320px) {
   .setting-row {
