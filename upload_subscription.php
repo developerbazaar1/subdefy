@@ -16,9 +16,10 @@
   <!--favicon-->
   <link rel="icon" type="image/x-icon" href="assets/img/subdefy-favicon.png">
   <!-- Font-icon css-->
-  <!-- Font-icon css-->
   <link rel="stylesheet" type="text/css"
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+     <!-- font awesome icon kit  -->
+  <script src="https://kit.fontawesome.com/5f5af28768.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="app sidebar-mini">
@@ -30,7 +31,7 @@
   <main class="app-content">
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-dashboard"></i>Upload Subscription</h1>
+        <h1><i class="fa fa-upload mx-1"></i>Upload Subscription</h1>
         <!-- <p>Start a beautiful journey here</p> -->
       </div>
       <ul class="app-breadcrumb breadcrumb">
