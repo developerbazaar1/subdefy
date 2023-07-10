@@ -19,6 +19,8 @@
   <!-- Font-icon css-->
   <link rel="stylesheet" type="text/css"
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- font awesome icon kit  -->
+  <script src="https://kit.fontawesome.com/5f5af28768.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="app sidebar-mini">
@@ -30,7 +32,7 @@
   <main class="app-content">
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-dashboard"></i> Add Blogs</h1>
+        <h1><i class="fa fa-pencil-square mx-1"></i> Add Blogs</h1>
         <!-- <p>Start a beautiful journey here</p> -->
       </div>
       <ul class="app-breadcrumb breadcrumb">

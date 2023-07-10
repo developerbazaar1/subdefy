@@ -3,10 +3,10 @@
 
 <head>
   <meta property="" content="" />
+  <meta property="" content="" />
+  <meta property="" content="" />
   <meta property="twitter:site" content="@developerbazaar" />
   <meta property="twitter:creator" content="@developerbazaar" />
-  <meta property="" content="" />
-  <meta property="" content="" />
   <meta charset="utf-8" />
   <title>add_about</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,27 +16,27 @@
   <!--favicon-->
   <link rel="icon" type="image/x-icon" href="assets/img/subdefy-favicon.png">
   <!-- Font-icon css-->
-  <!-- Font-icon css-->
   <link rel="stylesheet" type="text/css"
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- font awesome icon kit  -->
+  <script src="https://kit.fontawesome.com/5f5af28768.js" crossorigin="anonymous"></script>
 </head>
-
+<!-- body start -->
 <body class="app sidebar-mini">
-
+   
   <!-- header included  -->
   <?php include 'assets/include/header.php';?>
   <!-- header included end  -->
-
+  <!-- main content started  -->
   <main class="app-content">
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-dashboard"></i> Add About</h1>
-        <!-- <p>Start a beautiful journey here</p> -->
+        <h1><i class="fa fa-info-circle mx-1"></i> Add About</h1>
       </div>
-      <ul class="app-breadcrumb breadcrumb">
+      <!-- <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
         <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
-      </ul>
+      </ul> -->
     </div>
     <div class="row">
       <div class="col-md-12">
