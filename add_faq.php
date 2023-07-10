@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta property="" content="" />
   <meta property="twitter:site" content="@developerbazaar" />
@@ -16,28 +15,23 @@
   <!--favicon-->
   <link rel="icon" type="image/x-icon" href="assets/img/subdefy-favicon.png">
   <!-- Font-icon css-->
-  <!-- Font-icon css-->
   <link rel="stylesheet" type="text/css"
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
-
+<!-- body start -->
 <body class="app sidebar-mini">
-
   <!-- header included  -->
   <?php include 'assets/include/header.php';?>
   <!-- header included end  -->
 
+  <!-- main start -->
   <main class="app-content">
     <div class="app-title">
       <div>
         <h1><i class="fa fa-dashboard"></i> Add FAQ'S</h1>
-        <!-- <p>Start a beautiful journey here</p> -->
       </div>
-      <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
-      </ul>
     </div>
+    <!-- content start -->
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
@@ -46,6 +40,7 @@
       </div>
     </div>
   </main>
+  
   <!-- Essential javascripts for application to work-->
   <script src="assets/js/jquery-3.3.1.min.js"></script>
   <script src="assets/js/popper.min.js"></script>

@@ -23,12 +23,11 @@
 </head>
 <!-- body start -->
 <body class="app sidebar-mini">
-   
   <!-- header included  -->
   <?php include 'assets/include/header.php';?>
   <!-- header included end  -->
-  
-  <!-- main content started  -->
+
+  <!-- main started  -->
   <main class="app-content">
     <div class="app-title">
       <div>
