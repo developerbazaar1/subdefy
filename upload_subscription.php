@@ -20,9 +20,8 @@
      <!-- font awesome icon kit  -->
   <script src="https://kit.fontawesome.com/5f5af28768.js" crossorigin="anonymous"></script>
 </head>
-
+<!-- body start -->
 <body class="app sidebar-mini">
-
   <!-- header included  -->
   <?php include 'assets/include/header.php';?>
   <!-- header included end  -->
