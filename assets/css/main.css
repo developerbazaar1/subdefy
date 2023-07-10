@@ -42,6 +42,7 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+
 *,
 *::before,
 *::after {
@@ -55,6 +56,27 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #80c3d2;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* end scrollbar */
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
@@ -2021,7 +2043,7 @@ pre code {
   color: #495057;
   background-color: #FFF;
   background-clip: padding-box;
-  border: 2px solid #ced4da;
+  border: 1px solid #84c5d3;
   border-radius: 4px;
   -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -2046,7 +2068,8 @@ pre code {
 .form-control:focus {
   color: #495057;
   background-color: #FFF;
-  border-color: #009688;
+  border-color: #28879d;
+  box-shadow: rgb(40 135 157) 0px 0px 2px 0px, rgb(40 135 157) 0px 0px 0px 0px !important;
   outline: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -2619,14 +2642,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #FFF;
-  background-color: #009688;
-  border-color: #009688;
+  background-color: #28879d;
+    border-color: #28879d;
 }
 
 .btn-primary:hover {
   color: #FFF;
-  background-color: #007065;
-  border-color: #00635a;
+  background-color: #3d99af;
+  border-color: #3d99af;
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -2643,8 +2666,8 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #FFF;
-  background-color: #00635a;
-  border-color: #00564e;
+  background-color: #28879d;
+  border-color: #28879d;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -16991,7 +17014,7 @@ input[type="url"],
 select,
 textarea {
   background-color: #fff;
-  border: 1px solid #bbb;
+  border: 1px solid #87c6d4;
   padding: 2px;
   color: #20292f;
 }
@@ -17003,8 +17026,9 @@ input[type="text"]:focus,
 input[type="url"]:focus,
 select:focus,
 textarea:focus {
-  border-color: #2d3940;
+  border-color: #28879d;
   color: #3e3e3e;
+  box-shadow: rgb(40 135 157) 0px 0px 2px 0px, rgb(40 135 157) 0px 0px 0px 0px;
 }
 
 input.text,
@@ -17320,6 +17344,7 @@ select {
 }
 
 /* ============ AppForm Media Query =========== */
+/* -------------mobile media query------------ */
 
 @media only screen and (max-width: 768px) {
   .appform-container {
@@ -17327,8 +17352,13 @@ select {
     padding-bottom: 60px;
     padding-top: 60px;
   }
+    .setting-row h1 {
+      font-size: 1.8em !important;
+    }
+    .bt-mb-100{
+      width: 100% !important;
+    }
 }
-
 @media only screen and (max-width: 420px) {
   .appform-container {
     padding: 0 20px;
@@ -17336,5 +17366,36 @@ select {
     padding-bottom: 40px;
   }
 }
-/* PRELOADER */
+/* seting page css start  */
+.setting-row{
+  background-color: #fff;
+  padding: 2em 2em 2em;
+  width: 100%;
+  margin: 2em	auto;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.setting-row h1 {
+  font-size: 36px; 
+color: #000;
+}
 
+@media screen and (max-width: 320px) {
+  .setting-row {
+    padding-left: 1em;
+    padding-right: 1em; }
+    .setting-row h1 {
+      font-size: 1.5em !important; } 
+    }
+@media screen and (min-width: 900px) {
+  .setting-row {
+    width: 56%; }
+   }
+   /* @media screen (max-width:576px){
+    .setting-row h1 {
+      font-size: 1.5em; }
+   }
+   .bt-mb-100{
+    width: 100% ;
+   } */
+    /* setting page css end */

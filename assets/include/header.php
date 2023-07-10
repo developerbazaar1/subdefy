@@ -106,7 +106,7 @@
             class="fa fa-user fa-lg"></i></a>
         <ul class="dropdown-menu settings-menu dropdown-menu-right">
           <li>
-            <a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a>
+            <a class="dropdown-item" href="setting.php"><i class="fa fa-cog fa-lg"></i> Settings</a>
           </li>
           <!-- <li>
             <a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a>
@@ -139,15 +139,15 @@
             class="app-menu__label">Subscription Master</span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
           <li>
-            <a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i>Upload Subscription</a>
+            <a class="treeview-item" href="upload_subscription.php"><i class="icon fa fa-circle-o"></i>Upload Subscription</a>
           </li>
           <li>
-            <a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Manage Subscription</a>
+            <a class="treeview-item" href="manage_subscription.php"><i class="icon fa fa-circle-o"></i> Manage Subscription</a>
           </li>
         </ul>
       </li>
       <li>
-        <a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span
+        <a class="app-menu__item" href="usermanager.php"><i class="app-menu__icon fa fa-user"></i><span
             class="app-menu__label">User Manager</span></a>
       </li>
       <!-- <li class="treeview">
@@ -174,25 +174,25 @@
             class="app-menu__label">CMS Setup</span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
           <li>
-            <a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Blogs</a>
+            <a class="treeview-item" href="add_blog.php"><i class="icon fa fa-circle-o"></i> Blogs</a>
           </li>
           <li>
-            <a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> FAQ'S</a>
+            <a class="treeview-item" href="add_faq.php"><i class="icon fa fa-circle-o"></i> FAQ'S</a>
           </li>
           <li>
-            <a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> About Us</a>
+            <a class="treeview-item" href="add_about.php"><i class="icon fa fa-circle-o"></i> About Us</a>
           </li>
           <li>
-            <a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Privacy Policy</a>
+            <a class="treeview-item" href="add_privacy.php"><i class="icon fa fa-circle-o"></i> Privacy Policy</a>
           </li>
         </ul>
       </li>
       <li>
-        <a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-cog "></i><span
+        <a class="app-menu__item" href="newsletter.php"><i class="app-menu__icon fa fa-envelope "></i><span
         class="app-menu__label">Newsletter</span></a>
       </li>
       <li>
-        <a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-cog "></i><span
+        <a class="app-menu__item" href="setting.php"><i class="app-menu__icon fa fa-cog "></i><span
         class="app-menu__label">Settings</span></a>
       </li>
     </ul>
