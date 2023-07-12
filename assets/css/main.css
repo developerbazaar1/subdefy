@@ -17429,6 +17429,14 @@ th {
   padding: 10px 10px !important; 
   clear: both;
 }
+.act-btn:hover{
+ background: transparent;
+ transform: scale(1.2);
+ -webkit-transform: scale(1.2);
+ -moz-transform: scale(1.2);
+ -ms-transform: scale(1.2);
+ -o-transform: scale(1.2);
+}
 #action-ed-d-btn.show {
   /* display: block; */
   display: flex;

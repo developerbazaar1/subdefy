@@ -128,13 +128,13 @@
                                                         </a>
                                                         <div class="dropdown-menu " id="action-ed-d-btn"
                                                             aria-labelledby="dropdownMenuLink">
+                                                            <a class="dropdown-item act-btn " href="#">
+                                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                            </a>
                                                             <a class="dropdown-item delet-btn act-btn " id="demoSwal"
                                                                 href="#">
                                                                 <i class=" fa fa-trash-o dlt-icon"
                                                                     aria-hidden="true"></i>
-                                                            </a>
-                                                            <a class="dropdown-item act-btn " href="#">
-                                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
                                                     </div>

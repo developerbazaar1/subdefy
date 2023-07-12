@@ -179,11 +179,11 @@
         </ul>
       </li> -->
       <li>
-        <a class="app-menu__item" href="add_faq.php"><i class="app-menu__icon fa fa-envelope "></i><span
+        <a class="app-menu__item" href="add_faq.php"><i class="app-menu__icon fa fa-question-circle"></i><span
         class="app-menu__label">FAQ'S</span></a>
       </li>
       <li>
-        <a class="app-menu__item" href="add_blog.php"><i class="app-menu__icon fa fa-envelope "></i><span
+        <a class="app-menu__item" href="add_blog.php"><i class="app-menu__icon fa fa-rss-square "></i><span
         class="app-menu__label">Blog's</span></a>
       </li>
       <li>
