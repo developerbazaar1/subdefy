@@ -146,6 +146,15 @@
           </li>
         </ul>
       </li>
+      <li class="treeview">
+        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
+            class="app-menu__label">CMS Setup</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <ul class="treeview-menu">
+          <li>
+            <a class="treeview-item" href="addpage.php"><i class="icon fa fa-circle-o"></i> Add page</a>
+          </li>
+        </ul>
+      </li>
       <li>
         <a class="app-menu__item" href="usermanager.php"><i class="app-menu__icon fa fa-user"></i><span
             class="app-menu__label">User Manager</span></a>
@@ -169,23 +178,17 @@
           </li>
         </ul>
       </li> -->
-      <li class="treeview">
-        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
-            class="app-menu__label">CMS Setup</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-        <ul class="treeview-menu">
-          <li>
-            <a class="treeview-item" href="add_blog.php"><i class="icon fa fa-circle-o"></i> Blogs</a>
-          </li>
-          <li>
-            <a class="treeview-item" href="add_faq.php"><i class="icon fa fa-circle-o"></i> FAQ'S</a>
-          </li>
-          <li>
-            <a class="treeview-item" href="add_about.php"><i class="icon fa fa-circle-o"></i> About Us</a>
-          </li>
-          <li>
-            <a class="treeview-item" href="add_privacy.php"><i class="icon fa fa-circle-o"></i> Privacy Policy</a>
-          </li>
-        </ul>
+      <li>
+        <a class="app-menu__item" href="add_faq.php"><i class="app-menu__icon fa fa-envelope "></i><span
+        class="app-menu__label">FAQ'S</span></a>
+      </li>
+      <li>
+        <a class="app-menu__item" href="add_blog.php"><i class="app-menu__icon fa fa-envelope "></i><span
+        class="app-menu__label">Blog's</span></a>
+      </li>
+      <li>
+        <a class="app-menu__item" href="newsletter.php"><i class="app-menu__icon fa fa-envelope "></i><span
+        class="app-menu__label">Newsletter</span></a>
       </li>
       <li class="treeview">
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span
@@ -198,10 +201,6 @@
             <a class="treeview-item" href="smtpsetting.php"><i class="icon fa fa-circle-o"></i> SMTP Setting</a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a class="app-menu__item" href="newsletter.php"><i class="app-menu__icon fa fa-envelope "></i><span
-        class="app-menu__label">Newsletter</span></a>
       </li>
     </ul>
   </aside>

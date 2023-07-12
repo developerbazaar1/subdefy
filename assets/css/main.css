@@ -17419,8 +17419,8 @@ th {
   width: 22px;
 }
 /* action btn css  */
-div#action-ed-d-btn {
-  translate: 50px -35px;
+#action-ed-d-btn {
+  translate: 50px -35px !important;
   min-width: 0px;
   box-shadow: none;
   background: transparent;
