@@ -124,8 +124,8 @@
 			});
 		</script>
 
-    <!-- script for table data download  -->
-    <script>
+  <!-- script for table data download  -->
+  <script>
   function downloadTableAsCSV() {
     // Get the table element
     var table = document.getElementById('sampleTable');
