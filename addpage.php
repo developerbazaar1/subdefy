@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta property="" content="" />
     <meta property="twitter:site" content="@developerbazaar" />
@@ -8,7 +7,7 @@
     <meta property="" content="" />
     <meta property="" content="" />
     <meta charset="utf-8" />
-    <title>add_blog</title>
+    <title>add_page</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Main CSS-->
@@ -167,6 +166,7 @@
     <script src="assets/js/plugins/tinymce-editor.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@2/dist/tinymce-webcomponent.min.js"></script> -->
     <script>
+        
     // script for data table 
     $('#sampleTable').DataTable();
     // script for data alert

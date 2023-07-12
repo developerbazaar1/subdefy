@@ -139,10 +139,10 @@
             class="app-menu__label">Subscription Master</span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
           <li>
-            <a class="treeview-item" href="upload_subscription.php"><i class="icon fa fa-circle-o"></i>Upload Subscription</a>
+            <a class="treeview-item" href="upload_subscription.php"><i class="icon fa fa-share"></i>Upload Subscription</a>
           </li>
           <li>
-            <a class="treeview-item" href="manage_subscription.php"><i class="icon fa fa-circle-o"></i> Manage Subscription</a>
+            <a class="treeview-item" href="manage_subscription.php"><i class="icon fa fa-share"></i> Manage Subscription</a>
           </li>
         </ul>
       </li>
