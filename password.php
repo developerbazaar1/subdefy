@@ -16,9 +16,10 @@
     <!--favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/subdefy-favicon.png">
     <!-- Font-icon css-->
-    <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <!--fontawesome icons-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="app sidebar-mini">
@@ -28,7 +29,7 @@
         <div class="app-title">
             <div>
                 <h1>
-                    <i class="fa fa-cogs mx-1"></i> Settings
+                    <i class="fa fa-refresh mx-1"></i> Update Your Password 
                 </h1>
             </div>
         </div>
@@ -37,7 +38,7 @@
             <!-- setting form start form here -->
             <div class="row setting-row">
                 <div class=" w-100 text-center">
-                    <h1>Forgot Password</h1>
+                    <h1>Update Password</h1>
                 </div>
                 <br>
                 <form class="setting-form w-100 mt-3" onsubmit="#" autocomplete="off" >
@@ -54,7 +55,7 @@
                     <!-- submit button -->
                     <div class="form-group text-center mt-4">
                         <a href="" class="btn btn-primary bt-mb-100 w-50 " type="submit"><i
-                                class="fa fa-paper-plane mx-2 pb-1" aria-hidden="true"></i>Reset Password</a>
+                                class="fa fa-paper-plane mx-2 mb-1" aria-hidden="true"></i>Reset Password</a>
                     </div>
                 </form>
             </div>

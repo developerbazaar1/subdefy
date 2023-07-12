@@ -1,6 +1,6 @@
 <!-- Navbar-->
 <header class="app-header">
-    <a class="app-header__logo" href="index.html">Subdefy</a>
+    <a class="app-header__logo" href="dashboard.php">Subdefy</a>
     <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
       aria-label="Hide Sidebar"></a>
     <!-- Navbar Right Menu-->
@@ -126,7 +126,7 @@
         alt="User Image" />
       <div>
         <p class="app-sidebar__user-name">Alok</p>
-        <p class="app-sidebar__user-designation">Frontend Developer</p>
+        <p class="app-sidebar__user-designation"><strong>Admin</strong></p>
       </div>
     </div>
     <ul class="app-menu">
@@ -135,7 +135,7 @@
             class="app-menu__label">Dashboard</span></a>
       </li>
       <li class="treeview">
-        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span
+        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-bell"></i><span
             class="app-menu__label">Subscription Master</span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
           <li>
@@ -187,13 +187,21 @@
           </li>
         </ul>
       </li>
+      <li class="treeview">
+        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span
+            class="app-menu__label">Account Settings</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <ul class="treeview-menu">
+          <li>
+            <a class="treeview-item" href="password.php"><i class="icon fa fa-circle-o"></i> Password Setting</a>
+          </li>
+          <li>
+            <a class="treeview-item" href="smtpsetting.php"><i class="icon fa fa-circle-o"></i> SMTP Setting</a>
+          </li>
+        </ul>
+      </li>
       <li>
         <a class="app-menu__item" href="newsletter.php"><i class="app-menu__icon fa fa-envelope "></i><span
         class="app-menu__label">Newsletter</span></a>
-      </li>
-      <li>
-        <a class="app-menu__item" href="setting.php"><i class="app-menu__icon fa fa-cog "></i><span
-        class="app-menu__label">Settings</span></a>
       </li>
     </ul>
   </aside>
