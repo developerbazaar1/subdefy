@@ -64,9 +64,18 @@
 
 											<!-- field 03 -->
 											<div class="form-group">
-												<label class="form-head" for="mailer-mail"> Blog Category</label>
-												<input class="form-control" id="exampleInputcategory" type="text" aria-describedby="category" placeholder="Enter Your Blog Category">
-											</div>
+                                        <label class="form-head" for="exampletext">
+                                            Blog Category
+                                        </label>
+                                        <div class="select-group h-40">
+                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                <option value="">Select Category</option>
+                                                <option value="Fiction">technology</option>
+                                                <option value="Fiction">Moview Review</option>
+                                                <option value="Fiction">Music Review</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
 											<!-- field 04 -->
 											<div class="form-group">
@@ -94,7 +103,7 @@
 									<!-- :: submit btn -->
 									<div class="form-group text-center mt-4">
                                         <a href="" class="btn btn-primary bt-mb-100 w-50 " type="submit"><i
-                                        class="fa fa-paper-plane mx-2 mb-1" aria-hidden="true"></i>Submit Page</a>
+                                        class="fa fa-paper-plane mx-2 mb-1" aria-hidden="true"></i>Submit Blog</a>
                                     </div>
                                     <!-- :: submit btn -->
 								</form>
