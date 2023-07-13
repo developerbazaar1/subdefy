@@ -92,7 +92,7 @@
 												<td>infobeta@gmail.com</td>
 												<td>02578952SUB</td>
 												<td>12/07/2023</td>
-                        <td>
+                                                 <td>
 													<div class="toggle">
 														<label>
 															<input type="checkbox">
@@ -115,7 +115,7 @@
 												<td>infogama@gmail.com</td>
 												<td>06975152SUB</td>
 												<td>15/07/2023</td>
-                        <td>
+                                                <td>
 													<div class="toggle">
 														<label>
 															<input type="checkbox">
@@ -138,7 +138,7 @@
 												<td>infotheeta@gmail.com</td>
 												<td>06975152SUB</td>
 												<td>18/07/2023</td>
-                        <td>
+                                                <td>
 													<div class="toggle">
 														<label>
 															<input type="checkbox">

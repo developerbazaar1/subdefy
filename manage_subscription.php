@@ -19,29 +19,34 @@
 		<!--fontawesome icons-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	</head>
+
 	<body class="app sidebar-mini">
-		<!-- header included  --> <?php include 'assets/include/header.php';?>
+		<!-- header included  --> 
+    <?php include 'assets/include/header.php';?>
 		<!-- header included end  -->
+    <!--  main start fronm here -->
 		<main class="app-content">
 			<div class="app-title">
 				<div>
 					<h1>
 						<i class="fa fa-th-large mx-1"></i> Manage Subscription
 					</h1>
-					<!-- <p>Start a beautiful journey here</p> -->
 				</div>
-				<!-- <ul class="app-breadcrumb breadcrumb"><li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li><li class="breadcrumb-item"><a href="#">Blank Page</a></li></ul> -->
 			</div>
-			<section class="faq-qna-logs">
+
+      <!-- manage subscription logs section  start from here  -->
+			<section class="manage_subscription_log">
 				<div class="row">
 					<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 						<div class="tile">
 							<div class="tile-body">
 								<div class="table-responsive">
-									<!-- data download button (.csv) -->
+
+									<!-- :: data download button (.csv) -->
 									<a class="btn btn-info mb-2" id="downloadButton" href="">
 										<i class="fa fa-download mb-1" aria-hidden="true"></i>Download </a>
-									<!-- data download buton end (.csv) -->
+									<!--:: data download buton end (.csv) -->
+
 									<!-- table start -->
 									<table class="table table-hover table-bordered" id="sampleTable">
 										<!-- table head -->
@@ -50,19 +55,29 @@
 												<th>Sr.No</th>
 												<th>Service Name</th>
 												<th>Category</th>
-                        <th>Updated</th>
-                        <th>Status</th>
+												<th>Updated</th>
+												<th>Status</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 										<!-- end table head -->
+
 										<!-- table body start -->
 										<tbody>
+                      <!-- ::table row 01 -->
 											<tr>
 												<td>01</td>
 												<td>Netflix</td>
 												<td>Movie</td>
-                        <td>13/07/2023</td>
+												<td>13/07/2023</td>
+												<td>
+													<div class="toggle">
+														<label>
+															<input type="checkbox">
+															<span class="button-indecator"></span>
+														</label>
+													</div>
+												</td>
 												<td class="">
 													<span>
 														<div class="dropdown show">
@@ -78,8 +93,39 @@
 																</a>
 															</div>
 														</div>
-														<!-- <a class="action-btn " href="" ><img class="w-10px action-btn" src="assets/img/action-btn.png"></a> -->
-														<!-- <a href="#" class="delet-btn" id="demoSwal"><i class=" fa fa-trash-o dlt-icon" aria-hidden="true"></i></a> -->
+													</span>
+												</td>
+											</tr>
+
+                      <!-- ::table row 02 -->
+											<tr>
+												<td>02</td>
+												<td>Spotify</td>
+												<td>Music</td>
+												<td>02/07/2023</td>
+												<td>
+													<div class="toggle">
+														<label>
+															<input type="checkbox">
+															<span class="button-indecator"></span>
+														</label>
+													</div>
+												</td>
+												<td class="">
+													<span>
+														<div class="dropdown show">
+															<a class="action-btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+																<img class="w-10px action-btn" src="assets/img/action-btn.png">
+															</a>
+															<div class="dropdown-menu " id="action-ed-d-btn" aria-labelledby="dropdownMenuLink">
+																<a class="dropdown-item act-btn " href="#">
+																	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+																</a>
+																<a class="dropdown-item delet-btn act-btn " id="demoSwal" href="#">
+																	<i class=" fa fa-trash-o dlt-icon" aria-hidden="true"></i>
+																</a>
+															</div>
+														</div>
 													</span>
 												</td>
 											</tr>
