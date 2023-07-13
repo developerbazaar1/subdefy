@@ -4,6 +4,9 @@
  * ================================*/
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,400i,700);
 @import url(https://fonts.googleapis.com/css?family=Niconne);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair&family=Ysabeau+Infant&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Montserrat:wght@700&family=Playfair&family=Raleway&family=Ysabeau+Infant&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Montserrat:wght@700&family=Open+Sans:wght@400;500&family=Playfair&family=Raleway&family=Ysabeau+Infant&display=swap');
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -83,7 +86,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
+  /* font-family: 'Ysabeau Infant', sans-serif; */
+  /* font-family: 'Raleway', sans-serif; */
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
@@ -14849,7 +14855,7 @@ be a descendant of the grid when it is being dragged.
   color: #FFF;
   background-color: #00635a;
 }
-
+/* for copy sele ction  */
 ::selection {
   color: #FFF;
   background-color: #28879d;
@@ -16827,7 +16833,7 @@ var {
   padding: 0;
   border: 0;
   outline: 0;
-  font-size: 100%;
+  font-size: 15px;
   vertical-align: baseline;
   background: 0 0;
 }
