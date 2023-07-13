@@ -71,7 +71,6 @@
                                      }">
                                     </tinymce-editor>
                                 </div>
-                                
                                 <!-- :: submit btn -->
                                 <div class="form-group text-center mt-4">
                                     <a href="" class="btn btn-primary bt-mb-100 w-50 " type="submit"><i
@@ -94,7 +93,7 @@
                         <div class="tile-body">
                             <div class="table-responsive">
                                 <!-- data download button (.csv) -->
-                                <a class="btn btn-info mb-2" id="downloadButton" href=""><i class="fa fa-download mb-1"
+                                <a class="btn btn-info mb-2" id="downloadButton" href="#"><i class="fa fa-download mb-1"
                                         aria-hidden="true"></i>Download</a>
                                 <!-- data download buton end (.csv) -->
                                 <!-- table start -->
