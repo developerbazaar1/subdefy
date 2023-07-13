@@ -14852,7 +14852,7 @@ be a descendant of the grid when it is being dragged.
 
 ::selection {
   color: #FFF;
-  background-color: #00635a;
+  background-color: #28879d;
 }
 
 @media (min-width: 768px) {
