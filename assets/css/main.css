@@ -1703,7 +1703,7 @@ pre code {
 .table th,
 .table td {
   padding: 0.75rem;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #dee2e6;
 }
 
@@ -6302,6 +6302,8 @@ a.close.disabled {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  background: #28879d;
+  color: #fff;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
@@ -6323,8 +6325,11 @@ a.close.disabled {
   margin-bottom: 0;
   line-height: 1.5;
 }
-
+.modal-heading h1{
+  font-size: 30px;
+}
 .modal-body {
+  background: #97cfdb8a;
   position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
@@ -6333,6 +6338,7 @@ a.close.disabled {
 }
 
 .modal-footer {
+  background: #97cfdb8a;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

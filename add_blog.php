@@ -35,6 +35,13 @@
 					<!-- <p>Start a beautiful journey here</p> -->
 				</div>
 			</div>
+			<!-- view blog button start from here -->
+			<div class="row mb-3 ">
+				<div class="col-md-12">
+					<a href="viewblog.php" class="btn-lg btn-primary float-right" id="">View Blog's</a>
+				</div>
+			</div>
+			<!-- view blog button end here -->
 			<!-- content start -->
 			<section class="blog-update">
 				<div class="row justify-content-center">
@@ -45,7 +52,6 @@
 									<!-- form row 01 start from here -->
 									<div class=" cst-add-new-form row">
 										<!-- form input  start from here -->
-
 										<!-- field col  start :: dropify-->
 										<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 											<div class="form-group">
@@ -54,29 +60,24 @@
 											</div>
 										</div>
 										<!-- field col  enc :: dropify-->
-
 										<!-- field 02 col start from here -->
 										<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
 											<div class="form-group">
 												<label class="form-head" for="mailer-mail"> Blog Title</label>
 												<input class="form-control" id="exampleInputtitle" type="text" aria-describedby="title" placeholder="Enter Your Blog Title">
 											</div>
-
 											<!-- field 03 -->
 											<div class="form-group">
-                                        <label class="form-head" for="exampletext">
-                                            Blog Category
-                                        </label>
-                                        <div class="select-group h-40">
-                                            <select class="form-control" id="exampleFormControlSelect1">
-                                                <option value="">Select Category</option>
-                                                <option value="Fiction">technology</option>
-                                                <option value="Fiction">Moview Review</option>
-                                                <option value="Fiction">Music Review</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
+												<label class="form-head" for="exampletext"> Blog Category </label>
+												<div class="select-group h-40">
+													<select class="form-control" id="exampleFormControlSelect1">
+														<option value="">Select Category</option>
+														<option value="Fiction">technology</option>
+														<option value="Fiction">Moview Review</option>
+														<option value="Fiction">Music Review</option>
+													</select>
+												</div>
+											</div>
 											<!-- field 04 -->
 											<div class="form-group">
 												<label class="form-head mb-2" for="mailer-mail"> Publish Date</label>
@@ -95,17 +96,16 @@
                                                     {
                                                        font-family:Helvetica,Arial,sans-serif;
                                                         font-size:14px
-                                                    }">
-												</tinymce-editor>
+                                                    }"></tinymce-editor>
 											</div>
 										</div>
 									</div>
 									<!-- :: submit btn -->
 									<div class="form-group text-center mt-4">
-                                        <a href="" class="btn btn-primary bt-mb-100 w-50 " type="submit"><i
-                                        class="fa fa-paper-plane mx-2 mb-1" aria-hidden="true"></i>Submit Blog</a>
-                                    </div>
-                                    <!-- :: submit btn -->
+										<a href="" class="btn btn-primary bt-mb-100 w-50 " type="submit">
+											<i class="fa fa-paper-plane mx-2 mb-1" aria-hidden="true"></i>Submit Blog </a>
+									</div>
+									<!-- :: submit btn -->
 								</form>
 							</div>
 						</div>

@@ -100,7 +100,7 @@
 																<img class="w-10px action-btn" src="assets/img/action-btn.png">
 															</a>
 															<div class="dropdown-menu " id="action-ed-d-btn" aria-labelledby="dropdownMenuLink">
-															<a class="dropdown-item act-btn " href="#">
+															<a class="dropdown-item act-btn type="button" data-toggle="modal" data-target="#exampleModalLong"  href="#" id="edit-btn">
 																	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 																</a>
 																<a class="dropdown-item delet-btn act-btn " id="demoSwal" href="#">
@@ -124,6 +124,42 @@
 				</div>
 			</section>
 		</main>
+
+		<!-- open edit model start -->
+		<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h3 class="modal-title" id="exampleModalLongTitle">
+                     <i class="fa fa-pencil px-2" aria-hidden="true"></i>Edit
+                  </h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <div class="modal-heading text-center">
+                     <h1>FAQ</h1>
+                  </div>
+                  <form class="editcategory-form w-auto">
+                     <div class="form-group">
+                        <label class="form-head">Question</label>
+                        <input class="form-control" type="text" placeholder=" Category Name">
+                     </div>
+					 <div class="form-group">
+										<label for="exampleTextarea">Answer</label>
+										<textarea class="form-control" id="exampleTextarea" placeholder="Enter Your Answer" rows="5"></textarea>
+									</div>
+                  </form>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+               </div>
+            </div>
+         </div>
+      </div>
+    <!-- open edit model end  -->
 		<!-- Essential javascripts for application to work-->
 		<script src="assets/js/jquery-3.3.1.min.js"></script>
 		<script src="assets/js/popper.min.js"></script>
