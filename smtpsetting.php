@@ -115,7 +115,7 @@
                                 <div class="form-group text-center mt-4">
                                     <a href="" class="btn btn-primary bt-mb-100 w-50 " id="" type="submit"><i
                                         class="fa fa-paper-plane mx-2 mb-1" aria-hidden="true"></i>
-                                        Update Settings
+                                        Update Setting
                                     </a>
                                 </div>
                                 <!-- :: submit button -->
