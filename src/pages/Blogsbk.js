@@ -6,7 +6,7 @@ import BackToTopButton from '../components/BackToTopButton.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays} from "@fortawesome/free-solid-svg-icons";
 import blogpagehead from '../img/blog-page-head.png'; 
-import blog1 from '../img/blog-1.jpg';
+
 import blog2 from '../img/blog-2.jpg';
 import blog3 from '../img/blog-3.jpg';
 import blog4 from '../img/blog-4.jpg';
@@ -15,7 +15,7 @@ import {useState, useEffect} from 'react';
 
 const Blogs = () => {
 
-  const url = "http://api.subdefy.com:3001/api/blogs";
+  const url = "https://api.subdefy.com:3001/api/blogs";
   const [data, setData] = useState([]);
 
   const fetchInfo = () => {

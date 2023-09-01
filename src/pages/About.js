@@ -14,7 +14,7 @@ const About = () => {
             <div className="row">
               <div className="col-md-12 about-head-banner">
                   <div className="about-us-bnr-wrap">
-                    <img className="about-main-bnr" src={aboutbnr} alt="" />
+                    <img className="about-main-bnr" src={aboutbnr} alt="load" />
                   </div>
               </div>
             </div>

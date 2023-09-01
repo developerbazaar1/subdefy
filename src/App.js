@@ -1,38 +1,103 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import './css/style.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Home from './pages/index';
-import About from './pages/About';
-import Blogs from './pages/Blogs';
-import Article from './pages/Article';
-import PrivacyPolicy from './pages/Privacy_policy';
-import AffilateDisclouser from './pages/Affilate_disclouser';
-import Support from './pages/Support';
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import "./css/reactCss.css";
+import "./css/style.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import Home from "./pages/index";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import Blogs from "./pages/Blogs";
+import Article from "./pages/Article";
+import PrivacyPolicy from "./pages/Privacy_policy";
+import AffilateDisclouser from "./pages/Affilate_disclouser";
+import Support from "./pages/Support";
+
+import Seeting from "./pages/Seeting";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import { useAuth } from "./services/auth";
+import Manage from "./pages/Manage";
+import CoominSoon from "./pages/CoominSoon";
+import Discover from "./pages/Discover";
+
+import InvesterHub from "./pages/InvesterHub";
+import WishList from "./components/WishList";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setCategory } from "./features/categoriesSlice";
+// import ApiTest from "./ApiTest";
+import Service from "./pages/service";
+import PieCharts from "./components/PieCharts";
 function App() {
+  const { isLoggedIn, token } = useAuth();
+  const dispatch = useDispatch();
+  // const CategorieS = useSelector((state) => state.category);
+  useEffect(() => {
+    const fetchCategories = () => {
+      const config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${process.env.REACT_APP_global_url}/api/get-categories`,
+      };
 
+      axios
+        .request(config)
+        .then((response) => {
+          dispatch(setCategory(response.data.categories));
+          // console.log("from response", response.data.categories);
+          // console.log("from store", CategorieS);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
 
-
-
+    fetchCategories();
+  }, []);
 
   return (
     <Router>
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route path='/about' element={<About/>} />
-          <Route path='/blogs' element={<Blogs/>} />
-          <Route path='/article/:id' element={<Article/>} />
-          <Route path='/privacy-policy' element={<PrivacyPolicy/>} />
-          <Route path='/affilate-disclouser' element={<AffilateDisclouser/>} />
-          <Route path='/support' element={<Support/>} />
-        </Routes>
+      <Routes>
+        <Route exact path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/article/:id" element={<Article />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/affilate-disclouser" element={<AffilateDisclouser />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/coomin" element={<CoominSoon />} />
+        <Route path="/service" element={<Service />} />
+        <Route path="/discover" element={<Discover />} />
+        <Route path="/investerhub" element={<InvesterHub />} />
+        <Route path="/service/:name" element={<Service />} />
+        <Route path="/piechart" element={<PieCharts />} />
+
+        {/* protected route */}
+        <Route
+          exact
+          path="/"
+          element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}
+        >
+          <Route path="/" element={<Manage />} />
+          <Route path="/AccountSettings" element={<Seeting />} />
+          <Route path="/wishlist" element={<WishList />} />
+        </Route>
+
+        {/* protected route end */}
+        <Route
+          exact
+          path="/login"
+          element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+        />
+      </Routes>
     </Router>
   );
 }
 
 export default App;
-
-
-
