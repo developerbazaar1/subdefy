@@ -1,219 +1,917 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<title>discover-subdefy</title>
+		<meta charset="utf-8">
+		 <meta name="theme-color" content="#8AC8D6">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+      	<meta name="mobile-web-app-capable" content="yes">
+        <meta name="HandheldFriendly" content="True">
+       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="img/favicon.jpg" rel="icon">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/responsive.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+	</head>
+	<body class="discover-bg app sidebar-mini pace-done">
+		<!-- header-section start -->
+		<header class="header-wrap">
+			<div class="header-bottom">
+				<div class="container">
+					<nav class="navbar navbar-expand-md navbar-light">
+						<a class="navbar-brand" href="#">
+							<img class="logo" src="img/logo.png" alt="logo">
+						</a>
+						<div class="collapse navbar-collapse main-menu-wrap" id="navbarSupportedContent">
+							<div class="menu-close d-xl-none">
+								<a href="javascript:void(0)">
+									<i class="fa-solid fa-xmark"></i>
+								</a>
+							</div>
+							<ul class="navbar-nav m-auto">
+								<li class="nav-item">
+									<a href="discover.html" class="nav-link">Discover</a>
+								</li>
+								<li class="nav-item">
+									<a href="manage.html" class="nav-link">Manage</a>
+								</li>
+								<li class="nav-item">
+									<a href="service.html" class="nav-link">Pay</a>
+								</li>
+								<li class="nav-item">
+									<a href="investorhub.html" class="nav-link">Investor Hub</a>
+								</li>
+								<li class="nav-item">
+									<a href="blogs.html" class="nav-link">Blog</a>
+								</li>
+							</ul>
+							<div class="lg-none ms-auto">
+								<!-- <a href="#" class="btn signup-btn">Sign Up Free</a> -->
+								<a href="login.html" class="btn signup-btn">Sign Up Free</a>
+							</div>
+							<div class="lg-none mx-4">
+								<!-- <a href="#" class="btn signup-btn">Sign Up Free</a> -->
+								<a href="#" class=" profile-btn" onclick="toggleAsideMenu(event)">
+									<img class="app-sidebar__user-avatar w-46px" src="img/user.png" alt="User Image">
+								</a>
+							</div>
+						</div>
+					</nav>
+					<div class="mobile-menu d-xl-none">
+						<a href="javascript:void(0)">
+							<i class="fa-solid fa-bars"></i>
+						</a>
+					</div>
+					<div class=" d-xl-none">
+						<a href="#" class="profile-btn">
+							<img class="app-sidebar__user-avatar w-35px" src="img/user.png" alt="User Image">
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- header-section end -->
+		<!-- aside menu start from here -->
+		<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+		<aside class="sidebar mbmt-78px mt-51px w-xxl" id="sidebar">
+			<!-- aside close btn -->
+			<div class="sub-menu-close d-xl-none">
+				<a href="#" onclick="toggleAsideMenu(event)">
+					<i class="fa-solid fa-xmark"></i>
+				</a>
+			</div>
+			<!-- aside close btn -->
+			<div class="sidebar-content">
+				<span class=" app-c-head mt-2 mx-3 ">Misc categories</span>
+				<ul class="app-menu mt-3">
+					<li class="s-2-menu ">
+						<a class="app_two_menu_item" href="dashboard.php">
+							<img src="img/hot-deal.png" class="app-menu-_discover mx-3 w-20"></img>
+							<span class="app-menu__label app-2-menu">MostPopular 
+							</span><span class="chev-left"><i class="fa-solid fa-chevron-right"></i></span>
+						</a>
+					</li>
+					<li class="s-2-menu mt-3">
+						<a class="app_two_menu_item" href="dashboard.php">
+							<img src="img/drinks.png" class="app-menu-_discover mx-3 w-20"></img>
+							<span class="app-menu__label app-2-menu">Explore 
+							</span>
+							<span class="chev-left"><i class="fa-solid fa-chevron-right"></i></span>
+						</a>
+					</li>
+					<li class="s-2-menu mt-3">
+						<a class="app_two_menu_item" href="dashboard.php">
+							<img src="img/box.png" class="app-menu-_discover mx-3 w-20"></img>
+							<span class="app-menu__label app-2-menu">New Release 
+							</span><span class="chev-left"><i class="fa-solid fa-chevron-right"></i></span>
+						</a>
+					</li>
+					<li class="s-2-menu mt-3">
+						<a class="app_two_menu_item" href="dashboard.php">
+							<img src="img/gift-box.png" class="app-menu-_discover mx-3 w-20"></img>
+							<span class="app-menu__label app-2-menu">Gift Subscription 
+							</span>
+							<span class="chev-left"><i class="fa-solid fa-chevron-right"></i></span>
+						</a>
+					</li>
+					<!-- side second fiavourite menu -->
+					<div class="nav-sub-show mt-4">
+						<span class=" app-c-head  mx-3 ">Favourites</span>
+					</div>
+					<li>
+						<a class="app-menu__item fav-menu-items" href="wishlist.html">
+							<img src="img/heart.png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Wishlist</span>
+						</a>
+					</li>
+					<div class="nav-sub-show mt-2">
+						<span class=" app-c-head mt-1 mx-3 ">SUBSCRIPTION CATEGORIES</span>
+					</div>
+					<li>
+						<div class="dropdown">
+							<a class="app-menu__item dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="img/social-media.png" class="app-menu__icon mx-3 w-20"></img>
+								<span class="app-menu__label__2">Entertainment & Media <i class="fa-solid fa-chevron-right mx-1"></i>
+								</span>
+							</a>
+							<ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+								<li>
+									<a class="dropdown-item" href="#">TV & Movie Streaming</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Music Streaming</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Audiobooks</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Video Gaming</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Comics & Graphic Novels</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Science Fiction & Fantasy Media</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Niche Film & Cinema</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Magazines & Publications</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Magazines & Publications</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a class="app-menu__item" href="dashboard.php">
+							<img src="img/chip.png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Technology & Software </span>
+						</a>
+					</li>
+					<li>
+						<a class="app-menu__item" href="dashboard.php">
+							<img src="img/social-media.png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Entertainment & Media</span>
+						</a>
+					</li>
+					<li>
+						<a class="app-menu__item" href="dashboard.php">
+							<img src="img/pet.png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Pets & Animals</span>
+						</a>
+					</li>
+					<li>
+						<a class="app-menu__item" href="dashboard.php">
+							<img src="img/education.png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Education & Learning</span>
+						</a>
+					</li>
+					<li>
+						<a class="app-menu__item" href="dashboard.php">
+							<img src="img/travelling.png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Travel & Leisure</span>
+						</a>
+					</li>
+					<li>
+						<a class="app-menu__item" href="dashboard.php">
+							<img src="img/porcelain.png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Craft & Hobbies</span>
+						</a>
+					</li>
+					<li>
+						<a class="app-menu__item" href="dashboard.php">
+							<img src="img/businessman.png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Finance & Services</span>
+						</a>
+					</li>
+					<li>
+						<a class="app-menu__item" href="dashboard.php">
+							<img src="img/family (1).png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Parenting & Family</span>
+						</a>
+					</li>
+					<li>
+						<a class="app-menu__item" href="dashboard.php">
+							<img src="img/dress-code.png" class="app-menu__icon mx-3 w-20"></img>
+							<span class="app-menu__label__2">Fashion & Accessories</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+		<!-- ::aside menu cl0se -->
+		<!-- ::main bodystart from here -->
+		<main class="app-content ">
+		    <secion class="mob-filters ">
+		        <div class=" row justify-content-center">
+		            <div class="col-sm-12  d-lg-none mt-4 text-center">
+		                <a class="discover-filter-btn" onclick="toggleAsideMenu(event)"> <img class="filter-icon w-30px pb-1 mx-2" src="img/filter-icons.png">Filters</a> 
+		            </div>
+		        </div>
+		    </secion>
+			<!-- main body section start from here -->
+			<!-- ::profile deatils -->
+			<section class="profile-setings mt-5">
+				<div class="row justify-content-center">
+					<div class="col-md-12 selection-col">
+						<div class="row justify-content-center">
+							<div class="col-md-10">
+								<div class="cst-main-heading">
+									<h2>Subdefy Discover</h2>
+									<p>Welcome to Subdefy Discover, your personal dashboard to the world of <br> subscription services. Browse our comprehensive display of recurring expenses, <br> compare options, and pinpoint the subscription that delivers the best value for you. </p>
+								</div>
+								<!--:: form-search-bar  -->
+								<!--<form class="search-bar-wrapper mt-4">-->
+								<!--	<div class="input-wrapper">-->
+								<!--		<input type="text" placeholder="category, Name or keywords" class="input-field">-->
+								<!--		<button type="submit" class="search-icon">-->
+								<!--			<i class="fa-solid fa-magnifying-glass s-icon"></i>-->
+								<!--		</button>-->
+								<!--	</div>-->
+								<!--</form>-->
+								<form class="search-bar-wrapper mt-4">
+    <div class="input-wrapper">
+        <input type="text" placeholder="category, Name or keywords" class="input-field" id="searchInput" autofocus>
+        <button type="button" class="search-icon" id="searchIcon">
+            <i class="fa-solid fa-magnifying-glass s-icon"></i>
+        </button>
+    </div>
+</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="card-list-discover">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-10 mt-5">
+							<div class="list card-list">
+								<div class="discover-card-list d-flex">
+									<!-- :: card 1 -->
+									<div class="d-card text-center">
+										<div class="card-info">
+											<div class="card-avatar">
+												<img class="d-card-icon w-100" src="img/food.png">
+											</div>
+											<div class="card-subtitle pt-2">
+												<p>Food &<br> Beverages</p>
+											</div>
+										</div>
+									</div>
+									<div class="d-card text-center">
+										<div class="card-info">
+											<div class="card-avatar">
+												<img class="d-card-icon w-100" src="img/chip.png">
+											</div>
+											<div class="card-subtitle pt-2">
+												<p>Technology & <br>Software</p>
+											</div>
+										</div>
+									</div>
+									<div class="d-card text-center">
+										<div class="card-info">
+											<div class="card-avatar">
+												<img class="d-card-icon w-100" src="img/social-media.png">
+											</div>
+											<div class="card-subtitle pt-2">
+												<p>Entertainment & <br>media</p>
+											</div>
+										</div>
+									</div>
+									<div class="d-card text-center">
+										<div class="card-info">
+											<div class="card-avatar">
+												<img class="d-card-icon w-100" src="img/pet.png">
+											</div>
+											<div class="card-subtitle pt-2">
+												<p>Pets & <br>Animals</p>
+											</div>
+										</div>
+									</div>
+									<div class="d-card text-center">
+										<div class="card-info">
+											<div class="card-avatar">
+												<img class="d-card-icon w-100" src="img/education.png">
+											</div>
+											<div class="card-subtitle pt-2">
+												<p>Education & <br>Learning</p>
+											</div>
+										</div>
+									</div>
+									<div class="d-card text-center">
+										<div class="card-info">
+											<div class="card-avatar">
+												<img class="d-card-icon w-100" src="img/education.png">
+											</div>
+											<div class="card-subtitle pt-2">
+												<p>Travel & <br>Leisure</p>
+											</div>
+										</div>
+									</div>
+									<div class="d-card text-center">
+										<div class="card-info">
+											<div class="card-avatar">
+												<img class="d-card-icon w-100" src="img/porcelain.png">
+											</div>
+											<div class="card-subtitle pt-2">
+												<p>Craft & <br>Hobbies</p>
+											</div>
+										</div>
+									</div>
+									<!-- :: card 2 -->
+									<!-- Add other cards similarly -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- table section  -->
+			<section class="discover-list-section mt-5">
+				<div class="container">
+					<div class="row justify-content-center">
+					     <!--<div class="sort-btn">-->
+						    <!--    <button class="dtab-sort-btn" id="sort-btn"><i class="fa-solid fa-sort mx-2"></i>Sort</button>-->
+						    <!--</div>-->
+						<div class="col-md-11">
+							<div class="table-container discover-table w-nowrap">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class="text-center">
+											<tr>
+												<th class="text-left br-none px-4 ">Service <span id="sort-btn"><i class="fa-solid fa-sort mx-2"></i></span></th>
+												<th class="br-none">Rating <span><i class="fa-solid fa-sort mx-2"></i></span></th>
+												<!-- <th><img class="w-35px table-fam-head" src="img/family.png" alt="Family"></th><th><img class="w-35px table-fam-head" src="img/lcd.png" alt="LCD"></th> -->
+												<th class="br-none">Free Trial? <span><i class="fa-solid fa-sort mx-2"></i></span></th>
+												<th class="text-left br-none px-4">from $ <span><i class="fa-solid fa-sort mx-2"></i></span></th>
+												<!-- <th class="br-none">Ads</th> -->
+												<th class="br-none"></th>
+												<th class="br-none"></th>
+											</tr>
+										</thead>
+										<tbody class="text-center">
+											<!-- row01 -->
+											<tr class="v-middle   dt-drop-shadow">
+												<td class="br-rad-left bg-white cst-mg-icon-pd">
+													<div class="service-contain">
+														<label class="container-label-text">
+															<div class="image-box">
+																<img class="icon-customer" src="img/babbel-logo.png" alt="Disney">
+															</div>
+															<span class="fixed-number text-left">
+																<h6>Babbel</h6>
+																<span class="text-description text-wrap">Babbel is the new way to learn a foreign language. The comprehensive learning system combines effective education methods with new technology.</span>
+															</span>
+														</label>
+													</div>
+												</td>
+												<td class="bg-white">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+												</td>
+												<!-- <td class=" watch-screen text-center">1</td> -->
+												<!-- <td class="view-quality text-center">HD</td> -->
+												<td class="user-free-trail text-center bg-white">
+													<i class="fa-solid fa-check check-avail-icon"></i>
+												</td>
+												<td class="bg-white">
+													<div class="rate d-flex">
+														<h5 class="pt-2">$11.99</h5>
+														<span class="discount-text ml-3 pt-2">Save 5%</span>
+													</div>
+												</td>
+												<!-- <td class="ads-visible text-center"><i class="fa-solid fa-check"></i></td> -->
+												<td class="bg-white">
+													<a href="planandpricing.html" class="btn-primary btn-more-info">More Info</a>
+												</td>
+												<td class="fav-things br-rad-right bg-white">
+													<div class="con-like">
+														<input title="like" type="checkbox" class="like" onclick="Alert.success('Added to Wishlist. ',{displayDuration: 3000, pos: 'top'})">
+														<div class="checkmark">
+															<svg viewBox="0 0 24 24" class="outline" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
+															</svg>
+															<svg viewBox="0 0 24 24" class="filled" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
+															</svg>
+															<svg class="celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+																<polygon points="10,10 20,20" class="poly"></polygon>
+																<polygon points="10,50 20,50" class="poly"></polygon>
+																<polygon points="20,80 30,70" class="poly"></polygon>
+																<polygon points="90,10 80,20" class="poly"></polygon>
+																<polygon points="90,50 80,50" class="poly"></polygon>
+																<polygon points="80,80 70,70" class="poly"></polygon>
+															</svg>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<!-- row 02 -->
+											<tr class="v-middle  dt-drop-shadow">
+												<td class="br-rad-left bg-white cst-mg-icon-pd">
+													<div class="service-contain">
+														<label class="container-label-text">
+															<div class="image-box">
+																<img class="icon-customer" src="img/allure-logo.png" alt="Disney">
+															</div>
+															<span class="fixed-number text-left">
+																<h6>Allure's</h6>
+																<span class="text-description text-wrap">Allure’s monthly beauty box offers top-trending, editor-tested makeup and beauty picks.</span>
+															</span>
+														</label>
+													</div>
+												</td>
+												<td class="bg-white">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa-regular fa-star"></span>
+												</td>
+												<!-- <td class=" watch-screen text-center">1</td> -->
+												<!-- <td class="view-quality text-center">HD</td> -->
+												<td class="user-free-trail text-center bg-white">
+													<i class="fa-solid fa-xmark check-avail-icon"></i>
+												</td>
+												<td class="bg-white">
+													<div class="rate d-flex">
+														<h5 class="pt-2">$11.99</h5>
+														<span class="discount-text ml-3 pt-2">Save 5%</span>
+													</div>
+												</td>
+												<!-- <td class="ads-visible text-center"><i class="fa-solid fa-check"></i></td> -->
+												<td class="bg-white">
+													<a href="planandpricing.html" class="btn-primary btn-more-info">More Info</a>
+												</td>
+												<td class="fav-things br-rad-right bg-white">
+													<div class="con-like">
+														<input title="like" type="checkbox" class="like" onclick="Alert.success('Added to Wishlist. ',{displayDuration: 3000, pos: 'top'})">
+														<div class="checkmark">
+															<svg viewBox="0 0 24 24" class="outline" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
+															</svg>
+															<svg viewBox="0 0 24 24" class="filled" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
+															</svg>
+															<svg class="celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+																<polygon points="10,10 20,20" class="poly"></polygon>
+																<polygon points="10,50 20,50" class="poly"></polygon>
+																<polygon points="20,80 30,70" class="poly"></polygon>
+																<polygon points="90,10 80,20" class="poly"></polygon>
+																<polygon points="90,50 80,50" class="poly"></polygon>
+																<polygon points="80,80 70,70" class="poly"></polygon>
+															</svg>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<!-- row 03 -->
+											<tr class="v-middle  dt-drop-shadow">
+												<td class="br-rad-left bg-white cst-mg-icon-pd">
+													<div class="service-contain">
+														<label class="container-label-text">
+															<div class="image-box">
+																<img class="icon-customer" src="img/barkbox-logo.png" alt="Disney">
+															</div>
+															<span class="fixed-number text-left">
+																<h6>Barkbox</h6>
+																<span class="text-description text-wrap">BarkBox is a monthly surprise of dog toys, treats, and goodies!</span>
+															</span>
+														</label>
+													</div>
+												</td>
+												<td class="bg-white">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+												</td>
+												<!-- <td class=" watch-screen text-center">1</td> -->
+												<!-- <td class="view-quality text-center">HD</td> -->
+												<td class="user-free-trail text-center bg-white">
+													<i class="fa-solid fa-check check-avail-icon"></i>
+												</td>
+												<td class="bg-white">
+													<div class="rate d-flex">
+														<h5 class="pt-2">$11.99</h5>
+														<span class="discount-text ml-3 pt-2">Save 5%</span>
+													</div>
+												</td>
+												<!-- <td class="ads-visible text-center"><i class="fa-solid fa-check"></i></td> -->
+												<td class="bg-white">
+													<a href="planandpricing.html" class="btn-primary btn-more-info">More Info</a>
+												</td>
+												<td class="fav-things br-rad-right bg-white">
+													<div class="con-like">
+														<input title="like" type="checkbox" class="like" onclick="Alert.success('Added to Wishlist. ',{displayDuration: 3000, pos: 'top'})">
+														<div class="checkmark">
+															<svg viewBox="0 0 24 24" class="outline" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
+															</svg>
+															<svg viewBox="0 0 24 24" class="filled" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
+															</svg>
+															<svg class="celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+																<polygon points="10,10 20,20" class="poly"></polygon>
+																<polygon points="10,50 20,50" class="poly"></polygon>
+																<polygon points="20,80 30,70" class="poly"></polygon>
+																<polygon points="90,10 80,20" class="poly"></polygon>
+																<polygon points="90,50 80,50" class="poly"></polygon>
+																<polygon points="80,80 70,70" class="poly"></polygon>
+															</svg>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<!-- row-04 -->
+											<tr class="v-middle  dt-drop-shadow">
+												<td class="br-rad-left bg-white cst-mg-icon-pd">
+													<div class="service-contain">
+														<label class="container-label-text">
+															<div class="image-box">
+																<img class="icon-customer" src="img/hulu-logo.png" alt="Disney">
+															</div>
+															<span class="fixed-number text-left">
+																<h6>Hulu</h6>
+																<span class="text-description text-wrap">Watch TV shows and movies online. Stream episodes of South Park, Empire, SNL, Modern Family and many more hit shows.</span>
+															</span>
+														</label>
+													</div>
+												</td>
+												<td class="bg-white">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+												</td>
+												<!-- <td class=" watch-screen text-center">1</td> -->
+												<!-- <td class="view-quality text-center">HD</td> -->
+												<td class="user-free-trail text-center bg-white">
+													<i class="fa-solid fa-check check-avail-icon"></i>
+												</td>
+												<td class="bg-white">
+													<div class="rate d-flex">
+														<h5 class="pt-2">$11.99</h5>
+														<span class="discount-text ml-3 pt-2">Save 5%</span>
+													</div>
+												</td>
+												<!-- <td class="ads-visible text-center"><i class="fa-solid fa-check"></i></td> -->
+												<td class="bg-white">
+													<a href="planandpricing.html" class="btn-primary btn-more-info">More Info</a>
+												</td>
+												<td class="fav-things br-rad-right bg-white">
+													<div class="con-like">
+														<input title="like" type="checkbox" class="like" onclick="Alert.success('Added to Wishlist. ',{displayDuration: 3000, pos: 'top'})">
+														<div class="checkmark">
+															<svg viewBox="0 0 24 24" class="outline" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
+															</svg>
+															<svg viewBox="0 0 24 24" class="filled" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
+															</svg>
+															<svg class="celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+																<polygon points="10,10 20,20" class="poly"></polygon>
+																<polygon points="10,50 20,50" class="poly"></polygon>
+																<polygon points="20,80 30,70" class="poly"></polygon>
+																<polygon points="90,10 80,20" class="poly"></polygon>
+																<polygon points="90,50 80,50" class="poly"></polygon>
+																<polygon points="80,80 70,70" class="poly"></polygon>
+															</svg>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<!-- row 05 -->
+											<tr class="v-middle  dt-drop-shadow">
+												<td class="br-rad-left bg-white cst-mg-icon-pd">
+													<div class="service-contain">
+														<label class="container-label-text">
+															<div class="image-box">
+																<img class="icon-customer" src="img/audible-logo.jpg" alt="Disney">
+															</div>
+															<span class="fixed-number text-left">
+																<h6>Audible</h6>
+																<span class="text-description text-wrap">Download audiobooks to your iPhone, Android, Windows Phone, Kindle or other listening device.</span>
+															</span>
+														</label>
+													</div>
+												</td>
+												<td class="bg-white">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+												</td>
+												<!-- <td class=" watch-screen text-center">1</td> -->
+												<!-- <td class="view-quality text-center">HD</td> -->
+												<td class="user-free-trail text-center bg-white">
+													<i class="fa-solid fa-check check-avail-icon"></i>
+												</td>
+												<td class="bg-white">
+													<div class="rate d-flex">
+														<h5 class="pt-2">$11.99</h5>
+														<span class="discount-text ml-3 pt-2">Save 5%</span>
+													</div>
+												</td>
+												<!-- <td class="ads-visible text-center"><i class="fa-solid fa-check"></i></td> -->
+												<td class="bg-white">
+													<a href="planandpricing.html" class="btn-primary btn-more-info">More Info</a>
+												</td>
+												<td class="fav-things br-rad-right bg-white">
+													<div class="con-like">
+														<input title="like" type="checkbox" class="like" onclick="Alert.success('Added to Wishlist. ',{displayDuration: 3000, pos: 'top'})">
+														<div class="checkmark">
+															<svg viewBox="0 0 24 24" class="outline" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
+															</svg>
+															<svg viewBox="0 0 24 24" class="filled" xmlns="http://www.w3.org/2000/svg">
+																<path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
+															</svg>
+															<svg class="celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+																<polygon points="10,10 20,20" class="poly"></polygon>
+																<polygon points="10,50 20,50" class="poly"></polygon>
+																<polygon points="20,80 30,70" class="poly"></polygon>
+																<polygon points="90,10 80,20" class="poly"></polygon>
+																<polygon points="90,50 80,50" class="poly"></polygon>
+																<polygon points="80,80 70,70" class="poly"></polygon>
+															</svg>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<!-- main body content end here -->
+		<!-- footer start from here -->
+		<footer class="footer mt-100">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-3">
+						<ul class="p-0">
+							<li>
+								<a href="privacy_policy.html" class="footer-links">PRIVACY & COOKIES</a>
+							</li>
+							<li>
+								<a href="support.html" class="footer-links">SUPPORT & FEEDBACK</a>
+							</li>
+							<li>
+								<a href="affilate_disclouser.html" class="footer-links">AFFILIATE DISCLOSURE</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<ul class="p-0">
+							<li>
+								<a href="about.html" class="footer-links">ABOUT US</a>
+							</li>
+							<li>
+								<a href="usersetting.html" class="footer-links">SECURITY</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<div class="email-box">
+							<h6>SIGN UP FOR OUR NEWSLETTER</h6>
+							<form>
+								<div class="mb-3">
+									<input type="email" class="form-control" id="" placeholder="email@email.com" required>
+								</div>
+								<button type="submit" class="btn btn-main">Submit</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-end">
+					<div class="col-md-3">
+						<div class="social-icons mt-4">
+							<ul>
+								<li>
+									<a href="#">
+										<i class="fa-brands fa-facebook-f"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="fa-brands fa fa-instagram"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+		<script src="js/plugin/chart.js"></script>
+		<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script src="js/main.js"></script>
+		<script>
+    const searchInput = document.getElementById('searchInput');
+    const searchIcon = document.getElementById('searchIcon');
 
-<head>
-    <title>Discover</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="img/favicon.jpg" rel="icon" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-</head>
+    searchIcon.addEventListener('click', () => {
+        searchInput.classList.toggle('open');
+    });
+</script>
+		<script>
+			function toggleAsideMenu() {
+				var asideMenu = document.getElementById("sidebar");
+				if (window.innerWidth >= 768) {
+					// On desktop, always add the "open" class to keep the menu open
+					asideMenu.classList.add("open");
+				} else {
+					// On mobile, toggle the "open" class to open/close the menu
+					asideMenu.classList.toggle("open");
+				}
+			}
+			// Toggle the aside menu based on user click in mobile view
+			function toggleMenuMobile() {
+				var asideMenu = document.getElementById("sidebar");
+				asideMenu.classList.toggle("open");
+			}
+			// Initial setup on DOM ContentLoaded
+			window.addEventListener('DOMContentLoaded', function() {
+				var asideMenu = document.getElementById("sidebar");
+				if (window.innerWidth >= 768) {
+					// On desktop, always add the "open" class to keep the menu open
+					asideMenu.classList.add("open");
+				} else {
+					// On mobile, set up the event 
+					var mobileMenuButton = document.querySelector(".mobile-menu-button");
+					mobileMenuButton.addEventListener("click", toggleMenuMobile);
+				}
+			});
+		</script>
+		<!--script for heart icon alert-->
+		<script>
+var Alert = undefined;
 
-<body class="support">
-    <!-- header-section start -->
-    <header class="header-wrap">
-        <div class="header-bottom">
-            <div class="container">
-                <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="#">
-                        <img class="logo" src="img/logo.png" alt="logo" />
-                    </a>
-                    <div class="collapse navbar-collapse main-menu-wrap" id="navbarSupportedContent">
-                        <div class="menu-close d-xl-none">
-                            <a href="javascript:void(0)">
-                                <i class="fa-solid fa-xmark"></i>
-                            </a>
-                        </div>
-                        <ul class="navbar-nav m-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Discover</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Manage</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Pay</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Investor Hub</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Blogs</a>
-                            </li>
-                        </ul>
-                        <div class="lg-none ms-auto">
-                            <a href="#" class="btn signup-btn">Sign Up Free</a>
-                        </div>
-                    </div>
-                </nav>
-                <div class="mobile-menu d-xl-none">
-                    <a href="javascript:void(0)">
-                        <i class="fa-solid fa-bars"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- header-section end -->
+(function (Alert) {
+    var alert, error, trash, info, success, warning, _container;
+    info = function (message, title, options) {
+        return alert("info", message, title, "fa fa-info-circle", options);
+    };
+    success = function (message, title, options) {
+        return alert("success", message, title,  options);
+    };
+    alert = function (type, message, title, icon, options) {
+        var alertElem, messageElem, titleElem, iconElem, innerElem, _container;
+        if (typeof options === "undefined") {
+            options = {};
+        }
+        options = $.extend({}, Alert.defaults, options);
+        if (!_container) {
+            _container = $("#alerts");
+            if (_container.length === 0) {
+                _container = $("<ul>").attr("id", "alerts").appendTo($("body"));
+            }
+        }
+        if (options.width) {
+            _container.css({
+                width: options.width
+            });
+        }
+        alertElem = $("<li>").addClass("alert").addClass("alert-" + type);
+        setTimeout(function () {
+            alertElem.addClass('open');
+        }, 1);
+        if (icon) {
+            iconElem = $("<i>").addClass(icon);
+            alertElem.append(iconElem);
+        }
+        innerElem = $("<div>").addClass("alert-block");
+        //innerElem = $("<i>").addClass("fa fa-times");
+        alertElem.append(innerElem);
+        if (title) {
+            titleElem = $("<div>").addClass("alert-title").append(title);
+            innerElem.append(titleElem);
 
-    <!-- main start -->
+        }
+        if (message) {
+            messageElem = $("<div>").addClass("alert-message").append(message);
+            //innerElem.append("<i class="fa fa-times"></i>");
+            innerElem.append(messageElem);
+            //innerElem.append("<em>Click to Dismiss</em>");
+            //      innerElemc = $("<i>").addClass("fa fa-times");
 
-    <!-- heading and search form  section  -->
-    <section class="investor-main mt-130 mb-5">
-        <div class="container">
-            <div class="row justify-content-center text-center mt-5">
-                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                    <div class="cst-main-heading">
-                        <h2>Subdefy Discover</h2>
-                        <p class="paragraph">Discover the best subscriptions to make sure you're maximising your value
-                            for money and stop wasting it on anything less than perfect.</p>
+        }
+        if (options.displayDuration > 0) {
+            setTimeout((function () {
+                leave();
+            }), options.displayDuration);
+        } else {
+            innerElem.append("<em>Click to Dismiss</em>");
+        }
+        alertElem.on("click", function () {
+            leave();
+        });
 
-                        <form class="search-bar-wrapper mt-2">
-                            <div class="input-wrapper">
-                                <input type="text" placeholder="Category Search" class="input-field">
-                                <button type="submit" class="search-icon">
-                                    <i class="fa-solid fa-magnifying-glass s-icon"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- heading and search form section end  -->
+        function leave() {
+            alertElem.removeClass('open');
+            alertElem.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+                return alertElem.remove();
+            });
+        }
+        return _container.prepend(alertElem);
+    };
+    Alert.defaults = {
+        width: "",
+        icon: "",
+        displayDuration: 3000,
+        pos: ""
+    };
+    Alert.info = info;
+    Alert.warning = warning;
+    Alert.error = error;
+    Alert.trash = trash;
+    Alert.success = success;
+    return _container = void 0;
 
-    <!-- category box section  -->
-    <section class="search category">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-4 mb-4">
-                    <div class="vertical-box">
-                        <img class="w-55 img-r" src="img/music-straming.png"><span class="box-text mx-2 "><span>Video
-                                Streaming</span>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="vertical-box">
-                        <img class="w-55 img-r" src="img/imagebox-33.png"><span class="box-text mx-2">Music
-                            Streaming</span>
-                    </div>
-                </div>
-            </div>
-            <!-- second row  -->
-            <div class="row justify-content-center">
-                <div class="col-md-4 mb-4">
-                    <div class="vertical-box">
-                        <img class="w-55 img-r" src="img/imagebox-44.png"><span class="box-text mx-2 ">Video
-                            Streaming</span>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="vertical-box">
-                        <img class="w-55 img-r" src="img/imagebox-33.png"><span class="box-text mx-2">Music
-                            Streaming</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- category box section end  -->
-    <!-- category text section -->
-    <section class="category-text mt-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-10 mb-4">
-                    <div class="ins-cntnt">
-                        <h5 class="ins-cntnt-h">Video Streaming Subscriptions</h5>
-                    <p>There's over 300 different entertainment services in the U.S. Find the perfect services for you
-                        here. Click to view more information or add to your dashboard if you're already a subscriber.
-                    </p>
-                    </div>
-                </div>
+})(Alert || (Alert = {}));
 
-            </div>
+this.Alert = Alert;
 
-        </div>
-    </section>
-    <!-- category text section end -->
+$('#test').on('click', function () {
+    Alert.info('Message');
+});
+</script>
 
+<!--script for sot btn-->
+<script>
+  // Get a reference to the table and the button
+  const table = document.querySelector('.table');
+  const sortButton = document.getElementById('sort-btn');
 
-    <!-- footer-section start -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row justify-content-center">
+  // Function to sort the table rows based on a specific column
+  function sortTable(columnIndex, ascending) {
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
 
+    rows.sort((a, b) => {
+      const cellA = a.querySelectorAll('td')[columnIndex].textContent.trim();
+      const cellB = b.querySelectorAll('td')[columnIndex].textContent.trim();
 
-                <div class="col-md-3">
-                    <ul class="p-0">
-                        <li>
-                            <a href="#" class="footer-links">SUPPORT & FEEDBACK</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-links">AFFILIATE DISCLOSURE</a>
-                        </li>
+      if (ascending) {
+        return cellA.localeCompare(cellB);
+      } else {
+        return cellB.localeCompare(cellA);
+      }
+    });
 
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <ul class="p-0">
-                        <li>
-                            <a href="#" class="footer-links">ABOUT US</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-links">SECURITY</a>
-                        </li>
+    rows.forEach(row => table.querySelector('tbody').appendChild(row));
+  }
 
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <div class="email-box">
-                        <h6>SIGN UP FOR OUR NEWSLETTER</h6>
-                        <form>
-                            <div class="mb-3">
-                                <input type="email" class="form-control" id="" placeholder="email@email.com" required>
-                            </div>
-                            <button type="submit" class="btn btn-main">Submit</button>
-                        </form>
-                    </div>
+  // Event listener for the sort button
+  sortButton.addEventListener('click', () => {
+    const columnIndex = 0; // Change this to the desired column index for sorting
+    const currentAscending = sortButton.dataset.ascending === 'true';
 
-                </div>
-            </div>
-
-            <div class="row justify-content-end">
-                <div class="col-md-3">
-                    <div class="social-icons mt-4">
-                        <ul>
-
-
-                            <li>
-                                <a href="#">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa-brands fa fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-    </footer>
-    <!-- footer-section end -->
-    <a href="javascript:void(0)" class="back-to-top bounce">
-        <i class="fa-solid fa-arrow-up-long"></i>
-    </a>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-
-
-
-</body>
-
+    sortTable(columnIndex, !currentAscending);
+    sortButton.dataset.ascending = !currentAscending;
+  });
+</script>
+	</body>
 </html>

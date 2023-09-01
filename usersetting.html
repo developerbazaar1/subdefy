@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Account setting</title>
+	<meta charset="utf-8">
+	<meta name="theme-color" content="#8AC8D6">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="img/favicon.jpg" rel="icon">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+</head>
+
+<body class="bgf7 app sidebar-mini pace-done">
+	<!-- header-section start -->
+	<header class="header-wrap">
+		<div class="header-bottom">
+			<div class="container">
+				<nav class="navbar navbar-expand-md navbar-light">
+					<a class="navbar-brand" href="#">
+						<img class="logo" src="img/logo.png" alt="logo">
+					</a>
+					<div class="collapse navbar-collapse main-menu-wrap" id="navbarSupportedContent">
+						<div class="menu-close d-xl-none">
+							<a href="javascript:void(0)">
+								<i class="fa-solid fa-xmark"></i>
+							</a>
+						</div>
+						<ul class="navbar-nav m-auto">
+							<li class="nav-item">
+								<a href="discover.html" class="nav-link">Discover</a>
+							</li>
+							<li class="nav-item">
+								<a href="manage.html" class="nav-link">Manage</a>
+							</li>
+							<li class="nav-item">
+								<a href="service.html" class="nav-link">Pay</a>
+							</li>
+							<li class="nav-item">
+								<a href="investorhub.html" class="nav-link">Investor Hub</a>
+							</li>
+							<li class="nav-item">
+								<a href="blogs.html" class="nav-link">Blog</a>
+							</li>
+						</ul>
+						<div class="lg-none ms-auto">
+							<!-- <a href="#" class="btn signup-btn">Sign Up Free</a> -->
+							<a href="#" class="btn signup-btn">Sign Up Free</a>
+						</div>
+						<div class="lg-none d-none-sm mx-4">
+							<!-- <a href="#" class="btn signup-btn">Sign Up Free</a> -->
+							<a href="#" class=" profile-btn " onclick="toggleAsideMenu(event)"><img
+									class="app-sidebar__user-avatar w-46px" src="img/user.png" alt="User Image"></a>
+						</div>
+
+					</div>
+				</nav>
+				<div class="mobile-menu d-xl-none">
+					<a href="javascript:void(0)">
+						<i class="fa-solid fa-bars"></i>
+					</a>
+				</div>
+				<div class=" d-xl-none">
+					<a href="#" class="profile-btn" onclick="toggleAsideMenu(event)"><img
+							class="app-sidebar__user-avatar w-35px" src="img/user.png" alt="User Image"></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- header-section end -->
+	<!-- aside menu start from here -->
+	<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+	<aside class="sidebar mbmt-78px mt-78px" id="sidebar">
+		<!-- aside close btn -->
+		<div class="sub-menu-close d-xl-none">
+			<a href="#" onclick="toggleAsideMenu(event)">
+				<i class="fa-solid fa-xmark"></i>
+			</a>
+		</div>
+		<!-- aside close btn -->
+		<div class="sidebar-content">
+			<div class="app-sidebar__user">
+				<img class="app-sidebar__user-avatar w-46px" src="img/login-icon.png" alt="User Image">
+				<div>
+					<h6 class="app-sidebar__user-name">Alok Soni</h6>
+				</div>
+				<div class="user-sign-out mx-4 pb-1">
+				    	<a  href="login.html" class="sign-out-btn"><i class="fa fa-right-from-bracket mx-"></i></a>
+				</div>
+			</div>
+			<ul class="app-menu">
+				<li>
+					<a class="app-menu__item" href="manage.html">
+						<img src="img/Home.png" class="app-menu__icon mx-3 w-20"></img>
+						<span class="app-menu__label">Dashboard</span>
+					</a>
+				</li>
+				<li>
+					<a class="app-menu__item" href="calander.html">
+						<img src="img/calendar.png" class="app-menu__icon mx-3 w-20"></img>
+						<span class="app-menu__label">Calander</span>
+					</a>
+				</li>
+				<li>
+					<a class="app-menu__item" href="usersetting.html">
+						<img src="img/gear.png" class="app-menu__icon mx-3 w-20"></img>
+						<span class="app-menu__label">Account Settings</span>
+					</a>
+				</li>
+				<hr>
+				<span class=" m2-head mt-2 mx-4 fs-17">Subdefy Discover</span>
+				<li>
+					<a class="app-menu__item mt-2" href="discover.html">
+						<img src="img/Tick Square.png" class="app-menu__icon mx-3 w-20"></img>
+						<span class="app-menu__label">Explore Subscription</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</aside>
+	<!-- ::aside menu cl0se -->
+
+
+
+	<!-- ::main bodystart from here -->
+	<main class="app-content ">
+		<!-- main body section start from here -->
+		<!-- ::profile deatils -->
+		<section class="profile-setings mt-5">
+			<div class="row justify-content-center">
+				<div class="col-md-10 selection-col">
+					<div class="accordion" id="accordionExample">
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingTwo">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+									data-bs-target="#collapseone" aria-expanded="false" aria-controls="collapseTwo">
+									Profile Detail
+								</button>
+							</h2>
+							<div id="collapseone" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+								data-bs-parent="#accordionExample">
+								<div class="accordion-body">
+									<form class="setting-modify-form text-left mx-4 mb-mx-0" id="" onsubmit="" method="" autocomplete="off">
+										<div class="form-group mb-4 mt-2">
+											<div class="form-row d-flex  md-block">
+												<label class="form-head col-md-3 user-s-form-label" for="exampletext">Image</label>
+												<div class=" col-md-9 mx-3  profile-image-container h-40 d-flex">
+													<img class="user-profile-cntnr user-image-x" src="img/user-profile.png" alt="User Profile">
+													<div class="edit-icons">
+														<!--icon for editing -->
+														<label for="edit-profile-image" class="edit-icon edit-icon-edit">
+															<i class="fa-solid fa-pen"></i> 
+														</label>
+														<input type="file" id="upload-profile-image" style="display: none;">
+														<input type="file" id="edit-profile-image" style="display: none;">
+														<!--delete-profile-btn-->
+														 <a href="#" class="dlt-profile-image" id="delete-profile-image"><i class="fa-regular fa-trash-can"></i></a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- :: second input -->
+										<div class="form-group mb-4 mt-2">
+											<div class="form-row d-flex d-mb-block">
+												<label class="col-md-3 form-head mb-2 user-s-form-label" for="exampletext">Full Name</label>
+												<div class="select-group col-md-7 h-40 d-flex d-mb-block ">
+													<input class="form-control user-setting-input mx-3 mb-mx-0" id="exampleInputtitle" type="text" aria-describedby="title" value="James" required>&nbsp 
+													<!-- :: last name -->
+													<input class="form-control user-setting-input mx-3 mb-mx-0" id="exampleInputtitle" type="text" aria-describedby="title" value="Christensen" required>
+												</div>
+											</div>
+										</div>
+										<!-- ::third input -->
+										<div class="form-group mb-4 mt-2">
+											<div class="form-row d-flex d-mb-block">
+												<label class="col-md-3 form-head mb-2  user-s-form-label " for="exampletext">Email</label>
+												<div class="select-group col-md-7 h-40 d-flex ">
+													<input class="form-control user-setting-input mx-3 mb-mx-0 w-61 " id="exampleInputtitle" type="email" aria-describedby="title" value="jameschristo91@gmail.com" required>
+												</div>
+											</div>
+										</div>
+										<div class="form-group mb-4 mt-2">
+											<div class="form-row d-flex">
+												<label class="form-head col-md-3 " for="exampletext"></label>
+												<div class="select-group col-md-8 h-40 d-flex ">
+													<a href="manage.html" class="discard-btn mx-3 mb-mx-0">Discard</a>
+													<a href="#" class="save-change-btn mx-4 " >Save Changes</a>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- :: second collapse form  -->
+		<section class="profile-setings mt-4">
+			<div class="row justify-content-center">
+				<div class="col-md-10 selection-col">
+					<div class="accordion" id="accordionExample">
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingTwo">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+									data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									Change Password
+								</button>
+							</h2>
+							<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+								data-bs-parent="#accordionExample">
+								<div class="accordion-body">
+									<form class="setting-modify-form password-form text-left mx-4 mb-mx-0" id="" method="" onsubmit="" autocomplete="off">
+										
+										<!-- :: first  current password input -->
+										<div class="form-group mb-4 mt-2">
+											<div class="form-row d-flex d-mb-block">
+												<label class="col-md-3 form-head mb-2  user-s-form-label" for="exampletext">Current Password</label>
+												<div class="select-group col-md-5 h-40 d-flex ">
+													<input class="form-control user-setting-input mx-3 mb-mx-0" id="exampleInputtitle" type="text" aria-describedby="title" placeholder="" required>
+												
+												</div>
+											</div>
+										</div>
+										<!-- ::second  new password input -->
+										<div class="form-group mb-4 mt-2">
+											<div class="form-row d-flex d-mb-block">
+												<label class="col-md-3 form-head user-s-form-label mb-2 " for="exampletext">New Password</label>
+												<div class="select-group col-md-5 h-40 d-flex ">
+													<input class="form-control user-setting-input mx-3 mb-mx-0 " id="exampleInputtitle" type="password" aria-describedby="title" placeholder="" required>
+												</div>
+											</div>
+										</div>
+										<!-- ::third confirm password input -->
+										<div class="form-group mb-4 mt-2">
+											<div class="form-row d-flex d-mb-block">
+												<label class="col-md-3 form-head user-s-form-label mb-2 " for="exampletext">Confirm new password</label>
+												<div class="select-group col-md-5 h-40 d-flex ">
+													<input class="form-control user-setting-input mx-3 mb-mx-0" id="exampleInputtitle" type="password" aria-describedby="title" placeholder="" required>
+												</div>
+											</div>
+										</div>
+										<!-- :; submit btn  -->
+										<div class="form-group mb-4 mt-2">
+											<div class="form-row d-flex">
+												<label class="form-head col-md-3 " for="exampletext"></label>
+												<div class="select-group col-md-9 h-40 d-flex ">
+													<a href="manage.html" class="discard-btn mx-3 mb-mx-0">Discard</a>
+													<a href="#" class="save-change-btn mx-4 " >Save Changes</a>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<!-- main body content end here -->
+
+	<!-- footer start from here -->
+	<footer class="footer mt-100">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-3">
+					<ul class="p-0">
+						<li>
+							<a href="privacy_policy.html" class="footer-links">PRIVACY & COOKIES</a>
+						</li>
+						<li>
+							<a href="support.html" class="footer-links">SUPPORT & FEEDBACK</a>
+						</li>
+						<li>
+							<a href="affilate_disclouser.html" class="footer-links">AFFILIATE DISCLOSURE</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<ul class="p-0">
+						<li>
+							<a href="about.html" class="footer-links">ABOUT US</a>
+						</li>
+						<li>
+							<a href="#" class="footer-links">SECURITY</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<div class="email-box">
+						<h6>SIGN UP FOR OUR NEWSLETTER</h6>
+						<form>
+							<div class="mb-3">
+								<input type="email" class="form-control" id="" placeholder="email@email.com" required>
+							</div>
+							<button type="submit" class="btn btn-main">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-end">
+				<div class="col-md-3">
+					<div class="social-icons mt-4">
+						<ul>
+							<li>
+								<a href="#">
+									<i class="fa-brands fa-facebook-f"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa-brands fa fa-instagram"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<script src="js/plugin/chart.js"></script>
+	<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+
+	<script>
+		function toggleAsideMenu() {
+			var asideMenu = document.getElementById("sidebar");
+
+			if (window.innerWidth >= 768) {
+				// On desktop, always add the "open" class to keep the menu open
+				asideMenu.classList.add("open");
+			} else {
+				// On mobile, toggle the "open" class to open/close the menu
+				asideMenu.classList.toggle("open");
+			}
+		}
+
+		// Toggle the aside menu based on user click in mobile view
+		function toggleMenuMobile() {
+			var asideMenu = document.getElementById("sidebar");
+			asideMenu.classList.toggle("open");
+		}
+
+		// Initial setup on DOM ContentLoaded
+		window.addEventListener('DOMContentLoaded', function () {
+			var asideMenu = document.getElementById("sidebar");
+
+			if (window.innerWidth >= 768) {
+				// On desktop, always add the "open" class to keep the menu open
+				asideMenu.classList.add("open");
+			} else {
+				// On mobile, set up the event 
+				var mobileMenuButton = document.querySelector(".mobile-menu-button");
+				mobileMenuButton.addEventListener("click", toggleMenuMobile);
+			}
+		});
+	</script>
+	<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteBtn = document.getElementById("delete-profile-image");
+        const profileImage = document.querySelector(".user-image-x");
+
+        deleteBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            if (confirm("Are you sure you want to delete your profile image?")) {
+                profileImage.src = ""; 
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
