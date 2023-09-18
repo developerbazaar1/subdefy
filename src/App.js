@@ -86,7 +86,7 @@ function App() {
           path="/"
           element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}
         >
-          <Route path="/manage" element={<Manage />} />
+          <Route path="/" element={<Manage />} />
           <Route path="/AccountSettings" element={<Seeting />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/wishlist" element={<WishList />} />
@@ -96,7 +96,7 @@ function App() {
         <Route
           exact
           path="/login"
-          element={isLoggedIn ? <Navigate to="/manage" /> : <Login />}
+          element={isLoggedIn ? <Navigate to="/" /> : <Login />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

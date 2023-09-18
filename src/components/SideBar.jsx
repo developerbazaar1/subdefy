@@ -70,7 +70,7 @@ const SideBar = ({ buttonClicked, onButtonClick }) => {
           </div>
           <ul className="app-menu">
             <li>
-              <NavLink className="app-menu__item" to="/manage">
+              <NavLink className="app-menu__item" to="/">
                 <img
                   src={HomeIcon}
                   className="app-menu__icon mx-3 w-20"
