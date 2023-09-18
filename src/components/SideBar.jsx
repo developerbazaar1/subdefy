@@ -10,21 +10,14 @@ import "../css/style.css";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { logout } from "../features/authSlice";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  faEye,
-  faEyeSlash,
-  faLeftRight,
-  faRightFromBracket,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "../services/auth";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const SideBar = ({ buttonClicked, onButtonClick }) => {
   const { user, token } = useAuth();
   const dispatch = useDispatch();
   function handleLogut() {
-    // console.log("button is pressed");
     let config = {
       method: "post",
       maxBodyLength: Infinity,
@@ -37,7 +30,7 @@ const SideBar = ({ buttonClicked, onButtonClick }) => {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         dispatch(logout());
         return localStorage.clear();
       })
@@ -77,56 +70,56 @@ const SideBar = ({ buttonClicked, onButtonClick }) => {
           </div>
           <ul className="app-menu">
             <li>
-              <Link className="app-menu__item" to="/">
+              <NavLink className="app-menu__item" to="/manage">
                 <img
                   src={HomeIcon}
                   className="app-menu__icon mx-3 w-20"
                   alt="app"
                 ></img>
                 <span className="app-menu__label">Dashboard</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="app-menu__item" to="/coomin">
+              <NavLink className="app-menu__item" to="/calendar">
                 <img
                   src={ClanderIcon}
                   className="app-menu__icon mx-3 w-20"
                   alt="menu"
                 ></img>
                 <span className="app-menu__label">Calendar</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="app-menu__item" to="/wishlist">
+              <NavLink className="app-menu__item" to="/wishlist">
                 <img
                   src={Whishlist}
                   className="app-menu__icon mx-3 w-20"
                   alt="whishlist"
                 ></img>
                 <span className="app-menu__label">Wishlist</span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="app-menu__item" to="/AccountSettings">
+              <NavLink className="app-menu__item" to="/AccountSettings">
                 <img
                   src={GearIcon}
                   className="app-menu__icon mx-3 w-20"
                   alt="loading"
                 ></img>
                 <span className="app-menu__label">Account Settings</span>
-              </Link>
+              </NavLink>
             </li>
             <hr />
             <span className=" m2-head mt-2 mx-4 fs-17">Subdefy Discover</span>
             <li>
-              <Link className="app-menu__item mt-2" to="/discover">
+              <NavLink className="app-menu__item mt-2" to="/discover">
                 <img
                   src={TickSquareIcon}
                   className="app-menu__icon mx-3 w-20"
                   alt="loading"
                 ></img>
                 <span className="app-menu__label">Explore Subscription</span>
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>

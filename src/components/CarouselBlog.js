@@ -9,7 +9,7 @@ function CarouselBlog() {
           <h1>Screaming at streaming prices</h1>
 
           <div className="wrapper" id="wrapper">
-            <p class="activeText font-family-lato">
+            <p className="activeText font-family-lato">
               Stay informed about the latest price hikes for streaming services
               like Netflix, Hulu, and Amazon Prime. Our blog offers insights
               into the reasons behind these increases and provides tips on how
@@ -24,7 +24,7 @@ function CarouselBlog() {
           <h1>Screaming at streaming prices</h1>
 
           <div className="wrapper" id="wrapper">
-            <p class="activeText font-family-lato">
+            <p className="activeText font-family-lato">
               Stay informed about the latest price hikes for streaming services
               like Netflix, Hulu, and Amazon Prime. Our blog offers insights
               into the reasons behind these increases and provides tips on how
@@ -39,7 +39,7 @@ function CarouselBlog() {
           <h1>Screaming at streaming prices</h1>
 
           <div className="wrapper" id="wrapper">
-            <p class="activeText font-family-lato">
+            <p className="activeText font-family-lato">
               Stay informed about the latest price hikes for streaming services
               like Netflix, Hulu, and Amazon Prime. Our blog offers insights
               into the reasons behind these increases and provides tips on how
@@ -54,7 +54,7 @@ function CarouselBlog() {
           <h1>Screaming at streaming prices</h1>
 
           <div className="wrapper" id="wrapper">
-            <p class="activeText font-family-lato">
+            <p className="activeText font-family-lato">
               Stay informed about the latest price hikes for streaming services
               like Netflix, Hulu, and Amazon Prime. Our blog offers insights
               into the reasons behind these increases and provides tips on how

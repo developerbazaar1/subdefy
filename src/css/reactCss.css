@@ -106,6 +106,14 @@ body {
 } */
 
 @media only screen and (min-width: 1200px) {
+  .rbc-toolbar {
+    display: flex;
+    flex-wrap: unset !important;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
   .noFavouriteDatImg {
     width: 42% !important;
   }
@@ -121,6 +129,18 @@ body {
   position: absolute;
   right: 28%;
   color: red;
+}
+
+.select-all {
+  /* margin-left: 34px; */
+  color: rgb(43, 114, 180);
+}
+.With-Selected {
+  margin-left: 10px;
+  /* font-style: italic; */
+  display: flex;
+
+  /* margin-top: 3px; */
 }
 .manage_data {
   display: flex;
@@ -365,6 +385,22 @@ td.br-rad-right {
   border-radius: 0px 14px 14px 0px;
 }
 @media only screen and (max-width: 768px) {
+  .tabel_container {
+    margin-left: unset !important;
+    --bs-gutter-x: unset !important;
+  }
+
+  .pie {
+    margin-top: 34px !important;
+  }
+
+  .my-md {
+    --bs-gutter-x: unset !important;
+  }
+  .news-error {
+    display: flex;
+    align-items: unset !important;
+  }
   .d-mb-block {
     display: block !important;
   }
@@ -384,6 +420,10 @@ td.br-rad-right {
 }
 
 @media only screen and (max-width: 482px) {
+  /* .select-all {
+    margin-left: 23px !important;
+  } */
+
   .save-change-btn {
     padding: 7px 10px 8px !important;
     /* border-radius: 10px;
@@ -629,7 +669,7 @@ td.br-rad-right {
     box-sizing: border-box;
   }
   .canvas-box.cst-p {
-    padding: 1px 13px 6px 77px !important;
+    /* padding: 1px 13px 6px 77px !important; */
   }
   .top-to-bottom-btn {
     position: relative !important;
@@ -650,7 +690,8 @@ td.br-rad-right {
     padding-right: 12px;
   }
   .sidebar {
-    width: 240px !important;
+    /* width: 240px !important; */
+    width: 226px !important;
 
     height: fit-content !important;
   }
@@ -757,21 +798,20 @@ td.br-rad-right {
   }
 }
 
-.d-card.active-category {
-  border-radius: 10px;
-  transform-origin: center center;
-  transform: scaleX(1.2);
-}
-
-.d-card.active-category .card-avatar img {
+.card-info.active-category .card-avatar img {
   color: #fbc02d;
 }
 
-.d-card.active-category .card-subtitle p {
+.card-info.active-category .card-subtitle p {
   font-weight: bold;
   color: orange;
 }
-
+.card-info:hover {
+  box-shadow: 0px 0px 10px rgba(10, 10, 10, 0.7);
+}
+.card-info.active-category {
+  box-shadow: 0px 0px 10px rgba(10, 10, 10, 0.7) !important;
+}
 .search-button {
   border: none;
   background: transparent;
@@ -786,7 +826,7 @@ td.br-rad-right {
   width: 283px;
   padding: 8px 5px 12px 9px;
   border: none;
-  font-size: 16px;
+  font-size: 13px;
   border: 1px solid grey;
   border-radius: 8px;
 }
@@ -805,6 +845,9 @@ td.br-rad-right {
 }
 
 @media only screen and (max-width: 480px) {
+  .reset-password-button {
+    font-size: 12px !important;
+  }
   .app-content {
     margin-left: 0px;
   }
@@ -877,7 +920,7 @@ td.br-rad-right {
     margin: 0 !important;
   }
   .canvas-box.cst-p {
-    padding: 2px 30px 6px 56px !important;
+    /* padding: 2px 30px 6px 56px !important; */
   }
 }
 
@@ -885,7 +928,7 @@ td.br-rad-right {
   text-decoration-line: underline;
 }
 .delete-all {
-  margin-left: 24px;
+  /* margin-left: 10px; */
 
   color: red;
   cursor: pointer;
@@ -893,6 +936,10 @@ td.br-rad-right {
 
 /* Your styles for mobile devices in landscape mode */
 @media only screen and (max-width: 768px) {
+  .selectallcontainer {
+    margin-left: 15px !important;
+    margin-bottom: 18px !important;
+  }
   .plans-card {
     /* width: 364px; */
     width: 100% !important;
@@ -1234,7 +1281,7 @@ td.br-rad-right {
   left: 0;
   width: 100%;
   background-color: white;
-  padding: 10px;
+  padding: 2px 4px 2px 4px;
   font-size: 12px;
   color: black;
   opacity: 0.8;
@@ -1258,4 +1305,188 @@ td.br-rad-right {
   .plan-banner-image.w-100 {
     height: 60vh !important;
   }
+  .selectallcontainer {
+    margin-left: 27px !important;
+  }
+}
+
+/* calendar page css  */
+.btn-plan-log {
+  position: fixed;
+  bottom: 340px;
+  z-index: 9999999;
+}
+.btn-plan-log:hover {
+  color: white;
+}
+.rbc-event {
+  background: transparent !important;
+  color: black !important;
+}
+.event_category_color {
+  height: 26px;
+  width: 17px;
+  position: absolute;
+}
+.event_title {
+  margin-left: 26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event_details {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+  /* line-height: 14px; */
+}
+.calendar_area {
+  padding: 20px;
+}
+.rbc-toolbar button:hover {
+  background-color: #8ac8d6 !important;
+  border-color: #8ac8d6 !important;
+}
+.rbc-active,
+.rbc-toolbar button:active {
+  background: #8ac8d6 !important;
+  border-color: #8ac8d6 !important;
+}
+.app-menu__item.active {
+  color: #000 !important;
+}
+
+.article-para > div > p > strong {
+  font-weight: bold !important;
+}
+
+.article-para > div > p {
+  background-color: unset !important;
+}
+.filled {
+  display: block !important;
+}
+
+.image-ott-gallary > img {
+  width: 334px;
+  height: 204px;
+}
+.img-src {
+  line-break: anywhere;
+}
+
+.news-error {
+  display: flex;
+  justify-content: center;
+}
+.news-error {
+  display: flex;
+  align-items: unset !important;
+}
+
+.forgot-passowrd_conatainer {
+  position: relative;
+  /* margin-top: 20px; */
+  /* margin-bottom: 22px; */
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.forgot-password-icon {
+  top: 42% !important;
+}
+
+.reset-password-icons {
+  position: absolute;
+  font-size: 14px;
+  top: 50% !important;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5px 10px;
+  background-color: white;
+}
+
+/* .rbc-btn-group ~ .rbc-btn-group {
+  display: none;
+} */
+
+.rbc-btn-group:nth-child(3) {
+  /* background-color: red;
+  display: none; */
+}
+
+.rbc-btn-group:nth-of-type(2) button {
+  /* display: none; */
+}
+
+.rbc-toolbar .rbc-btn-group:nth-child(3) .rbc-active {
+  visibility: hidden;
+  position: relative;
+}
+
+/* Hide the "Week" and "Agenda" buttons within the second .rbc-btn-group */
+.rbc-toolbar .rbc-btn-group:nth-child(3) button:nth-child(2),
+.rbc-toolbar .rbc-btn-group:nth-child(3) button:nth-child(4) {
+  /* visibility: hidden; */
+  display: none;
+}
+
+/* .rbc-toolbar .rbc-btn-group:nth-child(3) button:nth-child(1)::after {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "Back";
+} */
+
+.rbc-toolbar .rbc-btn-group:nth-child(3) button:nth-child(3) {
+  /* visibility: hidden; */
+  display: none;
+  position: relative;
+}
+.rbc-time-header-gutter {
+  padding: unset !important;
+}
+.rbc-time-content {
+  display: none !important;
+}
+
+/* span.rbc-btn-group:nth-child(3) > button:nth-child(1) {
+  content: " " !important;
+}
+
+span.rbc-btn-group:nth-child(3) > button:nth-child(1) {
+  visibility: hidden;
+  position: relative;
+  content: "";
+}
+span.rbc-btn-group:nth-child(3) > button:nth-child(1)::after {
+  visibility: visible;
+  content: "Back" !important;
+}
+span.rbc-btn-group:nth-child(3) > button:nth-child(1)::before {
+  content: "" !important;
+} */
+
+span.rbc-btn-group:nth-child(3) > button:nth-child(1) {
+  text-indent: -9999px;
+  line-height: 0;
+}
+span.rbc-btn-group:nth-child(3) > button:nth-child(1)::after {
+  content: "Back To Calendar" !important;
+  text-indent: 0;
+  display: block;
+  line-height: initial;
+  /* float: right; */
+}
+
+/* span.rbc-btn-group:nth-child(3) > button {
+  float: right;
+} */
+
+.line-for-radio {
+  border-radius: 50%;
+  display: flex;
+  /* flex-direction: row; */
+  float: left;
+  margin-left: -1.5rem;
 }

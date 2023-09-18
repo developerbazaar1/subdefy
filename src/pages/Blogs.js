@@ -13,25 +13,64 @@ import blog4 from "../img/blog-4.jpg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { OpenRoute } from "../utility/ApiServices.js";
+import { toast, ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Blogs = () => {
   const [data, setData] = useState([]);
+  const [limit, setLimit] = useState(3);
+  const categories = useSelector((state) => state.category);
+  const [catfilter, setCatfilter] = useState("");
+  const [latestBlog, setLatesBlog] = useState([]);
 
   const GetBlogs = () => {
-    OpenRoute.blogs()
+    OpenRoute.blogs({ limit: limit, catfilter: catfilter })
       .then((response) => {
-        // console.log();
+        if (response.data.blogs.length <= 0) {
+          toast.warning("No Subscription found");
+        }
         setData(response.data.blogs);
       })
-      .then((error) => {
-        console.log(error);
+      .catch((error) => {
+        // console.log(error);
+        toast.error(error.message);
+      });
+  };
+  const loadMore = () => {
+    setLimit(limit + 3);
+  };
+
+  const lastesBlog = () => {
+    OpenRoute.blogs({ limit: 3, catfilter: "" })
+      .then((response) => {
+        setLatesBlog(response.data.blogs);
+        // console.log("Latest Blog", response.data.blogs);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        // console.log(error);
+        console.log(error, "error mesage");
       });
   };
 
+  const filterCategory = (e) => {
+    let filteredCategory = e.target.value;
+    setCatfilter(filteredCategory);
+  };
+  // useEffect(() => {}, []);
+  function formatDate(inputDate) {
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    const date = new Date(inputDate);
+    return date.toLocaleDateString("en-US", options).toUpperCase();
+  }
+
   useEffect(() => {
     GetBlogs();
-  }, []);
+  }, [limit, catfilter]);
 
+  useEffect(() => {
+    lastesBlog();
+  }, []);
   return (
     <div className="blogs-page">
       {/**************** Navbar component ******************/}
@@ -46,11 +85,19 @@ const Blogs = () => {
                 <CarouselBlog />
 
                 <div className="search">
-                  <select className="form-select custom-select">
+                  <select
+                    className="form-select custom-select"
+                    onChange={filterCategory}
+                  >
                     <option>Category Select</option>
-                    <option>2</option>
+                    {categories?.map((category, index) => (
+                      <option value={category.name} key={index}>
+                        {category.name}
+                      </option>
+                    ))}
+                    {/* <option>2</option>
                     <option>3</option>
-                    <option>4</option>
+                    <option>4</option> */}
                   </select>
                   {/* <input className="blog-search" type="text" placeholder="category search" />
                         <a className="blog-search-icon"><FontAwesomeIcon  icon={faArrowDown} /></a> */}
@@ -75,11 +122,11 @@ const Blogs = () => {
                   <div className="col-lg-6 bdr">
                     <div className="blog-details">
                       <h6 className="blog-catgry font-family-monts">
-                        {blog.blog_title}
+                        {blog?.blog_category}
                       </h6>
-                      <h4>{blog.blog_short_desc.slice(0, 70)}</h4>
+                      <h4>{blog?.blog_title.slice(0, 70)}</h4>
                       <p className="font-family-lato">
-                        {blog.blog_long_description.slice(0, 200)} <br />
+                        {blog?.blog_short_desc.slice(0, 200)} <br />
                         <Link to={`/article/${blog.id}`}> Read more</Link>
                       </p>
                     </div>
@@ -100,10 +147,10 @@ const Blogs = () => {
 
             <div className="row bdr">
               <div className="col-lg-12 btn-center text-center">
-                <Link to="" className="btn btn-loadmore">
+                <div to="" className="btn btn-loadmore" onClick={loadMore}>
                   {" "}
                   Load More
-                </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -130,33 +177,41 @@ const Blogs = () => {
               className="row mt-4 justify-content-center "
               style={{ paddingBottom: "12%" }}
             >
-              <div className="col-lg-3 card post-card">
-                <div className="img blog-cat-post-img">
-                  <img src={blog4} alt="" />
-                </div>
-                <div className="date-area d-flex">
-                  <p>
-                    {" "}
-                    <FontAwesomeIcon
-                      className="pe-1"
-                      icon={faCalendarDays}
-                    />{" "}
-                    10 FEB 2018
-                  </p>
-                  <p className="text-capitalize">Subdefy</p>
-                </div>
-                <div className="blog-cat-headline mb-4">
-                  <h4>
-                    From Frivolous to Fulfilling: How to Spend Smarter on
-                    Recurring Expenses
-                  </h4>
-                  <Link to="" className="readmore">
-                    Read More
-                  </Link>
-                </div>
-              </div>
+              {latestBlog?.map((latest, index) => {
+                return (
+                  <div className="col-lg-3 card post-card">
+                    <div className="img blog-cat-post-img">
+                      <img
+                        src={`${process.env.REACT_APP_global_url}/public/${latest?.blog_thumbnail}`}
+                        alt="loading"
+                      />
+                    </div>
+                    <div className="date-area d-flex">
+                      <p>
+                        {" "}
+                        <FontAwesomeIcon
+                          className="pe-1"
+                          icon={faCalendarDays}
+                        />{" "}
+                        {formatDate(latest?.created_at)}
+                      </p>
+                      <p className="text-capitalize">
+                        {" "}
+                        {latest?.blog_category}
+                      </p>
+                    </div>
+                    <div className="blog-cat-headline mb-4">
+                      <h4>{latest?.blog_title.slice(0, 70)}</h4>
+                      <Link className="readmore" to={`/article/${latest.id}`}>
+                        {" "}
+                        Read more
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
 
-              <div className="col-lg-3 card post-card">
+              {/* <div className="col-lg-3 card post-card">
                 <div className="img blog-cat-post-img">
                   <img src={blog2} alt="" />
                 </div>
@@ -179,8 +234,8 @@ const Blogs = () => {
                     Read More
                   </Link>
                 </div>
-              </div>
-              <div className="col-lg-3 card post-card">
+              </div> */}
+              {/* <div className="col-lg-3 card post-card">
                 <div className="img blog-cat-post-img">
                   <img src={blog3} alt="" />
                 </div>
@@ -201,7 +256,7 @@ const Blogs = () => {
                     Read More
                   </Link>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -212,6 +267,18 @@ const Blogs = () => {
 
       {/**************** Back to top component ****************/}
       <BackToTopButton />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

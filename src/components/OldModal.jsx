@@ -17,12 +17,14 @@ const OldModal = ({
   setsecSubscription,
 }) => {
   const [loading, setLoading] = useState(false);
+  const [other, setOther] = useState(true);
   // this code is used to restricted the from selecting the past date
 
   const currentDate = new Date();
   const currentDateString = currentDate.toISOString().split("T")[0];
 
   const [subscription, setSubscription] = useState(null);
+
   const updateDetails = useForm();
 
   const { register, handleSubmit, formState, reset, setValue } = updateDetails;
@@ -30,17 +32,23 @@ const OldModal = ({
   const { token } = useAuth();
 
   const handlePlanChange = (selectedPlan) => {
-    console.log(selectedPlan);
-    // Find the selected plan object from the plans array
+    // console.log("selcted paln", selectedPlan);
+
+    if (selectedPlan === "other") {
+      setValue("cost", "");
+      setValue("frequency", "");
+      setOther(false);
+      return;
+    }
     const plan = subscription?.plans.find(
       (plan) => plan.planName === selectedPlan
     );
     setValue("plan", selectedPlan);
-    console.log(plan);
-    console.log(plan);
+    // console.log(plan);
     // Update the state values for Cost and Frequency
     setValue("cost", plan?.defaultCost);
     setValue("frequency", plan?.defaultBillingCycle);
+    setOther(true);
   };
 
   const getModalData = (subscriptionName) => {
@@ -59,14 +67,19 @@ const OldModal = ({
       .then((response) => {
         console.log("modal data", response.data.subscription);
         const subscriptionData = response.data.subscription;
+        if (subscriptionData?.data?.subscription?.plans <= 0) {
+          setOther(false);
+        }
         setSubscription(subscriptionData);
         setValue("subscriptionName", subscriptionData.subscriptionName);
         setValue("exampleInputtitle", subscriptionData.category);
         setValue("exampleFormControlDate", subscriptionData.next_payment_due);
-        console.log("subscription data on select", subscriptionData);
+        // console.log("subscription data on select", subscriptionData);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        toast.error(error.response.data.message);
+        handleModalHide();
       })
       .finally(() => {
         setsecSubscription("");
@@ -84,6 +97,7 @@ const OldModal = ({
       cost,
       frequency,
       subscriptionName,
+      exampleInputPlanother,
     } = data;
 
     const requestData = {
@@ -92,8 +106,10 @@ const OldModal = ({
       cost: cost,
       frequency: frequency,
       next_payment_due: exampleFormControlDate,
-      plan: exampleInputPlan,
+      plan: exampleInputPlanother ? exampleInputPlanother : exampleInputPlan,
     };
+
+    // return console.log("request Data", requestData);
 
     axios
       .post(
@@ -117,7 +133,7 @@ const OldModal = ({
         return setShowModal(false);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         return toast.error(error.response.data.message);
       })
       .finally(() => {
@@ -131,6 +147,7 @@ const OldModal = ({
 
   const handleModalHide = () => {
     // Clear input values when the modal is closed
+    setOther(true);
     reset();
     setShowModal(false);
   };
@@ -179,13 +196,7 @@ const OldModal = ({
                       type="text"
                       aria-describedby="title"
                       readOnly
-                      // value="Netflix"
-                      // value={selectedSubscription?.subscriptionName}
                       {...register("subscriptionName")}
-                      // {...registerSecond("subscriptionName", {
-                      //   value: selectedSubscription?.subscriptionName,
-                      // })}
-                      // placeholder="eg. Netflix"
                     />
                   </div>
                 </div>
@@ -205,18 +216,11 @@ const OldModal = ({
                       type="text"
                       readOnly
                       aria-describedby="title"
-                      // value={selectedSubscription?.category}
                       {...register("exampleInputtitle")}
-
-                      // {...registerSecond("subscriptionName", {
-                      //   value: selectedSubscription?.category,
-                      // })}
-                      // placeholder="eg. Entertainment"
                     />
                   </div>
                 </div>
               </div>
-
               <div className="form-group mb-3 mt-2">
                 <div className="form-row d-flex text-end">
                   <label
@@ -236,17 +240,55 @@ const OldModal = ({
                         handlePlanChange(selectedPlan);
                       }}
                     >
-                      <option>Select a plan</option>
-                      {/* Empty option */}
+                      <option key="tutjjtk">Select a plan</option>
                       {subscription?.plans?.map((plan, index) => (
                         <option value={plan.planName} key={plan.id}>
                           {plan.planName}
                         </option>
                       ))}
+                      <option value="other" key={"olo"}>
+                        Other
+                      </option>
                     </select>
+                    <span className="error-div">
+                      {errors.exampleInputPlan?.message}
+                    </span>
                   </div>
                 </div>
               </div>
+              {/* Other plan option */}
+              {other ? (
+                ""
+              ) : (
+                <div className="form-group mb-3 mt-2">
+                  <div className="form-row d-flex text-end">
+                    <label
+                      className="form-head cst-mrg font-italic"
+                      htmlFor="exampletext"
+                    >
+                      Other Plan
+                    </label>
+                    <div className="select-group h-40">
+                      <input
+                        className="form-control cst-modal-input"
+                        id="exampleInputPlanother"
+                        aria-describedby="plan"
+                        {...register("exampleInputPlanother", {
+                          required: {
+                            value: true,
+                            message: "Plan is Required",
+                          },
+                        })}
+                        placeholder="eg. Standard"
+                      />
+                      <span className="error-div">
+                        {errors.exampleInputPlanother?.message}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="form-group mb-3 mt-2">
                 <div className="form-row d-flex text-end">
                   <label
@@ -261,16 +303,10 @@ const OldModal = ({
                       className="form-control cst-modal-input"
                       id="secondCost"
                       type="text"
-                      readOnly
+                      readOnly={other}
                       aria-describedby="title"
-                      // value="$ 15.50"
-                      // placeholder="eg. $ 15.50"{}
+                      placeholder="eg. $ 15.50"
                       {...register("cost", {
-                        // pattern: {
-                        //   value: /^-?\d+(\.\d+)?$/,
-                        //   message: "Invalid Number",
-                        // },
-
                         required: {
                           value: true,
                           message: "Cost is Required",
@@ -282,7 +318,6 @@ const OldModal = ({
                   </div>
                 </div>
               </div>
-
               <div className="form-group mb-3 mt-2">
                 <div className="form-row d-flex text-end">
                   <label
@@ -297,9 +332,8 @@ const OldModal = ({
                       id="secondFrequency"
                       type="text"
                       aria-describedby="title"
-                      readOnly
-                      // value="Monthly"
-                      // placeholder="eg. Monthly"
+                      readOnly={other}
+                      placeholder="eg. Monthly"
                       {...register("frequency", {
                         required: {
                           value: true,
@@ -326,7 +360,6 @@ const OldModal = ({
                       type="date"
                       className="form-control w_30 w-mb-42 cst-modal-input"
                       id="exampleFormControlDate"
-                      // value="2023-07-19"
                       {...register("exampleFormControlDate", {
                         required: {
                           value: true,
@@ -344,13 +377,7 @@ const OldModal = ({
               </div>
               <div className="form-group mt-3 mt-2">
                 <div className="modal-footer justify-content-center">
-                  <button
-                    className="btn btn-primary "
-                    id="modal-btn"
-                    // data-bs-target="#"
-                    // data-bs-toggle="modal"
-                    // data-bs-dismiss="modal"
-                  >
+                  <button className="btn btn-primary " id="modal-btn">
                     Complete
                   </button>
                 </div>

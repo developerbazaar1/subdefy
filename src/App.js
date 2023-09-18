@@ -18,26 +18,28 @@ import Article from "./pages/Article";
 import PrivacyPolicy from "./pages/Privacy_policy";
 import AffilateDisclouser from "./pages/Affilate_disclouser";
 import Support from "./pages/Support";
-
+import Calendar from "./pages/Calendar";
 import Seeting from "./pages/Seeting";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { useAuth } from "./services/auth";
 import Manage from "./pages/Manage";
 import CoominSoon from "./pages/CoominSoon";
 import Discover from "./pages/Discover";
-
 import InvesterHub from "./pages/InvesterHub";
 import WishList from "./components/WishList";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setCategory } from "./features/categoriesSlice";
-// import ApiTest from "./ApiTest";
+
 import Service from "./pages/service";
 import PieCharts from "./components/PieCharts";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import NotFound from "./components/NotFound";
+
 function App() {
   const { isLoggedIn, token } = useAuth();
   const dispatch = useDispatch();
-  // const CategorieS = useSelector((state) => state.category);
   useEffect(() => {
     const fetchCategories = () => {
       const config = {
@@ -50,8 +52,6 @@ function App() {
         .request(config)
         .then((response) => {
           dispatch(setCategory(response.data.categories));
-          // console.log("from response", response.data.categories);
-          // console.log("from store", CategorieS);
         })
         .catch((error) => {
           console.log(error);
@@ -76,7 +76,9 @@ function App() {
         <Route path="/discover" element={<Discover />} />
         <Route path="/investerhub" element={<InvesterHub />} />
         <Route path="/service/:name" element={<Service />} />
-        <Route path="/piechart" element={<PieCharts />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/api/auth/reset-password" element={<ResetPassword />} />
+        {/* <Route path="/test" element={<ApiTest />} /> */}
 
         {/* protected route */}
         <Route
@@ -84,8 +86,9 @@ function App() {
           path="/"
           element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}
         >
-          <Route path="/" element={<Manage />} />
+          <Route path="/manage" element={<Manage />} />
           <Route path="/AccountSettings" element={<Seeting />} />
+          <Route path="/calendar" element={<Calendar />} />
           <Route path="/wishlist" element={<WishList />} />
         </Route>
 
@@ -93,8 +96,9 @@ function App() {
         <Route
           exact
           path="/login"
-          element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+          element={isLoggedIn ? <Navigate to="/manage" /> : <Login />}
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

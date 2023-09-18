@@ -28,7 +28,7 @@ const WishList = () => {
   };
   //functin to sort the favorite data
   const sortFunction = () => {
-    console.log("sortfunctin is clicked");
+    // console.log("sortfunctin is clicked");
     if (!favoriteSorted.length) {
       setFavoriteSorted(favorite);
       const sortedData = favorite
@@ -68,8 +68,8 @@ const WishList = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
-        return toast.success(response.data.message);
+        // console.log(JSON.stringify(response.data));
+        return toast.warning(response.data.message);
       })
       .catch((error) => {
         console.log(error);
@@ -94,7 +94,8 @@ const WishList = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log(response.data.subscriptions);
+        // console.log(response.data.subscriptions);
+
         setFavorite(response.data.subscriptions);
       })
       .catch((error) => {
@@ -128,7 +129,7 @@ const WishList = () => {
                   onClick={sortFunction}
                 >
                   <FontAwesomeIcon icon={faSort} className="mx-2" />
-                  Sort
+                  Sort By Service
                 </button>
               </div>
               <div className="col-md-11">
@@ -225,9 +226,9 @@ const WishList = () => {
                                       sub.premiumSubscriptionsFrom
                                     )}
                                   </h5>
-                                  <span className="discount-text ml-3 pt-2">
+                                  {/* <span className="discount-text ml-3 pt-2">
                                     Save 5%
-                                  </span>
+                                  </span> */}
                                 </div>
                               </td>
                               {/* <!-- <td className="ads-visible text-center"><i className="fa-solid fa-check"></i></td> --> */}

@@ -61,7 +61,7 @@ const EditModal = ({
       plan: exampleInputPlan || "basic",
       user_subscription_id: editSubscription.id,
     };
-    console.log(requestData);
+    // console.log(requestData);
 
     axios
       .post(
@@ -75,7 +75,7 @@ const EditModal = ({
         }
       )
       .then((response) => {
-        console.log("subscription data", JSON.stringify(response.data));
+        // console.log("subscription data", JSON.stringify(response.data));
 
         if (!response.data.status) {
           toast.error(response.data.message);

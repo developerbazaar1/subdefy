@@ -14,9 +14,8 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import Rating from "../components/Rating";
-import ClearFilter from "../img/clear-filter.png";
 import DiscoverSidebar from "../components/DiscoverSidebar";
-import NoSubscriptin from "../img/disoverNOSubscription.png";
+import NoSubscriptin from "../img/Subscription-Not-Found-Monster.png";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import LoadingSpinner from "../components/Spinner";
@@ -32,9 +31,10 @@ const Discover = () => {
   let [subscription, setSubscription] = useState([]);
   let [sortedSubscription, setsortedSubscription] = useState([]);
   const [reload, setReload] = useState(true);
-  const [currentSort, setCurrentSort] = useState(null);
-
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [favorite, setFavorite] = useState([]);
   const [currentCategory, setCurrentCategory] = useState();
+  const [currentCategorySubCat, setCurrentCategorySubCat] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // Number of items per page
   const totalPages = Math.ceil(subscription?.length / itemsPerPage);
@@ -57,38 +57,57 @@ const Discover = () => {
   };
 
   const sortData = (sortBy) => {
-    if (sortedSubscription.length) {
-      setSubscription(sortedSubscription);
-      return setsortedSubscription([]);
-    }
+    // Toggle the sorting order when the button is clicked
+    const newSortOrder = sortOrder === "asc" ? "desc" : "asc";
+    setSortOrder(newSortOrder);
 
-    const sortedData = subscription.slice().sort((a, b) => {
-      if (sortBy === "subscriptionName") {
-        return a?.subscriptionName?.localeCompare(b?.subscriptionName);
-      } else if (sortBy === "freeTrial") {
-        // return console.log(a);
-        const aFreeTrial = a.freeTrial || "";
-        const bFreeTrial = b.freeTrial || "";
-        return bFreeTrial.localeCompare(aFreeTrial);
-      } else if (sortBy === "premiumSubscriptionsFrom") {
-        // Convert premiumSubscriptionsFrom to numbers for sorting
-        // alert("pressed");
-        let priceA = extractNumberFromSubscription(a.premiumSubscriptionsFrom);
-        let priceB = extractNumberFromSubscription(b.premiumSubscriptionsFrom);
-        priceA = parseFloat(priceA) || 0;
-        priceB = parseFloat(priceB) || 0;
-        return priceA - priceB;
-      } else if (sortBy === "rating") {
-        let ratA = parseFloat(a.rating) || 0;
-        let ratB = parseFloat(b.rating) || 0;
-        return ratA - ratB;
+    // Clone the subscription array
+    const clonedSubscription = [...subscription];
+
+    // Sort the cloned array based on the sortBy parameter and the new sorting order
+    clonedSubscription.sort((a, b) => {
+      let comparison = 0;
+
+      switch (sortBy) {
+        case "subscriptionName":
+          comparison = a.subscriptionName.localeCompare(b.subscriptionName);
+          break;
+
+        case "freeTrial":
+          const aFreeTrial = a.freeTrial || "";
+          const bFreeTrial = b.freeTrial || "";
+          comparison = aFreeTrial.localeCompare(bFreeTrial);
+          break;
+
+        case "premiumSubscriptionsFrom":
+          const priceA =
+            parseFloat(
+              extractNumberFromSubscription(a.premiumSubscriptionsFrom)
+            ) || 0;
+          const priceB =
+            parseFloat(
+              extractNumberFromSubscription(b.premiumSubscriptionsFrom)
+            ) || 0;
+          comparison = priceA - priceB;
+          break;
+
+        case "rating":
+          const ratA = parseFloat(a.rating) || 0;
+          const ratB = parseFloat(b.rating) || 0;
+          comparison = ratA - ratB;
+          break;
+
+        default:
+          comparison = 0;
       }
-      return 0;
+
+      // Apply sorting order (ascending or descending)
+      return newSortOrder === "desc" ? comparison * -1 : comparison;
     });
 
-    // Update both subscription and sortedSubscription states
-    setsortedSubscription(subscription);
-    setSubscription(sortedData);
+    // Update both sortedSubscription and subscription states
+    setsortedSubscription(clonedSubscription);
+    setSubscription(clonedSubscription);
 
     // Reset current page to 1
     setCurrentPage(1);
@@ -102,6 +121,7 @@ const Discover = () => {
   // Use slicedSubscription for rendering
 
   const getFilter = (key, values) => {
+    setCurrentCategorySubCat();
     setCurrentCategory(values);
     setCurrentPage(1);
     setLoading(true);
@@ -133,8 +153,10 @@ const Discover = () => {
     })
       .then((response) => {
         let sub = response.data.subscriptions;
-        console.log(sub);
-
+        // console.log(sub);
+        if (sub.length <= 0) {
+          toast.warning("No Subscription Found With This keywords");
+        }
         setSubscription(sub);
       })
       .catch((error) => {
@@ -143,7 +165,7 @@ const Discover = () => {
       .finally(() => {
         setLoading(false);
         reset();
-        console.log(subscription);
+        // console.log(subscription);
       });
   };
 
@@ -160,7 +182,7 @@ const Discover = () => {
       .then((response) => {
         // console.log(JSON.stringify(response.data.subscriptions));
         setSubscription(response.data.subscriptions);
-        console.log(response.data.subscriptions.rating);
+        // console.log(response.data.subscriptions);
       })
       .catch((error) => {
         console.log(error);
@@ -201,7 +223,13 @@ const Discover = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
+        if (response.data.message === "Favorite deleted successfully") {
+          GetFavorite();
+          return toast.warning(response.data.message);
+        }
+        // console.log("sucess", response.data.message);
+        GetFavorite();
         return toast.success(response.data.message);
       })
       .catch((error) => {
@@ -211,8 +239,44 @@ const Discover = () => {
         setLoading(false);
       });
   };
-  // let mytating;
-  // console.log(mytating);
+
+  const GetFavorite = () => {
+    setLoading(true);
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: `${process.env.REACT_APP_global_url}/api/user/get-favorite`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        // console.log(response.data.subscriptions);
+        setFavorite(response.data.subscriptions);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  function getImageUrlByCategoryName(categoryName) {
+    const cat = categories.find((category) => category.name === categoryName);
+    // console.log(cat);
+
+    let catrUrl = `${process.env.REACT_APP_global_url}/public/${cat?.image}`;
+    return cat ? catrUrl : download;
+  }
+  useEffect(() => {
+    if (token) {
+      GetFavorite();
+    }
+  }, []);
   useEffect(() => {
     setCurrentCategory();
     AllSubscription();
@@ -230,6 +294,7 @@ const Discover = () => {
         setSubscription={setSubscription}
         setLoading={setLoading}
         setCurrentCategory={setCurrentCategory}
+        setCurrentCategorySubCat={setCurrentCategorySubCat}
       />
       <main className="app-content ">
         <section className="mob-filters ">
@@ -276,7 +341,7 @@ const Discover = () => {
                       <input
                         id="searchInput"
                         type="text"
-                        placeholder="category, Name or keywords"
+                        placeholder="search category, name or keywords"
                         className="search-input-my"
                         {...register("searchInput")}
                       />
@@ -304,14 +369,13 @@ const Discover = () => {
                     {/* <!-- :: card 1 --> */}
 
                     {categories?.map((cat, index) => (
-                      <div
-                        className={`d-card text-center ${
-                          currentCategory === cat.name ? "active-category" : ""
-                        }`}
-                        key={index}
-                      >
+                      <div className={`d-card text-center `} key={index}>
                         <div
-                          className={`card-info cat_${index}`}
+                          className={`card-info cat_${index} ${
+                            currentCategory === cat.name
+                              ? "active-category"
+                              : ""
+                          }`}
                           style={{ cursor: "pointer" }}
                           onClick={() => getFilter("category_name", cat?.name)}
                         >
@@ -342,13 +406,11 @@ const Discover = () => {
         <section className="discover-list-section mt-5">
           <div className="container">
             <div className="row justify-content-center">
-              {/* <div className="sort-btn">
-                <button className="dtab-sort-btn" id="sort-btn">
-                  <FontAwesomeIcon icon={faSort} className="mx-2" />
-                  Sort
-                </button>
-              </div> */}
               <div className="col-md-11">
+                <h6>
+                  {currentCategory}{" "}
+                  {currentCategorySubCat ? `- ${currentCategorySubCat}` : ""}
+                </h6>
                 <div className="table-container discover-table w-nowrap">
                   <div className="table-responsive">
                     <table className="table">
@@ -423,7 +485,10 @@ const Discover = () => {
                             /> */}
                             <span
                               className="clearFilter"
-                              onClick={() => setReload(!reload)}
+                              onClick={() => {
+                                setCurrentCategorySubCat();
+                                setReload(!reload);
+                              }}
                               style={{
                                 width: "23px",
                                 cursor: "pointer",
@@ -454,16 +519,20 @@ const Discover = () => {
                                         src={
                                           sub?.logoURL
                                             ? sub?.logoURL === "TBA"
-                                              ? download
+                                              ? getImageUrlByCategoryName(
+                                                  sub?.category
+                                                )
                                               : sub?.logoURL
-                                            : download
+                                            : getImageUrlByCategoryName(
+                                                sub?.category
+                                              )
                                         }
                                         alt="Disney"
                                       />
                                     </div>
                                     <span className="fixed-number text-left">
                                       <h6>{sub.subscriptionName}</h6>
-                                      <span className="text-description text-wrap">
+                                      <span className="text-description text-wrap d-inline-block">
                                         {sub?.subscriptionDescriptionShort}
                                       </span>
                                     </span>
@@ -518,7 +587,9 @@ const Discover = () => {
                                   More Info
                                 </Link>
                               </td>
+
                               <td className="fav-things br-rad-right bg-white">
+                                {/* {favorite?.includes(sub?.subscriptionName)} */}
                                 <div
                                   className="con-like"
                                   onClick={() =>
@@ -529,53 +600,36 @@ const Discover = () => {
                                     title="like"
                                     type="checkbox"
                                     className="like"
+                                    // defaultChecked={true}
+                                    // defaultChecked={favorite.some((som) => {
+                                    //   return som.subscription_name.includes(
+                                    //     sub.subscriptionName
+                                    //   );
+                                    // })}
                                   />
+
                                   <div className="checkmark">
-                                    <svg
-                                      viewBox="0 0 24 24"
-                                      className="outline"
-                                      xmlns="https://www.w3.org/2000/svg"
-                                    >
-                                      <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-                                    </svg>
-                                    <svg
-                                      viewBox="0 0 24 24"
-                                      className="filled"
-                                      xmlns="https://www.w3.org/2000/svg"
-                                    >
-                                      <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-                                    </svg>
-                                    <svg
-                                      className="celebrate"
-                                      width="100"
-                                      height="100"
-                                      xmlns="https://www.w3.org/2000/svg"
-                                    >
-                                      <polygon
-                                        points="10,10 20,20"
-                                        className="poly"
-                                      ></polygon>
-                                      <polygon
-                                        points="10,50 20,50"
-                                        className="poly"
-                                      ></polygon>
-                                      <polygon
-                                        points="20,80 30,70"
-                                        className="poly"
-                                      ></polygon>
-                                      <polygon
-                                        points="90,10 80,20"
-                                        className="poly"
-                                      ></polygon>
-                                      <polygon
-                                        points="90,50 80,50"
-                                        className="poly"
-                                      ></polygon>
-                                      <polygon
-                                        points="80,80 70,70"
-                                        className="poly"
-                                      ></polygon>
-                                    </svg>
+                                    {favorite.some((som) => {
+                                      return som.subscription_name.includes(
+                                        sub.subscriptionName
+                                      );
+                                    }) ? (
+                                      <svg
+                                        viewBox="0 0 24 24"
+                                        className="filled"
+                                        xmlns="https://www.w3.org/2000/svg"
+                                      >
+                                        <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
+                                      </svg>
+                                    ) : (
+                                      <svg
+                                        viewBox="0 0 24 24"
+                                        className="outline"
+                                        xmlns="https://www.w3.org/2000/svg"
+                                      >
+                                        <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
+                                      </svg>
+                                    )}
                                   </div>
                                 </div>
                               </td>

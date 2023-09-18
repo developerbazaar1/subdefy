@@ -5,10 +5,10 @@ import drink from "../img/drinks.png";
 import box from "../img/box.png";
 import giftBox from "../img/gift-box.png";
 import heart from "../img/heart.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { OpenRoute } from "../utility/ApiServices";
 
 const DiscoverSidebar = ({
@@ -17,13 +17,25 @@ const DiscoverSidebar = ({
   handleSideBar,
   setSubscription,
   setLoading,
+  setCurrentCategorySubCat,
 }) => {
   const categories = useSelector((state) => state.category);
 
   const subCategoriesFilter = (key, values, category) => {
-    setCurrentCategory(category); // setting the active category in discover components
+    // console.log(key, values, category);
+    if (!category) {
+      console.log(key, values, category);
+      setCurrentCategory(values);
+      setCurrentCategorySubCat("");
+    } else {
+      setCurrentCategory(category);
+      setCurrentCategorySubCat(values);
+    }
+    // setting the active category in discover components
+
     // console.log("subcategories", category);
     setLoading(true);
+
     OpenRoute.filter({
       key: key,
       value: values,
@@ -32,7 +44,6 @@ const DiscoverSidebar = ({
         let sub = response.data.subscriptions;
         if (sub.length <= 0) {
           // console.log("not data found");
-          toast.error(`No Subscription Found With ${values} ${key}`);
         }
         // console.log(sub);
         setSubscription(sub);
@@ -66,7 +77,10 @@ const DiscoverSidebar = ({
           <ul className="app-menu mt-3">
             <li
               className="s-2-menu"
-              onClick={() => subCategoriesFilter("sort", "Most Popular")}
+              onClick={() => {
+                subCategoriesFilter("sort", "Most Popular");
+                // setCurrentCategorySubCat();
+              }}
               style={{ cursor: "pointer" }}
             >
               <img
@@ -81,7 +95,10 @@ const DiscoverSidebar = ({
             </li>
             <li
               className="s-2-menu mt-3"
-              onClick={() => subCategoriesFilter("sort", "Explore")}
+              onClick={() => {
+                subCategoriesFilter("sort", "Explore");
+                // setCurrentCategorySubCat();
+              }}
               style={{ cursor: "pointer" }}
             >
               <img
@@ -96,7 +113,10 @@ const DiscoverSidebar = ({
             </li>
             <li
               className="s-2-menu mt-3"
-              onClick={() => subCategoriesFilter("sort", "New Release")}
+              onClick={() => {
+                subCategoriesFilter("sort", "New Release");
+                // setCurrentCategorySubCat();
+              }}
               style={{ cursor: "pointer" }}
             >
               <img
@@ -111,7 +131,10 @@ const DiscoverSidebar = ({
             </li>
             <li
               className="s-2-menu mt-3"
-              onClick={() => subCategoriesFilter("sort", "Gift Subscription")}
+              onClick={() => {
+                subCategoriesFilter("sort", "Gift Subscription");
+                // setCurrentCategorySubCat();
+              }}
               style={{ cursor: "pointer" }}
             >
               <img
@@ -131,14 +154,14 @@ const DiscoverSidebar = ({
               <span className=" app-c-head  mx-3 ">Favourites</span>
             </div>
             <li>
-              <Link className="app-menu__item fav-menu-items" to="/wishlist">
+              <NavLink className="app-menu__item fav-menu-items" to="/wishlist">
                 <img
                   src={heart}
                   alt="heart"
                   className="app-menu__icon mx-3 w-20"
                 ></img>
                 <span className="app-menu__label__2">Wishlist</span>
-              </Link>
+              </NavLink>
             </li>
             <div className="nav-sub-show mt-2">
               <span className=" app-c-head mt-1 mx-3 ">

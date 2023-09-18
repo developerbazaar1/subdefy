@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -21,24 +22,13 @@ ChartJS.register(
   Legend,
   ArcElement
 );
-const PieCharts = ({ subscriptions }) => {
+
+const DupPie = ({ subscriptions }) => {
   const categories = useSelector((state) => state.category);
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1; // January is 0, so add 1
   const currentYear = currentDate.getFullYear();
-  const gradientColorMapping = {};
-  subscriptions?.forEach((subscription) => {
-    const category = subscription?.category;
-    const categorydetails = subscription?.categorydetails;
-    const gradientColor = categorydetails?.color;
-    // if (gradientColor === undefined) {
-    //   gradientColorMapping[category] =
-    //     "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,61,1) 35%, rgba(0,212,255,1) 100%)";
-    //   console.log(gradientColorMapping[category]);
-    // }
-    gradientColorMapping[category] = gradientColor;
-    // console.log("gradident color", gradientColorMapping);
-  });
+
   const filteredSubscriptions = subscriptions?.filter((subscription) => {
     const dueDate = new Date(subscription?.next_payment_due);
     const dueMonth = dueDate.getMonth() + 1;
@@ -46,20 +36,34 @@ const PieCharts = ({ subscriptions }) => {
     // console.log(dueMonth === currentMonth && dueYear === currentYear);
     return dueMonth === currentMonth && dueYear === currentYear;
   });
+
+  function ExtreactPriceNumber(price) {
+    const costNumber = parseFloat(price.replace("$", ""));
+    return costNumber;
+  }
   // Calculate the total cost for the current month
   const totalCostCurrentMonth = filteredSubscriptions?.reduce(
-    (total, subscription) => total + parseFloat(subscription.cost),
+    (total, subscription) => total + ExtreactPriceNumber(subscription.cost),
     0
   );
+
+  const gradientColorMapping = {};
+  filteredSubscriptions?.forEach((subscription) => {
+    const category = subscription?.category;
+    const categorydetails = subscription?.categorydetails;
+    const gradientColor = categorydetails?.color;
+    gradientColorMapping[category] = gradientColor;
+  });
+
   // Calculate the total cost for each category
   const categoryCosts = {};
   // console.log("filterede", filteredSubscriptions);
   filteredSubscriptions?.forEach((subscription) => {
     const { category, cost } = subscription;
     if (!categoryCosts[category]) {
-      categoryCosts[category] = parseFloat(cost);
+      categoryCosts[category] = ExtreactPriceNumber(cost);
     } else {
-      categoryCosts[category] += parseFloat(cost);
+      categoryCosts[category] += ExtreactPriceNumber(cost);
     }
     // console.log(categoryCosts);
   });
@@ -81,14 +85,17 @@ const PieCharts = ({ subscriptions }) => {
           if (!chartArea) {
             return null;
           }
+
           // Get the index of the current data point
           const dataIndex = context.dataIndex;
+
           // Use the updated getGradient function to get the gradient color
           const gradientColor = getGradient(
             chart,
             dataIndex,
             gradientColorMapping
           );
+
           // Return the gradientColor as the background color
           return gradientColor;
         },
@@ -96,64 +103,48 @@ const PieCharts = ({ subscriptions }) => {
       },
     ],
   };
-  function parseGradient(gradientString) {
-    const colorStops = gradientString?.match(/rgba?\([^)]+\)\s*\d*%?/g);
-    if (!colorStops) {
-      return [];
-    }
-    return colorStops.map((colorStop) => {
-      const parts = colorStop?.match(/rgba?\(([^)]+)\)\s*(\d*%)?/);
-      if (parts && parts.length >= 2) {
-        const rgba = parts[1]
-          .split(",")
-          .map((value) => parseFloat(value.trim()));
-        const position = parts[2] ? parseFloat(parts[2]) / 100 : null;
-        // Convert the rgba values to a valid color string
-        const color = `rgba(${rgba.join(",")})`;
-        return { color, position };
-      }
-      return null;
-    });
-  }
-  // ...
+
+  // function parseGradient(gradientString) {
+  //   const colorStops = gradientString?.match(/rgba?\([^)]+\)\s*\d*%?/g);
+
+  //   if (!colorStops) {
+  //     return [];
+  //   }
+
+  //   return colorStops.map((colorStop) => {
+  //     const parts = colorStop?.match(/rgba?\(([^)]+)\)\s*(\d*%)?/);
+  //     if (parts && parts.length >= 2) {
+  //       const rgba = parts[1]
+  //         .split(",")
+  //         .map((value) => parseFloat(value.trim()));
+  //       const position = parts[2] ? parseFloat(parts[2]) / 100 : null;
+  //       const color = `rgba(${rgba.join(",")})`;
+  //       return { color, position };
+  //     }
+  //     return null;
+  //   });
+  // }
+
   function getGradient(chart, index, gradientColorMapping) {
     const {
       ctx,
       chartArea: { top, bottom, left, right },
     } = chart;
-    // Get the categories from the chart data
+
     const categories = Object.keys(gradientColorMapping);
-    // Get the category for the current data point based on the index
     const category = categories[index % categories.length];
-    // Get the gradient color for the category from the mapping
+
     const gradientColor = gradientColorMapping[category];
-    // Parse the CSS gradient string
-    const colorStops = parseGradient(gradientColor);
-    // Create a linear gradient based on the chart dimensions
-    const gradient = ctx.createLinearGradient(left, 0, right, 0);
-    // If the gradient color is not found, use a default gradient
-    if (!colorStops.length) {
-      const defaultGradient = [
-        { color: "rgba(2,0,36,1)", position: 0 },
-        { color: "rgba(121,9,61,1)", position: 0.35 },
-        { color: "rgba(0,212,255,1)", position: 1 },
-      ];
-      colorStops.push(...defaultGradient);
-    }
-    // Add color stops to the gradient
-    colorStops.forEach((colorStop) => {
-      if (colorStop) {
-        gradient.addColorStop(colorStop.position || 0, colorStop.color);
-      }
-    });
-    // Return the gradient for the current data point
+
+    const gradient = (ctx.backgroundColor = gradientColor);
+
     return gradient;
   }
-  // ...
+
   const options = {
     elements: {
       arc: {
-        borderWidth: 0, // Set borderWidth to 0
+        borderWidth: 0,
       },
     },
     plugins: {
@@ -199,7 +190,7 @@ const PieCharts = ({ subscriptions }) => {
                       {
                         label: "",
                         data: [1],
-                        backgroundColor: ["#ccc"], // Gray color
+                        backgroundColor: ["#ccc"],
                       },
                     ],
                   }}
@@ -208,9 +199,6 @@ const PieCharts = ({ subscriptions }) => {
                       legend: {
                         display: true,
                       },
-                      // tooltip: {
-                      //   enabled: false, // Disable tooltip for the placeholder
-                      // },
                     },
                   }}
                 />
@@ -236,7 +224,6 @@ const PieCharts = ({ subscriptions }) => {
               <tbody>
                 {categories?.map((cat, index) => {
                   const categoryCost = categoryCosts[cat.name] || 0;
-                  // const backgroundColor = gradientColorMapping[cat.name] || 0;
                   return (
                     <tr key={index} className="br-none">
                       <td>
@@ -280,4 +267,5 @@ const PieCharts = ({ subscriptions }) => {
     </div>
   );
 };
-export default PieCharts;
+
+export default DupPie;

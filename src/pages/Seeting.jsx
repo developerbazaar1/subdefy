@@ -11,10 +11,14 @@ import { useAuth } from "../services/auth";
 import userImage from "../img/boy.png";
 import axios from "axios";
 import { logout, update, deleteImage } from "../features/authSlice.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from "../components/Spinner";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 const Seeting = () => {
   const dispatch = useDispatch();
 
@@ -52,12 +56,6 @@ const Seeting = () => {
   //function to handle delte-image
 
   const handleDeleteImage = () => {
-    let allow = window.confirm(
-      "Are you sure you want to delete your profile image?"
-    );
-    if (!allow) {
-      return;
-    }
     setLoading(true);
     let config = {
       method: "get",
@@ -89,6 +87,26 @@ const Seeting = () => {
     console.log(user.user_image, "store-image");
     console.log(watch(updateDetails.watch("userProfileImage")), "watcher");
     console.log("delete-Button");
+  };
+
+  const HandelDeleteImageConfirm = () => {
+    MySwal.fire({
+      title: "Are you sure?",
+      text: "This action cannot be undone.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Handle the confirmation action here
+        handleDeleteImage();
+        MySwal.fire("Confirmed!", "Your action has been completed.", "success");
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Handle the cancel action here
+        MySwal.fire("Cancelled", "Your action has been cancelled.", "error");
+      }
+    });
   };
 
   //function to handle update Password
@@ -332,7 +350,8 @@ const Seeting = () => {
                                 >
                                   <FontAwesomeIcon
                                     icon={faTrash}
-                                    onClick={handleDeleteImage}
+                                    // onClick={handleDeleteImage}
+                                    onClick={HandelDeleteImageConfirm}
                                   />
                                 </label>
                                 {/* <input

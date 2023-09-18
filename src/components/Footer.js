@@ -2,15 +2,49 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { OpenRoute } from "../utility/ApiServices";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoadingSpinner from "../components/Spinner";
 function Footer() {
   const [isActive, setIsActive] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, formState, reset } = useForm();
+  const { errors } = formState;
   const handleClick = (event) => {
     setIsActive((current) => !current);
   };
 
+  const NewsLetterSubmit = (data, e) => {
+    e.preventDefault();
+    // console.log(data);
+    setLoading(true);
+    OpenRoute.newsLetter({ email: data.newsLetterEmail })
+      .then((response) => {
+        // console.log(response.data.message);
+        toast.success(response.data.message);
+      })
+      .catch((error) => {
+        toast.success(error.message);
+      })
+      .finally(() => {
+        reset();
+        setLoading(false);
+      });
+  };
+
   return (
     <footer className="footer">
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "109%",
+        }}
+      >
+        <LoadingSpinner loading={loading} />
+      </div>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-3">
@@ -69,15 +103,28 @@ function Footer() {
           <div className="col-md-3">
             <div className="email-box">
               <h6>SIGN UP FOR OUR NEWSLETTER</h6>
-              <form>
+              <form onSubmit={handleSubmit(NewsLetterSubmit)}>
                 <div className="mb-3">
                   <input
                     type="email"
                     className="form-control"
-                    id=""
+                    id="newsLetterEmail"
                     placeholder="email@email.com"
-                    required
+                    // required
+                    {...register("newsLetterEmail", {
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: "Invalid Email Address",
+                      },
+                      required: {
+                        value: true,
+                        message: "Email is Required",
+                      },
+                    })}
                   />
+                  <div className="error-div">
+                    {errors?.newsLetterEmail?.message}
+                  </div>
                 </div>
                 <button type="submit" className="btn btn-main">
                   Submit
@@ -92,12 +139,12 @@ function Footer() {
             <div className="social-icons mt-4">
               <ul>
                 <li>
-                  <a href="/#">
+                  <a href="facebook">
                     <FontAwesomeIcon icon={faFacebookF} />
                   </a>
                 </li>
                 <li>
-                  <a href="/#">
+                  <a href="instagram">
                     <FontAwesomeIcon icon={faInstagram} />
                   </a>
                 </li>
@@ -106,6 +153,18 @@ function Footer() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </footer>
   );
 }

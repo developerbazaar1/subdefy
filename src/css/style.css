@@ -368,9 +368,10 @@ p {
   height: 45px;
   line-height: 42px;
   text-align: center;
-  display: none;
+  /* display: none; */
+  cursor: pointer;
   position: fixed;
-  bottom: 230px;
+  bottom: 27px;
   right: 20px;
   z-index: 999;
   border-radius: 5px;
@@ -769,8 +770,8 @@ p {
   }
   .menu-close {
     position: absolute;
-    top: 13px;
-    right: 16px;
+    top: 1px;
+    right: 9px;
   }
   .menu-close svg {
     color: #000;
@@ -1632,7 +1633,10 @@ input.blog-search {
   opacity: 0.7;
   transition: all 0.5s ease-out;
   -webkit-transition: all 0.5s ease-out;
+  width: 376px;
+  height: 239px;
 }
+
 .hover-box:hover .blog-image img {
   opacity: 1;
 }
@@ -1798,6 +1802,7 @@ h6.blog-catgry {
   color: #000000;
   font-family: montserrat;
   font-weight: 500;
+  text-wrap: nowrap;
 }
 .blog-cat-headline h4 {
   font-size: 22px;
@@ -1888,7 +1893,7 @@ h6.blog-catgry {
 }
 
 .min-h-banner {
-  height: 570px;
+  max-height: 570px;
 }
 
 .min-h-innerimg {
@@ -2145,7 +2150,8 @@ aside.sidebar {
   line-height: 1.8rem;
   position: absolute;
   /* width: 238px; */
-  width: 234px;
+  /* width: 234px; */
+  width: 222px;
   overflow: auto;
   height: 100vh;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -2250,7 +2256,7 @@ a.app-menu__item:hover {
   letter-spacing: 2px;
   color: #6d46d9;
   font-size: 10px;
-  padding-left: 10px;
+  /* padding-left: 10px; */
 }
 .graph-t-data-unactive {
   color: #8d8f96;
@@ -2783,10 +2789,8 @@ a.btn.profile-btn:active {
   transition: all 0.3s ease;
   transition: box-shadow 0.3s ease, transform 0.2s ease;
 } */
-.d-card:hover {
-  border-radius: 10px;
-  transform-origin: center center;
-  transform: scaleX(1.2);
+.active-category {
+  box-shadow: 0px 0px 10px rgba(10, 10, 10, 0.7);
 }
 .app-menu__label.app-2-menu {
   width: 184px;
@@ -3516,6 +3520,7 @@ span.app-menu__label__2 {
   border-radius: 8px;
   padding: 35px 20px 19px 23px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.4s;
 }
 .card-avatar {
   justify-content: center;

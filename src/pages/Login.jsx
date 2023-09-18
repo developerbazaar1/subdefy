@@ -5,7 +5,12 @@ import BackToTopButton from "../components/BackToTopButton.js";
 import { useForm } from "react-hook-form";
 import LoginIcon from "../img/login-icon.png";
 import Google from "../img/google.png";
-import { signInWithPopup, auth, provider } from "../services/Firebase.js";
+import {
+  signInWithPopup,
+  auth,
+  provider,
+  facebookProvider,
+} from "../services/Firebase.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +20,9 @@ import { login } from "../features/authSlice.js";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
+import { linkWithPopup, linkWithRedirect } from "firebase/auth";
+import { OpenRoute } from "../utility/ApiServices.js";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -22,6 +30,7 @@ const Login = () => {
   const loginForm = useForm();
   const signupForm = useForm();
   const { register, handleSubmit, formState } = loginForm;
+
   const {
     register: register1,
     handleSubmit: handleSubmit1,
@@ -142,6 +151,52 @@ const Login = () => {
       });
   };
 
+  //functin to login with facebook
+
+  const signInWithFacebook = async () => {
+    try {
+      const result = await signInWithPopup(auth, facebookProvider);
+
+      const name = result.user.displayName;
+      const email = result.user.email;
+      // const profilePic = result.user.photoURL;
+
+      OpenRoute.signinWithProvider({ email, name, provider: "facebook" })
+        .then((response) => {
+          // console.log("response message", response);
+
+          dispatch(
+            login({
+              user: response.data.user,
+              token: response.data.token,
+            })
+          );
+          localStorage.setItem("auth", response.data.token);
+          return toast.success(response.data.message);
+        })
+        .catch((error) => {
+          console.log("error message", error);
+        });
+    } catch (error) {
+      if (error.code === "auth/account-exists-with-different-credential") {
+        // Existing user with different credentials, prompt for account linking
+        // console.log(auth.currentUser.user);
+        try {
+          const result = await linkWithRedirect(
+            auth.currentUser,
+            facebookProvider
+          );
+
+          // console.log("linkup result ", result);
+        } catch (linkingError) {
+          console.error("Error linking Facebook account:", linkingError);
+        }
+      } else {
+        console.error("Error signing in with Facebook:", error.message);
+      }
+    }
+  };
+
   const registerSubmit = (data, e) => {
     e.preventDefault();
     setLoading(true);
@@ -158,7 +213,7 @@ const Login = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         const token = response.data.token;
 
         dispatch(
@@ -175,10 +230,7 @@ const Login = () => {
       .catch((error) => {
         if (error.response && error.response.status === 401) {
           return toast.warning(error.response.data.errors.email[0]);
-          // You can display an error message to the user here
-          // console.log(error.response.data.errors.email);
         } else {
-          // console.log("An error occurred:", error.message);
           return toast.error(error);
         }
       })
@@ -227,35 +279,42 @@ const Login = () => {
                   <div className="form_tab  ">
                     <ul className="nav nav-tabs nav-justified">
                       <li className="nav-item log-tab">
-                        <a
+                        <span
                           className={`log-tab link nav-link ${
                             activeTab === "login" ? "active" : ""
                           }`}
-                          data-bs-toggle="tab"
-                          href="#home"
+                          // data-bs-toggle="tab"
+                          // href="#home"
                           onClick={() => handleTabChange("login")}
+                          style={{ cursor: "pointer" }}
                         >
                           Log In
-                        </a>
+                        </span>
                       </li>
                       <li className="nav-item log-tab">
-                        <a
+                        <span
                           className={`log-tab-link nav-link ${
                             activeTab === "signup" ? "active" : ""
                           }`}
                           onClick={() => handleTabChange("signup")}
                           data-bs-toggle="tab"
-                          href="#menu1"
+                          // href="#menu1"
+                          style={{ cursor: "pointer" }}
                         >
                           Sign Up
-                        </a>
+                        </span>
                       </li>
                     </ul>
                   </div>
                   {/* <!-- tab switch buton end --> */}
                   {/* <!-- tab 01 :: Tab panes detail conatiner --> */}
-                  <div className="tab-content pb-2 mt-4">
-                    <div className="tab-pane container mb-4 active" id="home">
+                  <div className={`tab-content pb-2 mt-4`}>
+                    <div
+                      className={`container mb-4 ${
+                        activeTab === "signup" ? "d-none" : "d-block"
+                      }`}
+                      id="home"
+                    >
                       {/* <!-- login-tab-form  --> */}
                       <form
                         className="login-tab-form"
@@ -347,8 +406,8 @@ const Login = () => {
                         <div className="form-footer ">
                           <div className="form-footer-text text-center ">
                             <span>
-                              <a
-                                href="#Forgot"
+                              <Link
+                                to="/forgot-password"
                                 className="forgot_password"
                                 // className="back-login text-blue"
                                 // onClick={() => handleTabChange("login")}
@@ -364,7 +423,7 @@ const Login = () => {
                                   {" "}
                                   ?
                                 </span>
-                              </a>
+                              </Link>
                             </span>
                           </div>
                         </div>
@@ -377,8 +436,8 @@ const Login = () => {
                       {/* <!-- social login button start here --> */}
                       <div className="social-log-container">
                         <div className="fb-log">
-                          <a
-                            href="https://www.facebook.com/login/"
+                          <span
+                            onClick={signInWithFacebook}
                             className="btn fb-log-btn fb-log-btn w-100"
                           >
                             <FontAwesomeIcon
@@ -387,7 +446,7 @@ const Login = () => {
                               className="facebook-icon"
                             />
                             SIGN IN WITH FACEBOOK
-                          </a>
+                          </span>
                         </div>
                         <div className="fb-log mt-4">
                           <span
@@ -404,11 +463,14 @@ const Login = () => {
                           </span>
                         </div>
                       </div>
+
                       {/* <!-- social login button start here --> */}
                     </div>
                     {/* <!-- :: tab 02  sign in--> */}
                     <div
-                      className="tab-pane container fade"
+                      className={`container ${
+                        activeTab === "login" ? "d-none" : "d-block"
+                      }`}
                       id="menu1"
                       style={{ paddingBottom: "19px" }}
                     >
@@ -557,21 +619,23 @@ const Login = () => {
                           <div className="form-footer-text text-center ">
                             <span className="pb-3">
                               Already have an account?
-                              <a
-                                href="/login"
+                              <span
+                                // to="/login"
                                 className="back-login text-blue"
-                                onClick={() => handleTabChange("login")}
+                                // onClick={() => handleTabChange("login")}
                               >
                                 <strong
+                                  onClick={() => handleTabChange("login")}
                                   style={{
                                     color: "#80c3d2",
                                     marginLeft: "2px",
+                                    cursor: "pointer",
                                   }}
                                 >
                                   Log In
                                 </strong>
                                 <br />
-                              </a>
+                              </span>
                             </span>
                           </div>
                         </div>
@@ -583,8 +647,8 @@ const Login = () => {
                         {/* <!-- social login button start here --> */}
                         <div className="social-log-container">
                           <div className="fb-log">
-                            <a
-                              href="https://www.facebook.com/login/"
+                            <span
+                              onClick={signInWithFacebook}
                               className="btn fb-log-btn fb-log-btn w-100"
                             >
                               <FontAwesomeIcon
@@ -593,11 +657,10 @@ const Login = () => {
                                 className="facebook-icon"
                               />
                               SIGN UP WITH FACEBOOK
-                            </a>
+                            </span>
                           </div>
                           <div className="fb-log mt-4">
                             <span
-                              // href="#"
                               onClick={signInWithGoogle}
                               className="btn google-log-btn w-100"
                             >

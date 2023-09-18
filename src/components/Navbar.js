@@ -47,11 +47,15 @@ function Navbar({ onButtonClick }) {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/" onClick={handleClick} className="nav-link ">
+                  <NavLink
+                    to="/manage"
+                    onClick={handleClick}
+                    className="nav-link "
+                  >
                     Manage
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink
                     to="/coomin"
                     onClick={handleClick}
@@ -59,7 +63,7 @@ function Navbar({ onButtonClick }) {
                   >
                     Pay
                   </NavLink>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <NavLink
                     to="/investerhub"
@@ -117,23 +121,25 @@ function Navbar({ onButtonClick }) {
             </span>
           </div>
           {isLoggedIn && token && (
-            <div className="mobile-menu d-xl-none">
-              <img
-                src={
-                  user?.user_image
-                    ? `${process.env.REACT_APP_global_url}/public/${user.user_image}`
-                    : userInfo
-                }
-                alt="User"
-                onClick={onButtonClick}
-                style={{
-                  cursor: "pointer",
-                  width: "40px",
-                  borderRadius: "50%",
-                  height: "40px",
-                }}
-              />{" "}
-            </div>
+            <Link to="/AccountSettings">
+              <div className="mobile-menu d-xl-none">
+                <img
+                  src={
+                    user?.user_image
+                      ? `${process.env.REACT_APP_global_url}/public/${user.user_image}`
+                      : userInfo
+                  }
+                  alt="User"
+                  onClick={onButtonClick}
+                  style={{
+                    cursor: "pointer",
+                    width: "40px",
+                    borderRadius: "50%",
+                    height: "40px",
+                  }}
+                />{" "}
+              </div>
+            </Link>
           )}
         </div>
       </div>

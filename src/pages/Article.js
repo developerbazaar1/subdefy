@@ -59,7 +59,12 @@ const Article = () => {
           <div className="row">
             <div className="col-md-8 m-auto">
               <div className="article-para">
-                <p>{data[0]?.blog_long_description}</p>
+                {/* <p>{data[0]?.blog_long_description}</p> */}
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data[0]?.blog_long_description,
+                  }}
+                />
               </div>
             </div>
             <div className="col-md-12 m-auto">

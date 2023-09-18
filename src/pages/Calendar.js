@@ -6,59 +6,43 @@ import logoIcon from "../img/login-icon.png";
 import plus from "../img/plus.png";
 import { useState } from "react";
 import { useAuth } from "../services/auth";
-
+import EventCalendar from "../components/EventCalendar";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
-import Tabel from "../components/Tabel";
 import OldModal from "../components/OldModal";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-// import { RiseLoader } from "react-spinners";
-// import EditModal from "../components/EditModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import LineChart from "../components/LineChart";
-// import { PieChart } from "../components/PieChar";
 import LoadingSpinner from "../components/Spinner";
-// import PieCharts from "../components/PieCharts";
 import DupPie from "../app/dupPie";
-const Manage = () => {
+const Calendar = () => {
   const [loading, setLoading] = useState(false);
-  // this code is used to restricted the from selecting the past date
   const categories = useSelector((state) => state.category);
   const currentDate = new Date();
   const currentDateString = currentDate.toISOString().split("T")[0];
   const [showModal, setShowModal] = useState(false);
   const [showModal3, setShowModal3] = useState(false);
   const [showmodal1, setshowModal1] = useState(false);
+  const [changes, setchanges] = useState(false);
   const [error, setError] = useState(false);
-  // const [editModal, setEditModal] = useState(false);
-  // const initialSelectedSubscription = {
-  //   subscriptionName: "",
-  //   category: "",
-  //   plans: [],
-  // };
 
-  // const [categories, setCategories] = useState([]);
-  // const [categoriesLoder, setCategoriesLoder] = useState(false);
+  const [categoriesLoder, setCategoriesLoder] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [subscriptions, setSubscriptions] = useState();
 
   const [secSubscription, setsecSubscription] = useState();
 
   const [fetchChanges, setfetchChanges] = useState(false);
-  // const [dataAdded, setDataAdded] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [apiData, setApiData] = useState([]);
-  // const [selectedItem, setSelectedItem] = useState(null);
-
-  // const HandleModal = () => {
-  //   setShowModal(true);
-  // };
+  const HandleModal = () => {
+    setShowModal(true);
+  };
   const handleButtonClick = () => {
     setButtonClicked((prevState) => !prevState);
   };
@@ -67,18 +51,10 @@ const Manage = () => {
   const updateDetails = useForm();
   const modal1 = useForm();
   const { register: modal1Register, reset: modal1Reset } = modal1;
-  //seeting the default value to second modal
-  // const secondModal = useForm();
-  const { register, handleSubmit, formState, reset, setValue } = updateDetails;
-  // const {
-  //   register: registerSecond,
-  //   handleSubmit: handleSubmitSecond,
-  //   formState: formStateSecond,
-  //   setValue: setValueSecond,
-  // } = secondModal;
-  const { errors } = formState;
 
-  //getSelectedSubscription details
+  const { register, handleSubmit, formState, reset, setValue } = updateDetails;
+
+  const { errors } = formState;
 
   const getSelectedSubscription = (selected) => {
     setsecSubscription(selected);
@@ -105,15 +81,11 @@ const Manage = () => {
       .then((response) => {
         setApiData(response.data.subscriptions);
         setError(false);
-        // console.log("list", response.data.subscriptions);
       })
       .catch((error) => {
-        // console.log("list error", error);
         setApiData([]);
         setError(true);
         setValue("subscription", searchTerm);
-
-        // return toast.error(error.response.data.message);
       });
   };
 
@@ -127,6 +99,7 @@ const Manage = () => {
 
   // function to get all subscription of user
   const getUserSubscription = () => {
+    setLoading(true);
     let config = {
       method: "get",
       maxBodyLength: Infinity,
@@ -140,11 +113,13 @@ const Manage = () => {
       .request(config)
       .then((response) => {
         setSubscriptions(response.data.subscriptions);
-        // console.log("user subscription", response.data.subscriptions);
       })
       .catch((error) => {
         // console.log(error);
         return toast.error(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -154,7 +129,6 @@ const Manage = () => {
     e.preventDefault();
     const { subscription, cost, frequency, category, nextPayment } = data;
 
-    // console.log(data);
     let reqData = JSON.stringify({
       subscription_name: subscription,
       category: category,
@@ -163,7 +137,6 @@ const Manage = () => {
       next_payment_due: nextPayment,
     });
 
-    // return console.log(reqData, categories);
     let config = {
       method: "post",
       maxBodyLength: Infinity,
@@ -178,13 +151,13 @@ const Manage = () => {
       .request(config)
       .then((response) => {
         // console.log(JSON.stringify(response.data));
-        // setDataAdded(!dataAdded); //to re -fetch the data from the database;
         getUserSubscription();
         setShowModal3(false);
+        setchanges(!changes);
         return toast.success(response.data.message);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         return toast.success(error.data.message);
       })
       .finally(() => {
@@ -227,18 +200,18 @@ const Manage = () => {
         buttonClicked={buttonClicked}
         onButtonClick={handleButtonClick}
       />
+      <div className="wishListLoder">
+        <LoadingSpinner loading={loading} />
+      </div>
       <main className="app-content ">
         <section className="upload-file-sec">
-          <div className="row justify-content-center">
-            {/* <!-- <div className="col-md-2 empty-div"></div> --> */}
+          <div className="row justify-content-center my-md">
             <div className="col-md-9 selection-col">
-              <div className="row justify-content-center">
+              <div className="row justify-content-center my-md">
                 <div className="col-md-12">
                   <div className="sm-border-box mx-auto">
                     <div
                       className="child-cnt text-center"
-                      // data-bs-toggle="modal"
-                      // href="#exampleModalToggle"
                       onClick={() => setshowModal1(true)}
                     >
                       <img
@@ -249,19 +222,27 @@ const Manage = () => {
                       <p className="text-d-blue">ADD SUBSCRIPTION</p>
                     </div>
                   </div>
-                  {/* <!-- table with data --> */}
                 </div>
-                <Tabel
-                  subscriptions={subscriptions}
-                  // getSelectedSubscription={getSelectedSubscription}
-                  // setEditSubscription={setEditSubscription}
-                  // setEditModal={setEditModal}
-                  setfetchChanges={setfetchChanges}
-                  fetchChanges={fetchChanges}
-                />
 
-                {/* <!--bottom-graph section start--> */}
-                <div className=" mt-20  mb-3 col-lg-9 col-sm-12 col-md-9 col-xl-8 col-xs-12 d-none-sm">
+                <section className="profile-setings mt-4">
+                  <div
+                    className="row justify-content-center tabel_container"
+                    style={{ marginLeft: "9px" }}
+                  >
+                    <div className="col-md-11 selection-col">
+                      <div className="accordion" id="accordionExample">
+                        <div className="accordion-item calendar_area">
+                          <EventCalendar
+                            changes={changes}
+                            fetchChanges={fetchChanges}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <div className=" mt-20  mb-3 col-lg-9 col-sm-12 col-md-9 col-xl-6 col-xs-12 mx-auto d-none-sm">
                   <div className="graph-head mb-2">
                     <h6>OCTOBER CASH FLOW - CURRENT VS SUBDEFY PAY</h6>
                   </div>
@@ -302,24 +283,16 @@ const Manage = () => {
                   </div>
                 </div>
               </div>
-              {/* <!-- :: bottom-graph section end  --> */}
             </div>
-            {/* <!-- 2nd column sidebox --> */}
-            <div className="col-md-3 sidebox-col px-0 py-0 pie">
+            <div className="col-md-3 sidebox-col px-0 py-0">
               <DupPie subscriptions={subscriptions} />
             </div>
           </div>
         </section>
       </main>
       <Footer />
-      {/* modal no 1 */}
 
-      <Modal
-        show={showmodal1}
-        onHide={handleModal1Hide}
-        centered
-        // className="modal_dilog_1"
-      >
+      <Modal show={showmodal1} onHide={handleModal1Hide} centered>
         <div className="dfdf">
           <Modal.Body>
             <div className="text-center">
@@ -340,7 +313,7 @@ const Manage = () => {
 
                     {error ? (
                       <span className="subscriptionList_error">
-                        Click Add New!
+                        Click Add New
                       </span>
                     ) : (
                       ""
@@ -368,23 +341,14 @@ const Manage = () => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <button
-              className="btn one-mod-sub"
-              // onClick={() => setShowModal3(true)}
-              onClick={OpenModal3}
-            >
+            <span className="text-muted">Add A New Subscription</span>
+            <button className="btn one-mod-sub" onClick={OpenModal3}>
               Add New
               <FontAwesomeIcon icon={faPlus} style={{ marginLeft: "6px" }} />
             </button>
           </Modal.Footer>{" "}
         </div>
       </Modal>
-
-      {/* edit modal  start*/}
-
-      {/* edit modal  End*/}
-
-      {/* <!-- ::modal no 02 --> */}
 
       <OldModal
         showModal={showModal}
@@ -394,7 +358,6 @@ const Manage = () => {
         fetchChanges={fetchChanges}
         setfetchChanges={setfetchChanges}
       />
-      {/* <!--:: modal 3--> */}
 
       <Modal
         show={showModal3}
@@ -457,7 +420,6 @@ const Manage = () => {
                       <select
                         name=""
                         id="category"
-                        // onClick={getCategory}
                         className="form-control cst-modal-input"
                         {...register("category", {
                           required: {
@@ -477,24 +439,8 @@ const Manage = () => {
                             {category?.name}
                           </option>
                         ))}
-
-                        {/* <option value="Category1"> Category1</option>
-                        <option value="Category2"> Category2</option>
-                        <option value="Category2">Category2</option> */}
                       </select>
-                      {/* <input
-                        className="form-control cst-modal-input"
-                        id="category"
-                        type="text"
-                        aria-describedby="title"
-                        placeholder="eg. Entertainment"
-                        {...register("category", {
-                          required: {
-                            value: true,
-                            message: "Category is required",
-                          },
-                        })}
-                      /> */}
+
                       <span className="error-div">
                         {errors.category?.message}
                       </span>
@@ -517,7 +463,6 @@ const Manage = () => {
                         id="cost"
                         type="text"
                         style={{ paddingLeft: "24px" }}
-                        // value="$"
                         aria-describedby="title"
                         placeholder="15.50"
                         {...register("cost", {
@@ -556,7 +501,6 @@ const Manage = () => {
                         })}
                       >
                         <option>select a plan</option>
-                        <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
                         <option value="half yearly">Half Yearly</option>
                         <option value="quarterly">Quarterly</option>
@@ -612,7 +556,6 @@ const Manage = () => {
         </Modal.Body>
         <div className="modal-footer justify-content-center mt-2 mb-3">
           <img className="w-94px" src={logoIcon} alt="loading" />
-          {/* <!-- footer image  --> */}
         </div>
       </Modal>
 
@@ -632,4 +575,4 @@ const Manage = () => {
   );
 };
 
-export default Manage;
+export default Calendar;

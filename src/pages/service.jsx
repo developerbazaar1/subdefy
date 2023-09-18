@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 import BackToTopButton from "../components/BackToTopButton.js";
 import arrowright from "../img/Arrow - Right.png";
-import marvel from "../img/marvel.jpg";
+import marvel from "../img/No-Image.png";
 import plan from "../img/plan-2.png";
 import planTopImage from "../img/plan-top-image.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -86,7 +86,7 @@ const Service = () => {
                 </div>
                 <div className="col-md-8 p-1_5rem">
                   <span className="ott-date-mute">
-                    {subscription?.premiumSubscriptionsFrom}
+                    Form {subscription?.premiumSubscriptionsFrom}
                   </span>
                   <h1 className="banner-ott-head mt-4">
                     {subscription?.subscriptionName}
@@ -114,9 +114,15 @@ const Service = () => {
                 <div className="image-source">
                   <span>
                     Image Source:{" "}
-                    <a href="#" className="img-src">
+                    <a
+                      // href="#"
+                      className="img-src"
+                      href={`${subscription?.banner_image}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       {" "}
-                      Marvel Studios
+                      {subscription?.banner_image}
                     </a>
                   </span>
                 </div>
@@ -130,6 +136,19 @@ const Service = () => {
                   alt="bannerImage"
                 />
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="plan-banner pt-5 bg-white">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-11 col-lg-11 col-sm-12 col-xs-12 text-center">
+              <div className="gallery-heading main-heading">
+                <h2>About</h2>
+              </div>
+              <p>{subscription?.subscriptionDescriptionLong}</p>
             </div>
           </div>
         </div>
@@ -218,9 +237,9 @@ const Service = () => {
                         </span>
                       </div>
                       <div className="btn-more justify-content-center mt-3 text-center">
-                        <a href="#" className="sub-data-load-btn">
+                        <span href="#" className="sub-data-load-btn">
                           <FontAwesomeIcon icon={faArrowRight} />
-                        </a>
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -229,8 +248,17 @@ const Service = () => {
             </div>
           ) : (
             <div className="text-center mb-5">
-              "No Plan avaliable for this subscription on our site, please try
-              to visit their offical web Page"
+              "No plan information is currently available on Subdefy. Visit them
+              directly here:
+              <a
+                href={subscription?.signUpUrl}
+                className="sub-link text-blue"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {subscription?.signUpUrl}
+              </a>
+              "
             </div>
           )}
         </div>

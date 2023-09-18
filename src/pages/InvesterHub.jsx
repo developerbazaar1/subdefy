@@ -1,11 +1,49 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { OpenRoute } from "../utility/ApiServices";
+import { toast } from "react-toastify";
+import LoadingSpinner from "../components/Spinner";
 const InvesterHub = () => {
+  const [isActive, setIsActive] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, formState, reset } = useForm();
+  const { errors } = formState;
+
+  const handleClick = (event) => {
+    setIsActive((current) => !current);
+  };
+
+  const investerHubSubmit = (data, e) => {
+    setLoading(true);
+    e.preventDefault();
+    OpenRoute.investerHub({ email: data.investerHub })
+      .then((response) => {
+        // console.log(response.data.message);
+        toast.success(response.data.message);
+      })
+      .catch((error) => {
+        toast.success(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+        reset();
+      });
+  };
   return (
     <>
       <Navbar />
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+        }}
+      >
+        <LoadingSpinner loading={loading} />
+      </div>
       <div className="support">
         <section className="investor-main pt-130 pb-180 ">
           <div className="container">
@@ -23,15 +61,41 @@ const InvesterHub = () => {
                 {/* <!-- FORM --> */}
                 <div className="container mt-5">
                   <div className="investor-d-form">
-                    <form className="inv-d-f">
-                      <input type="text" className="form-item" />
-                      <a
-                        href="path/to/your/pdf/file.pdf"
-                        className="btn i-btn mt-4"
-                        download
-                      >
+                    <div
+                      style={{
+                        textAlign: "center",
+                        color: "red",
+                        marginBottom: "7px",
+                      }}
+                    >
+                      {errors?.investerHub?.message}
+                    </div>
+                    <form
+                      className="inv-d-f"
+                      onSubmit={handleSubmit(investerHubSubmit)}
+                    >
+                      <input
+                        type="text"
+                        className="form-item"
+                        id="investerHub"
+                        {...register("investerHub", {
+                          pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: "Invalid Email Address",
+                          },
+                          required: {
+                            value: true,
+                            message: "Email is Required",
+                          },
+                        })}
+                      />
+                      <div className="error-div">
+                        {/* "rahul" */}
+                        {/* {errors?.newsLetterEmail?.message} */}
+                      </div>
+                      <button className="btn i-btn mt-4">
                         Download Pitch Deck
-                      </a>
+                      </button>
                     </form>
                   </div>
                 </div>
