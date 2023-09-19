@@ -66,8 +66,9 @@ function App() {
         <Route
           exact
           path="/login"
-          element={isLoggedIn ? <Navigate to="/manage" /> : <Login />}
+          element={isLoggedIn ? <Navigate to="/" /> : <Login />}
         />
+        <Route path="*" element={<NotFound />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/blogs" element={<Blogs />} />
@@ -85,16 +86,18 @@ function App() {
         {/* <Route path="/test" element={<ApiTest />} /> */}
 
         {/* protected route */}
-        <Route path="/" element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
-          <Route path="/manage" element={<Manage />} />
+        <Route
+          exact
+          path="/"
+          element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}
+        >
+          <Route path="/" element={<Manage />} />
           <Route path="/AccountSettings" element={<Seeting />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/wishlist" element={<WishList />} />
         </Route>
 
         {/* protected route end */}
-
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
