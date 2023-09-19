@@ -265,7 +265,7 @@ const Manage = () => {
                   <div className="graph-head mb-2">
                     <h6>OCTOBER CASH FLOW - CURRENT VS SUBDEFY PAY</h6>
                   </div>
-                  <div className="line-cart-area bg-white">
+                  <div className="line-cart-area">
                     <LineChart subscriptions={subscriptions} />
                   </div>
                   <div className="line-chart-cntrl mt-1">

@@ -7,13 +7,13 @@ import Whishlist from "../img/wishlist-icon.png";
 import TickSquareIcon from "../img/Tick Square.png";
 import axios from "axios";
 import "../css/style.css";
-import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+
 import { logout } from "../features/authSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { faRightFromBracket, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "../services/auth";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const SideBar = ({ buttonClicked, onButtonClick }) => {
   const { user, token } = useAuth();
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ const SideBar = ({ buttonClicked, onButtonClick }) => {
           </div>
           <ul className="app-menu">
             <li>
-              <NavLink className="app-menu__item" to="/">
+              <NavLink className="app-menu__item" to="/manage">
                 <img
                   src={HomeIcon}
                   className="app-menu__icon mx-3 w-20"

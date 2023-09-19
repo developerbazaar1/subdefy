@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Footer from "../components/Footer";
-import UserProfile from "../img/user-profile.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -10,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../services/auth";
 import userImage from "../img/boy.png";
 import axios from "axios";
-import { logout, update, deleteImage } from "../features/authSlice.js";
+import { update, deleteImage } from "../features/authSlice.js";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -34,7 +33,7 @@ const Seeting = () => {
       userProfileImage: user.user_image,
     },
   });
-  const { register, handleSubmit, formState, setValue, watch } = updateDetails;
+  const { register, handleSubmit, setValue, watch } = updateDetails;
   const updatePassword = useForm();
 
   const {

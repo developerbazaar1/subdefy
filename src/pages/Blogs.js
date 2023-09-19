@@ -7,9 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
 import blogpagehead from "../img/blog-page-head.png";
-import blog2 from "../img/blog-2.jpg";
-import blog3 from "../img/blog-3.jpg";
-import blog4 from "../img/blog-4.jpg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { OpenRoute } from "../utility/ApiServices.js";
@@ -179,7 +176,7 @@ const Blogs = () => {
             >
               {latestBlog?.map((latest, index) => {
                 return (
-                  <div className="col-lg-3 card post-card">
+                  <div className="col-lg-3 card post-card" key={index}>
                     <div className="img blog-cat-post-img">
                       <img
                         src={`${process.env.REACT_APP_global_url}/public/${latest?.blog_thumbnail}`}

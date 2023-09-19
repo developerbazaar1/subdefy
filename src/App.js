@@ -32,13 +32,12 @@ import { useDispatch } from "react-redux";
 import { setCategory } from "./features/categoriesSlice";
 
 import Service from "./pages/service";
-import PieCharts from "./components/PieCharts";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./components/NotFound";
 
 function App() {
-  const { isLoggedIn, token } = useAuth();
+  const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchCategories = () => {
@@ -64,7 +63,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/home" element={<Home />} />
+        <Route
+          exact
+          path="/login"
+          element={isLoggedIn ? <Navigate to="/manage" /> : <Login />}
+        />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/article/:id" element={<Article />} />
@@ -75,29 +79,21 @@ function App() {
         <Route path="/service" element={<Service />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/investerhub" element={<InvesterHub />} />
-        <Route path="/service/:name" element={<Service />} />
+        <Route exact path="/service/:name" element={<Service />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/api/auth/reset-password" element={<ResetPassword />} />
         {/* <Route path="/test" element={<ApiTest />} /> */}
 
         {/* protected route */}
-        <Route
-          exact
-          path="/"
-          element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}
-        >
-          <Route path="/" element={<Manage />} />
+        <Route path="/" element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
+          <Route path="/manage" element={<Manage />} />
           <Route path="/AccountSettings" element={<Seeting />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/wishlist" element={<WishList />} />
         </Route>
 
         {/* protected route end */}
-        <Route
-          exact
-          path="/login"
-          element={isLoggedIn ? <Navigate to="/" /> : <Login />}
-        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

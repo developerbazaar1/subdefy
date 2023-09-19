@@ -36,7 +36,7 @@ const Tabel = ({
   // );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
+  const itemsPerPage = 10; // Number of items per page
   const totalPages = Math.ceil(subscriptions?.length / itemsPerPage);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   // Calculate starting and ending indexes for displayed data

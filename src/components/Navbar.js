@@ -47,7 +47,11 @@ function Navbar({ onButtonClick }) {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/" onClick={handleClick} className="nav-link ">
+                  <NavLink
+                    to="/manage"
+                    onClick={handleClick}
+                    className="nav-link "
+                  >
                     Manage
                   </NavLink>
                 </li>

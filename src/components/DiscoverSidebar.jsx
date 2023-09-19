@@ -6,7 +6,6 @@ import box from "../img/box.png";
 import giftBox from "../img/gift-box.png";
 import heart from "../img/heart.png";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, NavLink } from "react-router-dom";
 import { OpenRoute } from "../utility/ApiServices";
@@ -24,7 +23,7 @@ const DiscoverSidebar = ({
   const subCategoriesFilter = (key, values, category) => {
     // console.log(key, values, category);
     if (!category) {
-      console.log(key, values, category);
+      // console.log(key, values, category);
       setCurrentCategory(values);
       setCurrentCategorySubCat("");
     } else {

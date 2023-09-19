@@ -1,6 +1,5 @@
 import { faCheck, faSort, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ReactStars from "react-rating-stars-component";
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -13,7 +12,6 @@ import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NofavouriteImag from "../img/add_favourite.png";
-import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Rating from "./Rating";
 const WishList = () => {

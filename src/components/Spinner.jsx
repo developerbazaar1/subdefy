@@ -1,5 +1,5 @@
 import React from "react";
-import { FadeLoader, RiseLoader } from "react-spinners";
+import { FadeLoader } from "react-spinners";
 
 const LoadingSpinner = ({ loading }) => {
   if (!loading) return null;
