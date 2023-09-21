@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useEffect } from "react";
 import { useAuth } from "../services/auth";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import LoadingSpinner from "../components/Spinner";
 import "react-toastify/dist/ReactToastify.css";
 const OldModal = ({
@@ -65,7 +65,7 @@ const OldModal = ({
     axios
       .request(config)
       .then((response) => {
-        console.log("modal data", response.data.subscription);
+        // console.log("modal data", response.data.subscription);
         const subscriptionData = response.data.subscription;
         if (subscriptionData?.data?.subscription?.plans <= 0) {
           setOther(false);
@@ -128,7 +128,7 @@ const OldModal = ({
           toast.error(response.data.message);
           return setShowModal(false);
         }
-        toast.success(response.data.message);
+        toast.success("Subscription Added Successfully");
         setfetchChanges(!fetchChanges);
         return setShowModal(false);
       })
@@ -225,7 +225,7 @@ const OldModal = ({
                 <div className="form-row d-flex text-end">
                   <label
                     className="form-head cst-mrg font-italic"
-                    htmlFor="exampletext"
+                    htmlFor="exampleInputPlan"
                   >
                     Plan
                   </label>
@@ -264,7 +264,7 @@ const OldModal = ({
                   <div className="form-row d-flex text-end">
                     <label
                       className="form-head cst-mrg font-italic"
-                      htmlFor="exampletext"
+                      htmlFor="exampleInputPlanother"
                     >
                       Other Plan
                     </label>
@@ -351,7 +351,7 @@ const OldModal = ({
                 <div className="form-row d-flex text-end">
                   <label
                     className="form-head cst-mrg font-italic"
-                    htmlFor="exampletext"
+                    htmlFor="exampleFormControlDate"
                   >
                     Next Payment Due
                   </label>
@@ -389,20 +389,6 @@ const OldModal = ({
           <img className="w-94px" src={logoIcon} alt="loading" />
         </Modal.Footer>
       </Modal>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />{" "}
     </>
   );
 };

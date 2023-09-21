@@ -638,6 +638,7 @@ td.br-rad-right {
   position: relative;
   display: flex;
   gap: 3px;
+  justify-content: center;
 }
 
 @media (min-width: 1600px) {
@@ -1489,4 +1490,8 @@ span.rbc-btn-group:nth-child(3) > button:nth-child(1)::after {
   /* flex-direction: row; */
   float: left;
   margin-left: -1.5rem;
+}
+
+.affilate-content > {
+  list-style: unset;
 }

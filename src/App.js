@@ -35,6 +35,7 @@ import Service from "./pages/service";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./components/NotFound";
+import FooterPage from "./pages/FooterPage";
 
 function App() {
   const { isLoggedIn } = useAuth();
@@ -75,6 +76,8 @@ function App() {
         <Route path="/article/:id" element={<Article />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/affilate-disclouser" element={<AffilateDisclouser />} />
+        <Route path="/info/:pagename" element={<FooterPage />} />
+
         <Route path="/support" element={<Support />} />
         <Route path="/coomin" element={<CoominSoon />} />
         <Route path="/service" element={<Service />} />
@@ -89,15 +92,29 @@ function App() {
         <Route
           exact
           path="/"
-          element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}
-        >
-          <Route path="/" element={<Manage />} />
-          <Route path="/AccountSettings" element={<Seeting />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/wishlist" element={<WishList />} />
-        </Route>
+          element={
+            <ProtectedRoutes isLoggedIn={isLoggedIn} component={<Manage />} />
+          }
+        />
+        <Route
+          path="/AccountSettings"
+          element={
+            <ProtectedRoutes isLoggedIn={isLoggedIn} component={<Seeting />} />
+          }
+        />
 
-        {/* protected route end */}
+        <Route
+          path="/calendar"
+          element={
+            <ProtectedRoutes isLoggedIn={isLoggedIn} component={<Calendar />} />
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoutes isLoggedIn={isLoggedIn} component={<WishList />} />
+          }
+        />
       </Routes>
     </Router>
   );

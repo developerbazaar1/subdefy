@@ -11,13 +11,9 @@ export const ProtectedRoutes = async () => {
 
 export const OpenRoute = {
   filter: async function ({ key, value }) {
-    // console.log(key, value);
-    // let r = `/api/get-subscriptions?${key}=${value}`;
-    // console.log(r);
     const response = await api.request({
       url: `/api/get-subscriptions?${key}=${value}`,
       method: "GET",
-      // signal: cancel ? cancelApiObject[this.get.name].handleRequestCancellation().signal : undefined,
     });
     return response;
   },
@@ -29,14 +25,13 @@ export const OpenRoute = {
     } else {
       let spl = catfilter?.split(" ");
       url = `/api/get-blogs?offset=0&limit=${limit}&category=${spl[0]} %26 ${spl[2]}`;
-      // console.log("split");
     }
 
     const response = await api.request({
       url: url,
       method: "GET",
     });
-    // console.log(response);
+
     return response;
   },
 
@@ -110,6 +105,28 @@ export const OpenRoute = {
       data: requestBody,
     });
 
+    return response;
+  },
+
+  FooterPages: async function () {
+    const response = await api.request({
+      url: `/api/get-pages`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return response;
+  },
+  FooterPage: async function ({ name }) {
+    const response = await api.request({
+      url: `/api/get-page?page_name=${name}`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return response;
   },
 };

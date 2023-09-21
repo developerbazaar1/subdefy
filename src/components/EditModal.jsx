@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useEffect } from "react";
 import { useAuth } from "../services/auth";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 // import { setCategory } from "../features/categoriesSlice";
@@ -193,7 +193,7 @@ const EditModal = ({
                   <div className="form-row d-flex text-end">
                     <label
                       className="form-head cst-mrg font-italic"
-                      htmlFor="exampletext"
+                      htmlFor="exampleInputPlan"
                     >
                       Plan
                     </label>
@@ -260,7 +260,7 @@ const EditModal = ({
                 <div className="form-row d-flex text-end">
                   <label
                     className="form-head cst-mrg font-italic"
-                    htmlFor="secondFrequency"
+                    htmlFor="frequency"
                   >
                     Frequency
                   </label>
@@ -289,7 +289,7 @@ const EditModal = ({
                 <div className="form-row d-flex text-end">
                   <label
                     className="form-head cst-mrg font-italic"
-                    htmlFor="exampletext"
+                    htmlFor="exampleFormControlDate"
                   >
                     Next Payment Due
                   </label>
@@ -318,20 +318,6 @@ const EditModal = ({
           <img className="w-94px" src={logoIcon} alt="loading" />
         </Modal.Footer>
       </Modal>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />{" "}
     </>
   );
 };

@@ -9,9 +9,9 @@ import download from "../img/download.jpg";
 import LoadingSpinner from "./Spinner";
 import { useAuth } from "../services/auth";
 import { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import NofavouriteImag from "../img/add_favourite.png";
+import NofavouriteImag from "../img/emptywishlist.jpg";
 import { Link } from "react-router-dom";
 import Rating from "./Rating";
 const WishList = () => {
@@ -67,10 +67,11 @@ const WishList = () => {
       .request(config)
       .then((response) => {
         // console.log(JSON.stringify(response.data));
-        return toast.warning(response.data.message);
+        return toast.success(response.data.message);
       })
       .catch((error) => {
         console.log(error);
+        toast.success("Something Went Wrong!");
       })
       .finally(() => {
         setLoading(false);
@@ -288,20 +289,6 @@ const WishList = () => {
           </div>
         </section>
       </main>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />
       <Footer />
     </>
   );

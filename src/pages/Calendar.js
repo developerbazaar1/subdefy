@@ -10,7 +10,7 @@ import EventCalendar from "../components/EventCalendar";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import OldModal from "../components/OldModal";
@@ -154,11 +154,14 @@ const Calendar = () => {
         getUserSubscription();
         setShowModal3(false);
         setchanges(!changes);
-        return toast.success(response.data.message);
+        if (response.data.status === false) {
+          return toast.error(response.data.message);
+        }
+        return toast.success("Subscription Added Successfully");
       })
       .catch((error) => {
         // console.log(error);
-        return toast.success(error.data.message);
+        return toast.error(error.data.message);
       })
       .finally(() => {
         setLoading(false);
@@ -242,11 +245,11 @@ const Calendar = () => {
                   </div>
                 </section>
 
-                <div className=" mt-20  mb-3 col-lg-9 col-sm-12 col-md-9 col-xl-6 col-xs-12 mx-auto d-none-sm">
+                <div className=" mt-20  mb-3 col-lg-9 col-sm-12 col-md-9 col-xl-8 col-xs-12 d-none-sm">
                   <div className="graph-head mb-2">
                     <h6>OCTOBER CASH FLOW - CURRENT VS SUBDEFY PAY</h6>
                   </div>
-                  <div className="line-cart-area bg-white">
+                  <div className="line-cart-area">
                     <LineChart subscriptions={subscriptions} />
                   </div>
                   <div className="line-chart-cntrl mt-1">
@@ -260,7 +263,7 @@ const Calendar = () => {
                         />
                         <label
                           className="form-check-label l-chart-label "
-                          htmlFor="flexRadioDefault2"
+                          htmlFor="flexRadioDefault"
                         >
                           CURRENT CASH FLOW
                         </label>
@@ -458,6 +461,7 @@ const Calendar = () => {
 
                     <div className="select-group h-40 dollar_parent">
                       <span className="input-doolar">$</span>
+
                       <input
                         className="form-control cst-modal-input"
                         id="cost"
@@ -558,19 +562,6 @@ const Calendar = () => {
           <img className="w-94px" src={logoIcon} alt="loading" />
         </div>
       </Modal>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </>
   );
 };

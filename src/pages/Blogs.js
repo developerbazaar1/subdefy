@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 import CarouselBlog from "../components/CarouselBlog.js";
-import BackToTopButton from "../components/BackToTopButton.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,7 +9,7 @@ import blogpagehead from "../img/blog-page-head.png";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { OpenRoute } from "../utility/ApiServices.js";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
 const Blogs = () => {
@@ -24,7 +23,7 @@ const Blogs = () => {
     OpenRoute.blogs({ limit: limit, catfilter: catfilter })
       .then((response) => {
         if (response.data.blogs.length <= 0) {
-          toast.warning("No Subscription found");
+          toast.warning("No Blog found");
         }
         setData(response.data.blogs);
       })
@@ -46,7 +45,7 @@ const Blogs = () => {
       .catch((error) => {
         toast.error(error.message);
         // console.log(error);
-        console.log(error, "error mesage");
+        // console.log(error, "error mesage");
       });
   };
 
@@ -144,10 +143,11 @@ const Blogs = () => {
 
             <div className="row bdr">
               <div className="col-lg-12 btn-center text-center">
-                <div to="" className="btn btn-loadmore" onClick={loadMore}>
-                  {" "}
-                  Load More
-                </div>
+                {data.length >= 3 && (
+                  <div to="" className="btn btn-loadmore" onClick={loadMore}>
+                    Load More
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -261,21 +261,6 @@ const Blogs = () => {
 
       {/**************** Footer component ****************/}
       <Footer />
-
-      {/**************** Back to top component ****************/}
-      <BackToTopButton />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </div>
   );
 };

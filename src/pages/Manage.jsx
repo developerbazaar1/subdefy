@@ -11,20 +11,16 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import Tabel from "../components/Tabel";
 import OldModal from "../components/OldModal";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-// import { RiseLoader } from "react-spinners";
-// import EditModal from "../components/EditModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import LineChart from "../components/LineChart";
-// import { PieChart } from "../components/PieChar";
 import LoadingSpinner from "../components/Spinner";
-// import PieCharts from "../components/PieCharts";
 import DupPie from "../app/dupPie";
 const Manage = () => {
   const [loading, setLoading] = useState(false);
@@ -105,23 +101,17 @@ const Manage = () => {
       .then((response) => {
         setApiData(response.data.subscriptions);
         setError(false);
-        // console.log("list", response.data.subscriptions);
       })
       .catch((error) => {
-        // console.log("list error", error);
         setApiData([]);
         setError(true);
         setValue("subscription", searchTerm);
-
-        // return toast.error(error.response.data.message);
       });
   };
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     setInputValue(value);
-    // console.log(value);
-
     getSubscriptionName(value);
   };
 
@@ -181,11 +171,13 @@ const Manage = () => {
         // setDataAdded(!dataAdded); //to re -fetch the data from the database;
         getUserSubscription();
         setShowModal3(false);
-        return toast.success(response.data.message);
+        if (response.data.status === false) {
+          return toast.error(response.data.message);
+        }
+        return toast.success("Subscription Added Successfully");
       })
       .catch((error) => {
-        console.log(error);
-        return toast.success(error.data.message);
+        return toast.error("Something Went Wrong");
       })
       .finally(() => {
         setLoading(false);
@@ -615,19 +607,6 @@ const Manage = () => {
           {/* <!-- footer image  --> */}
         </div>
       </Modal>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </>
   );
 };

@@ -146,13 +146,16 @@ const Tabel = ({
     axios
       .request(config)
       .then((response) => {
-        // console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify());
         setfetchChanges(!fetchChanges);
         setSelectedRows([]); // Clear selectedRows after deletion
         setSelectAll(false);
+
+        toast.success(response.data.message);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        toast.error("Opps something went Wrong");
       });
 
     // console.log(selectedRows);
@@ -245,13 +248,13 @@ const Tabel = ({
                               className="mx-2"
                             >
                               <img
-                                className="tab-icon  "
+                                className="tab-icon"
                                 src={
                                   subscr?.subscriptiondetails?.logoURL
                                     ? subscr?.subscriptiondetails?.logoURL
                                     : DefaultImag(subscr?.category)
                                 }
-                                alt="loading"
+                                alt="icon"
                               />
                             </div>
 
@@ -312,8 +315,7 @@ const Tabel = ({
                         <td>
                           <input
                             type="checkbox"
-                            name=""
-                            id=""
+                            id="checkbox"
                             className="form-check-input tab-check"
                             checked={selectAll}
                             onChange={handleSelectAll}
@@ -388,20 +390,6 @@ const Tabel = ({
             setfetchChanges={setfetchChanges}
           />
         </div>
-
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-        <ToastContainer />
       </div>
     </>
   );

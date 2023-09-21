@@ -25,7 +25,7 @@ const InvesterHub = () => {
         toast.success(response.data.message);
       })
       .catch((error) => {
-        toast.success(error.message);
+        toast.error(error.message);
       })
       .finally(() => {
         setLoading(false);

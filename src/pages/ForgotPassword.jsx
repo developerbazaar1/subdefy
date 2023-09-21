@@ -16,11 +16,10 @@ import { OpenRoute } from "../utility/ApiServices.js";
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
   const loginForm = useForm();
-  const { register, handleSubmit, formState } = loginForm;
+  const { register, handleSubmit, formState, reset } = loginForm;
   const { errors } = formState;
 
   const resetpassword = (data, e) => {
-    return alert("This is Not Yet Developed");
     setLoading(true);
     e.preventDefault();
 
@@ -29,10 +28,12 @@ const ForgotPassword = () => {
         console.log(response);
       })
       .catch((error) => {
+        toast.error("Enternal server Error");
         console.log(error);
       })
       .finally(() => {
         setLoading(false);
+        reset();
       });
   };
 
@@ -129,37 +130,7 @@ const ForgotPassword = () => {
                           </button>
                           <br />
                         </div>
-
-                        {/* <div className="form-footer ">
-                          <div className="form-footer-text text-center ">
-                            <span>
-                              <Link
-                                to="/coomin"
-                                className="forgot_password"
-                                // className="back-login text-blue"
-                                // onClick={() => handleTabChange("login")}
-                                // style={{ color: "text-blue" }}
-                              >
-                                Forgot Password
-                                <span
-                                  style={{
-                                    color: "#80c3d2",
-                                    marginLeft: "2px",
-                                  }}
-                                >
-                                  {" "}
-                                  ?
-                                </span>
-                              </Link>
-                            </span>
-                          </div>
-                        </div> */}
                       </form>
-                      {/* 
-                      <div className="hr-container  mtmb-26px">
-                        <hr className="custom-hr" />
-                        <span className="text-over-hr">OR</span>
-                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -174,21 +145,6 @@ const ForgotPassword = () => {
 
       {/**************** Back to top component ****************/}
       <BackToTopButton />
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />
     </div>
   );
 };

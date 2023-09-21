@@ -201,10 +201,9 @@ const Service = () => {
                   </Link> */}
                   <a
                     href={`${subscription?.manageUrl}`}
-                    // href="http//google.com"
                     target="_blank"
-                    className="sub-link text-blue"
                     rel="noreferrer"
+                    className="sub-link text-blue"
                   >
                     {subscription?.manageUrl}
                   </a>
@@ -237,9 +236,17 @@ const Service = () => {
                         </span>
                       </div>
                       <div className="btn-more justify-content-center mt-3 text-center">
-                        <span href="#" className="sub-data-load-btn">
-                          <FontAwesomeIcon icon={faArrowRight} />
-                        </span>
+                        <a
+                          href={`${subscription?.affiliateProgram}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <span className="sub-data-load-btn">
+                            <span>
+                              <FontAwesomeIcon icon={faArrowRight} />
+                            </span>
+                          </span>
+                        </a>
                       </div>
                     </div>
                   ))}

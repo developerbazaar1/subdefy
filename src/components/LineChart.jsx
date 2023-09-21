@@ -120,6 +120,10 @@ const LineChart = ({ subscriptions }) => {
     return gradientColor;
   };
 
+  // const yAxisTiks = (total)=>{
+  //    let tic =
+  // }
+
   const data = {
     labels: weaklabel,
     datasets: [
@@ -168,10 +172,10 @@ const LineChart = ({ subscriptions }) => {
         beginAtZero: false,
       },
       y: {
-        // max: 50,
+        max: CurrentMonthTotal.toFixed(1),
         beginAtZero: true,
         ticks: {
-          stepSize: (CurrentMonthTotal / 5).toFixed(2),
+          stepSize: ((20 / 100) * CurrentMonthTotal).toFixed(1),
           callback: function (label, index, labels) {
             return `$ ${label}`;
           },
@@ -179,7 +183,7 @@ const LineChart = ({ subscriptions }) => {
       },
     },
   };
-
+  // console.log(CurrentMonthTotal, "total");
   return (
     <div>
       <Line data={data} options={options} />

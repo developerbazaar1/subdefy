@@ -1,13 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { OpenRoute } from "../utility/ApiServices";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from "../components/Spinner";
+import { useEffect } from "react";
 function Footer() {
+  const [pages, setPages] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, formState, reset } = useForm();
@@ -26,13 +28,27 @@ function Footer() {
         toast.success(response.data.message);
       })
       .catch((error) => {
-        toast.success(error.message);
+        toast.error(error.message);
       })
       .finally(() => {
         reset();
         setLoading(false);
       });
   };
+
+  const GetPages = () => {
+    OpenRoute.FooterPages()
+      .then((response) => {
+        setPages(response.data.pages);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    GetPages();
+  }, []);
 
   return (
     <footer className="footer">
@@ -67,7 +83,7 @@ function Footer() {
                   SUPPORT & FEEDBACK
                 </NavLink>
               </li>
-              <li className="nav-ai">
+              {/* <li className="nav-ai">
                 <NavLink
                   className="footer-links"
                   onClick={handleClick}
@@ -75,27 +91,25 @@ function Footer() {
                 >
                   AFFILIATE DISCLOSURE
                 </NavLink>
-              </li>
+              </li> */}
+              {pages?.map((page) => (
+                <li className="nav-ai" key={page.id}>
+                  <NavLink
+                    className="footer-links"
+                    to={`/info/${page.page_name}`}
+                    state={{ fromHome: { page } }}
+                  >
+                    {page.page_name.toUpperCase()}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="col-md-3">
             <ul className="p-0">
               <li className="nav-ai">
-                <NavLink
-                  className="footer-links"
-                  onClick={handleClick}
-                  to="/about"
-                >
+                <NavLink className="footer-links" to="/about">
                   ABOUT US
-                </NavLink>
-              </li>
-              <li className="nav-ai">
-                <NavLink
-                  className="footer-links"
-                  onClick={handleClick}
-                  to="/security"
-                >
-                  SECURITY
                 </NavLink>
               </li>
             </ul>
@@ -105,23 +119,26 @@ function Footer() {
               <h6>SIGN UP FOR OUR NEWSLETTER</h6>
               <form onSubmit={handleSubmit(NewsLetterSubmit)}>
                 <div className="mb-3">
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="newsLetterEmail"
-                    placeholder="email@email.com"
-                    // required
-                    {...register("newsLetterEmail", {
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Invalid Email Address",
-                      },
-                      required: {
-                        value: true,
-                        message: "Email is Required",
-                      },
-                    })}
-                  />
+                  <label htmlFor="newsLetterEmail">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="newsLetterEmail"
+                      placeholder="email@email.com"
+                      // required
+                      {...register("newsLetterEmail", {
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: "Invalid Email Address",
+                        },
+                        required: {
+                          value: true,
+                          message: "Email is Required",
+                        },
+                      })}
+                    />
+                  </label>
+
                   <div className="error-div">
                     {errors?.newsLetterEmail?.message}
                   </div>

@@ -11,7 +11,7 @@ import userImage from "../img/boy.png";
 import axios from "axios";
 import { update, deleteImage } from "../features/authSlice.js";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from "../components/Spinner";
@@ -69,23 +69,23 @@ const Seeting = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         setImagePreview(null);
         setHasSelectedImage(false);
         dispatch(deleteImage());
         return toast.success(response.data.message);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         // return toast.success(error.data.message);
         return toast.warning(error.response.data.message);
       })
       .finally(() => {
         setLoading(false);
       });
-    console.log(user.user_image, "store-image");
-    console.log(watch(updateDetails.watch("userProfileImage")), "watcher");
-    console.log("delete-Button");
+    // console.log(user.user_image, "store-image");
+    // console.log(watch(updateDetails.watch("userProfileImage")), "watcher");
+    // console.log("delete-Button");
   };
 
   const HandelDeleteImageConfirm = () => {
@@ -111,7 +111,7 @@ const Seeting = () => {
   //function to handle update Password
   const handlePasswordSubmit = (data, e) => {
     setLoading(true);
-    console.log(token);
+    // console.log(token);
     let datatoPasss = JSON.stringify({
       old_password: data.currentPassword,
       password: data.newPassword,
@@ -132,12 +132,12 @@ const Seeting = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data.message));
+        // console.log(JSON.stringify(response.data.message));
         updatePassword.reset();
         return toast.success(response.data.message);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         return toast.warning(error.response.data.message);
       })
       .finally(() => {
@@ -168,7 +168,7 @@ const Seeting = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         dispatch(
           update({
             user: response.data.user,
@@ -178,7 +178,8 @@ const Seeting = () => {
         return toast.success(response.data.message);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        toast.error("Something Went Wrong");
       })
       .finally(() => {
         setLoading(false);
@@ -221,7 +222,6 @@ const Seeting = () => {
 
   const PasswordReset = (e) => {
     e.preventDefault();
-    console.log("password Discard is created");
     updatePassword.reset({
       currentPassword: "",
       newPassword: "",
@@ -344,13 +344,12 @@ const Seeting = () => {
                                   <FontAwesomeIcon icon={faPen} />
                                 </label>
                                 <label
-                                  // htmlFor="edit-profile-image"
+                                  onClick={HandelDeleteImageConfirm}
                                   className="edit-icon edit-icon-edit  delete-Image"
                                 >
                                   <FontAwesomeIcon
                                     icon={faTrash}
                                     // onClick={handleDeleteImage}
-                                    onClick={HandelDeleteImageConfirm}
                                   />
                                 </label>
                                 {/* <input
@@ -375,7 +374,7 @@ const Seeting = () => {
                           <div className="form-row d-flex d-mb-block">
                             <label
                               className="col-md-3 form-head mb-2 user-s-form-label"
-                              htmlFor="exampletext"
+                              htmlFor="exampleInputtitle"
                             >
                               Full Name
                             </label>
@@ -389,12 +388,12 @@ const Seeting = () => {
                               />
 
                               {/* <!-- :: last name --> */}
-                              <input
+                              {/* <input
                                 className="form-control user-setting-input mx-3 mb-mx-0 Remov-lastName"
                                 id="exampleInputtitle"
                                 type="text"
                                 aria-describedby="title"
-                              />
+                              /> */}
                             </div>
                           </div>
                         </div>
@@ -403,14 +402,14 @@ const Seeting = () => {
                           <div className="form-row d-flex d-mb-block">
                             <label
                               className="col-md-3 form-head mb-2  user-s-form-label "
-                              htmlFor="exampletext"
+                              htmlFor="email"
                             >
                               Email
                             </label>
                             <div className="select-group col-md-7 h-40 d-flex ">
                               <input
                                 className="form-control user-setting-input mx-3 mb-mx-0 w-61 "
-                                id="exampleInputtitle"
+                                id="email"
                                 type="email"
                                 aria-describedby="title"
                                 {...register("email")}
@@ -421,10 +420,7 @@ const Seeting = () => {
                         </div>
                         <div className="form-group mb-4 mt-2">
                           <div className="form-row d-flex">
-                            <label
-                              className="form-head col-md-3 "
-                              htmlFor="exampletext"
-                            ></label>
+                            <span className="form-head col-md-3 "></span>
                             <div className="select-group col-md-8 h-40 d-flex ">
                               <span
                                 // href="manage.html"
@@ -481,7 +477,7 @@ const Seeting = () => {
                           <div className="form-row d-flex d-mb-block">
                             <label
                               className="col-md-3 form-head mb-2  user-s-form-label"
-                              htmlFor="exampletext"
+                              htmlFor="currentPassword"
                             >
                               Current Password
                             </label>
@@ -545,7 +541,7 @@ const Seeting = () => {
                           <div className="form-row d-flex d-mb-block">
                             <label
                               className="col-md-3 form-head user-s-form-label mb-2 "
-                              htmlFor="exampletext"
+                              htmlFor="password"
                             >
                               Confirm New Password
                             </label>
@@ -572,10 +568,7 @@ const Seeting = () => {
                         {/* <!-- :; submit btn  --> */}
                         <div className="form-group mb-4 mt-2">
                           <div className="form-row d-flex">
-                            <label
-                              className="form-head col-md-3 "
-                              htmlFor="exampletext"
-                            ></label>
+                            <span className="form-head col-md-3 "></span>
                             <div className="select-group col-md-9 h-40 d-flex ">
                               <span
                                 className="discard-btn mx-3 mb-mx-0 mybutton"
@@ -599,21 +592,6 @@ const Seeting = () => {
         </section>
       </main>
       <Footer />
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />
     </>
   );
 };

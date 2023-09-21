@@ -338,13 +338,16 @@ const Discover = () => {
                     onSubmit={handleSubmit(searchFilter)}
                   >
                     <div className="search-from-div">
-                      <input
-                        id="searchInput"
-                        type="text"
-                        placeholder="search category, name or keywords"
-                        className="search-input-my"
-                        {...register("searchInput")}
-                      />
+                      <label htmlFor="searchInput">
+                        <input
+                          id="searchInput"
+                          type="text"
+                          placeholder="search category, name or keywords"
+                          className="search-input-my"
+                          {...register("searchInput")}
+                        />
+                      </label>
+
                       <button
                         type="submit"
                         className="search-button "
@@ -596,17 +599,24 @@ const Discover = () => {
                                     addFavorite(sub?.subscriptionName)
                                   }
                                 >
-                                  <input
-                                    title="like"
-                                    type="checkbox"
-                                    className="like"
-                                    // defaultChecked={true}
-                                    // defaultChecked={favorite.some((som) => {
-                                    //   return som.subscription_name.includes(
-                                    //     sub.subscriptionName
-                                    //   );
-                                    // })}
-                                  />
+                                  <label
+                                    htmlFor="like"
+                                    style={{
+                                      display: "unset",
+                                    }}
+                                  >
+                                    <input
+                                      title="like"
+                                      type="checkbox"
+                                      className="like"
+                                      // defaultChecked={true}
+                                      // defaultChecked={favorite.some((som) => {
+                                      //   return som.subscription_name.includes(
+                                      //     sub.subscriptionName
+                                      //   );
+                                      // })}
+                                    />
+                                  </label>
 
                                   <div className="checkmark">
                                     {favorite.some((som) => {
@@ -727,19 +737,6 @@ const Discover = () => {
           </div>
         </section>
       </main>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      <ToastContainer />
       <Footer />
     </div>
   );
