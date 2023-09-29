@@ -9,16 +9,24 @@ import planTopImage from "../img/plan-top-image.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { OpenRoute } from "../utility/ApiServices.js";
 import { useEffect } from "react";
 import defaultBanner from "../img/default-banner-3.jpg";
 import LoadingSpinner from "../components/Spinner";
+import OldModal from "../components/OldModal.jsx";
+import { useAuth } from "../services/auth.js";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Service = () => {
+  const navigate = useNavigate();
   const { name } = useParams();
+  const { user } = useAuth();
   const [subscription, setSubscription] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
+  const [secSubscription, setsecSubscription] = useState();
+  const [fetchChanges, setfetchChanges] = useState(false);
   // console.log(name);
 
   const getSubscr = () => {
@@ -27,15 +35,25 @@ const Service = () => {
       name: name,
     })
       .then((response) => {
-        console.log(response.data.subscription.plans);
+        // console.log(response.data.subscription.plans);
         setSubscription(response?.data?.subscription);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        toast.error("Something Went Wrong!");
       })
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  const AddToDashboard = (subscriptionName) => {
+    if (!user?.user_id) {
+      navigate("/login"); // Navigate to the login page
+      return; // Stop further execution
+    }
+    setsecSubscription(subscriptionName);
+    setShowModal(true);
   };
 
   useEffect(() => {
@@ -96,10 +114,16 @@ const Service = () => {
                     and movies to keep you and the family entertained. */}
                     {subscription?.subscriptionDescriptionShort}
                   </p>
-                  <Link to="/" className="text-link mt-2">
+
+                  <span
+                    className="text-link mt-2 cursor__pointer"
+                    onClick={() =>
+                      AddToDashboard(subscription?.subscriptionName)
+                    }
+                  >
                     Add To My Subscriptions{" "}
                     <img className="w-20 " src={arrowright} alt="" />
-                  </Link>
+                  </span>
                 </div>
                 <div className="ott-warning-text text-end mt-2 mb-3">
                   <span className="ott-warning-note">
@@ -275,6 +299,14 @@ const Service = () => {
 
       {/**************** Back to top component ****************/}
       <BackToTopButton />
+      <OldModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        secSubscription={secSubscription}
+        setsecSubscription={setsecSubscription}
+        fetchChanges={fetchChanges}
+        setfetchChanges={setfetchChanges}
+      />
     </div>
   );
 };

@@ -6,15 +6,14 @@ import { useForm } from "react-hook-form";
 import LoginIcon from "../img/login-icon.png";
 import Forgot_password from "../img/forgot-password.png";
 import LoadingSpinner from "../components/Spinner.jsx";
-import { login } from "../features/authSlice.js";
-import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
 import { OpenRoute } from "../utility/ApiServices.js";
+import Alert from "react-bootstrap/Alert";
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(true);
   const loginForm = useForm();
   const { register, handleSubmit, formState, reset } = loginForm;
   const { errors } = formState;
@@ -64,6 +63,16 @@ const ForgotPassword = () => {
               {/* <!--:: form content --> */}
               <div className="login-signup-form">
                 <div className="login_box box bg-white">
+                  <Alert
+                    variant="success"
+                    show={show}
+                    dismissible
+                    onClose={() => setShow(false)}
+                  >
+                    <p className="text-center">
+                      Success! password reset link has been sent to your email.
+                    </p>
+                  </Alert>
                   <div className="form-head pt-4 log-top-label">
                     <h2 className="text-center">Reset Your Password</h2>
                     <p className="text-center">
@@ -71,6 +80,7 @@ const ForgotPassword = () => {
                       register. We'll send you a password reset link.
                     </p>
                   </div>
+
                   <div className="tab-content pb-2">
                     <div className="tab-pane container mb-4 active" id="home">
                       <form

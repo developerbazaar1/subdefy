@@ -24,11 +24,14 @@ function Footer() {
     setLoading(true);
     OpenRoute.newsLetter({ email: data.newsLetterEmail })
       .then((response) => {
-        // console.log(response.data.message);
+        console.log(response.data.message);
         toast.success(response.data.message);
       })
       .catch((error) => {
-        toast.error(error.message);
+        if (error?.response?.data?.message) {
+          return toast.error(error.response.data.message);
+        }
+        return toast.error(error.message);
       })
       .finally(() => {
         reset();

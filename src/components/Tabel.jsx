@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { FadeLoader } from "react-spinners";
-// import ActionBtn from "../img/action-btn.png";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import NoDataImage from "../img/Subscription-Not-Found-Monster.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useAuth } from "../services/auth";
 import EditModal from "./EditModal";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useSelector } from "react-redux";
+import { GrFormPrevious, GrFormNext } from "react-icons/gr";
+import { color } from "framer-motion";
 
 const MySwal = withReactContent(Swal);
 const Tabel = ({
@@ -36,14 +35,14 @@ const Tabel = ({
   // );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Number of items per page
+  const itemsPerPage = 5; // Number of items per page
   const totalPages = Math.ceil(subscriptions?.length / itemsPerPage);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   // Calculate starting and ending indexes for displayed data
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, subscriptions?.length);
   const displayedSubscriptions = subscriptions?.slice(startIndex, endIndex);
-
+  // console.log(displayedSubscriptions);
   const handleDeleteSubscription = (id) => {
     let config = {
       method: "get",
@@ -65,10 +64,10 @@ const Tabel = ({
         return toast.error(error.response.data.message);
       });
   };
-
-  // const handlePageChange = (page) => {
-  //   setCurrentPage(page);
-  // };
+  // console.log(subscriptions?.length, "subscription length");
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const handleConfirm = (id, all) => {
     MySwal.fire({
@@ -175,7 +174,7 @@ const Tabel = ({
   };
 
   const DefaultImag = (name) => {
-    const { image } = cat.find((item) => item.name === name);
+    const { image } = cat?.find((item) => item.name === name);
     // console.log("null image cat", image);
     return `${process.env.REACT_APP_global_url}/public/${image}`;
   };
@@ -267,11 +266,15 @@ const Tabel = ({
                             {subscr.frequency}
                           </td>
                           <td className="bg-white c-pointer  br-top-bottom wp-0">
-                            {/* {subscr.next_payment_due} */}
                             {extractDayMonthName(subscr.next_payment_due)}
                           </td>
                           <td className="bg-white c-pointer br-top-bottom category_main">
-                            <span className="mg-category my_category1 text-capitalize">
+                            <span
+                              className="mg-category my_category1 text-capitalize"
+                              style={{
+                                color: `${subscr?.categorydetails?.color}`,
+                              }}
+                            >
                               {subscr.category}
                             </span>
                           </td>
@@ -295,14 +298,12 @@ const Tabel = ({
                         </tr>
                       ))
                     ) : (
-                      //
                       <tr>
                         <td colSpan="7" className="text-center">
                           <img
                             src={NoDataImage}
                             alt="no data"
                             style={{
-                              /* height: fit-content; */
                               height: "50vh",
                             }}
                           />
@@ -340,9 +341,34 @@ const Tabel = ({
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        {/* <td></td>
-                      <td></td> */}
+                        <td>
+                          {subscriptions?.length > 5 && (
+                            <div className="d-flex justify-content-around">
+                              <GrFormPrevious
+                                className={`prev__button ${
+                                  currentPage === 1 ? "disabeld" : ""
+                                } `}
+                                onClick={() =>
+                                  handlePageChange(
+                                    currentPage > 1 ? currentPage - 1 : 1
+                                  )
+                                }
+                              />
+                              <GrFormNext
+                                className={`next__button ${
+                                  currentPage === totalPages ? "disabeld" : ""
+                                }`}
+                                onClick={() =>
+                                  handlePageChange(
+                                    currentPage < totalPages
+                                      ? currentPage + 1
+                                      : totalPages
+                                  )
+                                }
+                              />
+                            </div>
+                          )}
+                        </td>
                       </tr>
                     ) : (
                       ""
@@ -351,35 +377,6 @@ const Tabel = ({
                 </table>
               </>
             )}
-            {/* {totalPages ? (
-              <div
-                className="d-flex  align-items-center selectallcontainer"
-                style={{
-                  marginLeft: "30px",
-                }}
-              >
-                <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  className="form-check-input tab-check"
-                  checked={selectAll}
-                  onChange={handleSelectAll}
-                />
-                <div className="d-flex ">
-                  <div className="select-all">Check all</div>
-                  <div className="With-Selected">With Selected:</div>
-                  <div
-                    className="delete-all"
-                    onClick={() => handleConfirm(1, "all")}
-                  >
-                    Delete
-                  </div>
-                </div>
-              </div>
-            ) : (
-              ""
-            )} */}
           </div>
           <EditModal
             showEditModal={showEditModal}

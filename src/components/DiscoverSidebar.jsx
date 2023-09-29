@@ -16,6 +16,7 @@ const DiscoverSidebar = ({
   handleSideBar,
   setSubscription,
   setLoading,
+  currentCategory,
   setCurrentCategorySubCat,
 }) => {
   const categories = useSelector((state) => state.category);
@@ -54,7 +55,6 @@ const DiscoverSidebar = ({
         setLoading(false);
       });
   };
-
   return (
     <>
       <aside
@@ -75,7 +75,9 @@ const DiscoverSidebar = ({
           <span className=" app-c-head mt-2 mx-3 ">Misc categories</span>
           <ul className="app-menu mt-3">
             <li
-              className="s-2-menu"
+              className={`s-2-menu ${
+                currentCategory === "Most Popular" ? "miscate__active" : ""
+              }`}
               onClick={() => {
                 subCategoriesFilter("sort", "Most Popular");
                 // setCurrentCategorySubCat();
@@ -93,7 +95,9 @@ const DiscoverSidebar = ({
               </span>
             </li>
             <li
-              className="s-2-menu mt-3"
+              className={`s-2-menu mt-3 ${
+                currentCategory === "Explore" ? "miscate__active" : ""
+              }`}
               onClick={() => {
                 subCategoriesFilter("sort", "Explore");
                 // setCurrentCategorySubCat();
@@ -111,7 +115,9 @@ const DiscoverSidebar = ({
               </span>
             </li>
             <li
-              className="s-2-menu mt-3"
+              className={`s-2-menu mt-3 ${
+                currentCategory === "New Release" ? "miscate__active" : ""
+              }`}
               onClick={() => {
                 subCategoriesFilter("sort", "New Release");
                 // setCurrentCategorySubCat();
@@ -129,7 +135,9 @@ const DiscoverSidebar = ({
               </span>
             </li>
             <li
-              className="s-2-menu mt-3"
+              className={`s-2-menu mt-3 ${
+                currentCategory === "Gift Subscription" ? "miscate__active" : ""
+              }`}
               onClick={() => {
                 subCategoriesFilter("sort", "Gift Subscription");
                 // setCurrentCategorySubCat();

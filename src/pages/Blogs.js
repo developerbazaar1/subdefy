@@ -11,14 +11,13 @@ import { useState, useEffect } from "react";
 import { OpenRoute } from "../utility/ApiServices.js";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-
+let totalPages;
 const Blogs = () => {
   const [data, setData] = useState([]);
   const [limit, setLimit] = useState(3);
   const categories = useSelector((state) => state.category);
   const [catfilter, setCatfilter] = useState("");
   const [latestBlog, setLatesBlog] = useState([]);
-
   const GetBlogs = () => {
     OpenRoute.blogs({ limit: limit, catfilter: catfilter })
       .then((response) => {
@@ -26,6 +25,8 @@ const Blogs = () => {
           toast.warning("No Blog found");
         }
         setData(response.data.blogs);
+        totalPages = response.data.total_blogs;
+        console.log(response.data.blogs);
       })
       .catch((error) => {
         // console.log(error);
@@ -140,16 +141,17 @@ const Blogs = () => {
             })}
 
             {/**************** Dynamic blogs end ******************/}
-
-            <div className="row bdr">
-              <div className="col-lg-12 btn-center text-center">
-                {data.length >= 3 && (
+            {limit < totalPages && data.length >= 3 ? (
+              <div className="row bdr">
+                <div className="col-lg-12 btn-center text-center">
                   <div to="" className="btn btn-loadmore" onClick={loadMore}>
                     Load More
                   </div>
-                )}
+                </div>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
           </div>
         </section>
 

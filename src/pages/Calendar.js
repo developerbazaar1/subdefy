@@ -187,6 +187,8 @@ const Calendar = () => {
 
   //clare the modal value of modal 1
   const handleModal1Hide = () => {
+    setApiData([]);
+    setInputValue("");
     modal1Reset(); // Reset the form fields when the modal is closed
     return setshowModal1(false);
   };
@@ -505,6 +507,7 @@ const Calendar = () => {
                         })}
                       >
                         <option>select a plan</option>
+                        <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
                         <option value="half yearly">Half Yearly</option>
                         <option value="quarterly">Quarterly</option>

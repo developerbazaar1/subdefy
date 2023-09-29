@@ -33,14 +33,13 @@ const Seeting = () => {
       userProfileImage: user.user_image,
     },
   });
-  const { register, handleSubmit, setValue, watch } = updateDetails;
+  const { register, handleSubmit, setValue } = updateDetails;
   const updatePassword = useForm();
 
   const {
     register: passwordRegister,
     handleSubmit: passwordHandleSubmit,
     formState: passwordFormState,
-    setValue: setPassValue,
   } = updatePassword;
   const { errors } = passwordFormState;
 
@@ -55,6 +54,7 @@ const Seeting = () => {
   //function to handle delte-image
 
   const handleDeleteImage = () => {
+    console.log("delted image profile");
     setLoading(true);
     let config = {
       method: "get",
@@ -147,15 +147,17 @@ const Seeting = () => {
 
   //function to handle update profile
   const handleUpdateProfile = (data, e) => {
+    // console.log(data, "form Data");
     setLoading(true);
     let { name, userProfileImage } = data;
-
-    e.preventDefault();
-
     let formData = new FormData();
     formData.append("name", name);
-    formData.append("document", userProfileImage);
-
+    if (typeof userProfileImage === "object") {
+      formData.append("document", userProfileImage);
+    } else {
+      formData.append("document_old", userProfileImage);
+    }
+    // console.log(formData, "request Data");
     let config = {
       method: "post",
       url: `${process.env.REACT_APP_global_url}/api/update-profile`,
@@ -168,7 +170,6 @@ const Seeting = () => {
     axios
       .request(config)
       .then((response) => {
-        // console.log(JSON.stringify(response.data));
         dispatch(
           update({
             user: response.data.user,
@@ -205,8 +206,10 @@ const Seeting = () => {
   // functin to DiscrardTheValue
 
   const DiscardProfileDetails = (e) => {
+    console.log();
     e.preventDefault();
     // Reset the form fields to their default values
+    console.log(user);
     updateDetails.reset({
       name: user.name,
       email: user.email,
@@ -292,20 +295,6 @@ const Seeting = () => {
                             </label>
 
                             <div className=" col-md-9 mx-3  profile-image-container h-40 d-flex">
-                              {/* <img
-                                className="user-profile-cntnr user-image-x"
-                                src={
-                                  updateDetails.watch("userProfileImage")
-                                    ? `${
-                                        process.env.REACT_APP_global_url
-                                      }/public/${updateDetails.watch(
-                                        "userProfileImage"
-                                      )}`
-                                    : userImage
-                                }
-                                alt={userImage}
-                              /> */}
-
                               {hasSelectedImage ? (
                                 <img
                                   src={imagePreview}
@@ -324,17 +313,6 @@ const Seeting = () => {
                                 />
                               )}
 
-                              {/* <img
-                                className="user-profile-cntnr user-image-x"
-                                src={
-                                  watch("userProfileImage")
-                                    ? URL.createObjectURL(
-                                        watch("userProfileImage")
-                                      )
-                                    : userImage
-                                }
-                                alt="User Profile"
-                              /> */}
                               <div className="edit-icons">
                                 {/* <!--icon for editing --> */}
                                 <label
@@ -343,7 +321,7 @@ const Seeting = () => {
                                 >
                                   <FontAwesomeIcon icon={faPen} />
                                 </label>
-                                <label
+                                <span
                                   onClick={HandelDeleteImageConfirm}
                                   className="edit-icon edit-icon-edit  delete-Image"
                                 >
@@ -351,7 +329,7 @@ const Seeting = () => {
                                     icon={faTrash}
                                     // onClick={handleDeleteImage}
                                   />
-                                </label>
+                                </span>
                                 {/* <input
                                   type="file"
                                   id="upload-profile-image"

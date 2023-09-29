@@ -50,6 +50,9 @@ const LineChart = ({ subscriptions }) => {
     return costNumber;
   }
   let CurrentMonthAverage = [0, 0, 0, 0, 0];
+  CurrentMonthAverage = CurrentMonthAverage.map(
+    (value) => `$${value.toFixed(2)}`
+  );
   let CurrentMonthTotal = 0;
   const weakRange = () => {
     const currentDate = new Date();
@@ -128,7 +131,7 @@ const LineChart = ({ subscriptions }) => {
     labels: weaklabel,
     datasets: [
       {
-        label: "weekly Cost",
+        label: "Weekly cost",
         data: weakRange(),
         fill: true,
         backgroundColor: dataPoint,
@@ -136,7 +139,7 @@ const LineChart = ({ subscriptions }) => {
         tension: 0.5,
       },
       {
-        label: "weekly Average",
+        label: "Weekly Average",
         data: CurrentMonthAverage,
         fill: true,
         backgroundColor: (context) => {
@@ -164,6 +167,18 @@ const LineChart = ({ subscriptions }) => {
       customBackground: {
         borderWidth: 2,
         borderColor: "rgba(255, 255, 255, 0.8)",
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            // console.log(context.formattedValue);
+            const label = context.dataset.label;
+            const value = context.formattedValue;
+            const paresedValue = parseFloat(value);
+            // console.log(label);
+            return `${label}:$ ${paresedValue?.toFixed(2)}`;
+          },
+        },
       },
     },
     scales: {

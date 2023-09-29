@@ -1,6 +1,5 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
 import "../css/style.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import img1 from "../img/img1.png";

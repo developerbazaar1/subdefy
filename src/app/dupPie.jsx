@@ -179,7 +179,7 @@ const DupPie = ({ subscriptions }) => {
               justifyContent: "center",
             }}
           >
-            <div style={{ width: "244px", height: "244px" }}>
+            <div className="sideChart__container">
               {filteredSubscriptions?.length > 0 ? (
                 <Doughnut data={data} options={options} />
               ) : (

@@ -6,11 +6,9 @@ import logoIcon from "../img/login-icon.png";
 import plus from "../img/plus.png";
 import { useState } from "react";
 import { useAuth } from "../services/auth";
-
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
-
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
@@ -203,6 +201,8 @@ const Manage = () => {
 
   //clare the modal value of modal 1
   const handleModal1Hide = () => {
+    setApiData([]);
+    setInputValue("");
     modal1Reset(); // Reset the form fields when the modal is closed
     return setshowModal1(false);
   };
@@ -548,6 +548,7 @@ const Manage = () => {
                         })}
                       >
                         <option>select a plan</option>
+                        <option value="28 day Plan">28 day Plan</option>
                         <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
                         <option value="half yearly">Half Yearly</option>

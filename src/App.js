@@ -6,7 +6,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import "./css/reactCss.css";
 import "./css/style.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -36,6 +35,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./components/NotFound";
 import FooterPage from "./pages/FooterPage";
+import { toast } from "react-toastify";
+import Pay from "./pages/Pay";
 
 function App() {
   const { isLoggedIn } = useAuth();
@@ -54,7 +55,8 @@ function App() {
           dispatch(setCategory(response.data.categories));
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
+          toast.error(error.message);
         });
     };
 
@@ -77,10 +79,12 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/affilate-disclouser" element={<AffilateDisclouser />} />
         <Route path="/info/:pagename" element={<FooterPage />} />
+        <Route path="/pay" element={<Pay />} />
+        {/* <Route path="/card" element={<CardModal />} /> */}
 
         <Route path="/support" element={<Support />} />
         <Route path="/coomin" element={<CoominSoon />} />
-        <Route path="/service" element={<Service />} />
+        {/* <Route path="/service" element={<Service />} /> */}
         <Route path="/discover" element={<Discover />} />
         <Route path="/investerhub" element={<InvesterHub />} />
         <Route exact path="/service/:name" element={<Service />} />

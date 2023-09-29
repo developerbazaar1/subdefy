@@ -6,12 +6,16 @@ import { useParams } from "react-router-dom";
 import { OpenRoute } from "../utility/ApiServices.js";
 import { useEffect } from "react";
 import { useState } from "react";
+import LoadingSpinner from "../components/Spinner.jsx";
+import { toast } from "react-toastify";
 
 const FooterPage = () => {
   const { pagename } = useParams();
   const [pageData, setPageData] = useState();
+  const [loading, setLoading] = useState(false);
 
   const getPageData = () => {
+    setLoading(true);
     OpenRoute.FooterPage({ name: pagename })
       .then((response) => {
         // console.log(response);
@@ -20,6 +24,10 @@ const FooterPage = () => {
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Something Went Wrong!");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -31,7 +39,15 @@ const FooterPage = () => {
       {/**************** Navbar component ******************/}
 
       <Navbar />
-
+      <div
+        style={{
+          top: "50%",
+          position: "absolute",
+          left: "48%",
+        }}
+      >
+        <LoadingSpinner loading={loading} />
+      </div>
       <section className="content">
         <div className="container pt-80">
           <div className="row justify-content-center text-center mt-12 ">

@@ -77,7 +77,7 @@ const OldModal = ({
         // console.log("subscription data on select", subscriptionData);
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
         toast.error(error.response.data.message);
         handleModalHide();
       })
@@ -96,6 +96,7 @@ const OldModal = ({
       exampleFormControlDate,
       cost,
       frequency,
+      frequency1,
       subscriptionName,
       exampleInputPlanother,
     } = data;
@@ -104,7 +105,7 @@ const OldModal = ({
       subscription_name: subscriptionName,
       category: exampleInputtitle,
       cost: cost,
-      frequency: frequency,
+      frequency: frequency || frequency1,
       next_payment_due: exampleFormControlDate,
       plan: exampleInputPlanother ? exampleInputPlanother : exampleInputPlan,
     };
@@ -134,7 +135,7 @@ const OldModal = ({
       })
       .catch((error) => {
         // console.log(error);
-        return toast.error(error.response.data.message);
+        return toast.error(error?.response?.data?.message);
       })
       .finally(() => {
         setLoading(false);
@@ -318,35 +319,73 @@ const OldModal = ({
                   </div>
                 </div>
               </div>
-              <div className="form-group mb-3 mt-2">
-                <div className="form-row d-flex text-end">
-                  <label
-                    className="form-head cst-mrg font-italic"
-                    htmlFor="secondFrequency"
-                  >
-                    Frequency
-                  </label>
-                  <div className="select-group h-40 ">
-                    <input
-                      className="form-control cst-modal-input"
-                      id="secondFrequency"
-                      type="text"
-                      aria-describedby="title"
-                      readOnly={other}
-                      placeholder="eg. Monthly"
-                      {...register("frequency", {
-                        required: {
-                          value: true,
-                          message: "Frequency is Required",
-                        },
-                      })}
-                    />
-                    <span className="error-div">
-                      {errors.frequency?.message}
-                    </span>
+
+              {other ? (
+                <div className="form-group mb-3 mt-2">
+                  <div className="form-row d-flex text-end">
+                    <label
+                      className="form-head cst-mrg font-italic"
+                      htmlFor="secondFrequency"
+                    >
+                      Frequency
+                    </label>
+                    <div className="select-group h-40 ">
+                      <input
+                        className="form-control cst-modal-input"
+                        id="secondFrequency"
+                        type="text"
+                        aria-describedby="title"
+                        readOnly
+                        placeholder="eg. Monthly"
+                        {...register("frequency", {
+                          required: {
+                            value: true,
+                            message: "Frequency is Required",
+                          },
+                        })}
+                      />
+                      <span className="error-div">
+                        {errors.frequency?.message}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="form-group mb-3 mt-2">
+                  <div className="form-row d-flex text-end">
+                    <label
+                      className="form-head cst-mrg font-italic"
+                      htmlFor="frequency1"
+                    >
+                      Frequency
+                    </label>
+
+                    <div className="select-group">
+                      <select
+                        id="frequency1"
+                        className="form-control cst-modal-input"
+                        {...register("frequency1", {
+                          required: {
+                            value: true,
+                            message: "Frequency is Required",
+                          },
+                        })}
+                      >
+                        <option id="2523">select a plan</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="28 day Plan">28 day Plan</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="half yearly">Half Yearly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="yearly">Yearly</option>
+                      </select>
+                      <span className="error-div">
+                        {errors.frequency?.message}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className="form-group mb-3 mt-2">
                 <div className="form-row d-flex text-end">
                   <label

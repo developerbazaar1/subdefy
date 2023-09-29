@@ -93,8 +93,8 @@ export const OpenRoute = {
     return response;
   },
 
-  investerHub: async function ({ email }) {
-    const requestBody = JSON.stringify({ email });
+  investerHub: async function ({ email, name }) {
+    const requestBody = JSON.stringify({ email, name });
 
     const response = await api.request({
       url: `/api/download-pitch-request`,
