@@ -227,8 +227,8 @@ const Tabel = ({
 
                   <tbody className="subs-tab-body">
                     {totalPages ? (
-                      displayedSubscriptions &&
-                      displayedSubscriptions?.map((subscr, index) => (
+                      subscriptions &&
+                      subscriptions?.map((subscr, index) => (
                         <tr className="" key={index}>
                           <th className=" check-table br-none">
                             <input
@@ -342,7 +342,7 @@ const Tabel = ({
                         <td></td>
                         <td></td>
                         <td>
-                          {subscriptions?.length > 5 && (
+                          {/* {subscriptions?.length > 5 && (
                             <div className="d-flex justify-content-around">
                               <GrFormPrevious
                                 className={`prev__button ${
@@ -367,7 +367,7 @@ const Tabel = ({
                                 }
                               />
                             </div>
-                          )}
+                          )} */}
                         </td>
                       </tr>
                     ) : (

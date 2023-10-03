@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import OldModal from "./OldModal";
 import { useState } from "react";
 import { useAuth } from "../services/auth";
-const CardModal = ({ slicedSubscription, favorite, addFavorite }) => {
-  console.log(slicedSubscription);
+const CardModal = ({ subscription, favorite, addFavorite, categories }) => {
+  // console.log(subscription);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [fetchChanges, setfetchChanges] = useState(false);
@@ -26,20 +26,29 @@ const CardModal = ({ slicedSubscription, favorite, addFavorite }) => {
     setShowModal(true);
   };
 
+  const DefaultImag = (name) => {
+    const { image } = categories?.find((item) => item.name === name);
+    console.log("null image cat", image);
+    return `${process.env.REACT_APP_global_url}/public/${image}`;
+  };
+
   return (
     <>
-      {slicedSubscription?.map((subscription, index) => (
+      {subscription?.map((subscription, index) => (
         <div className="modal-card text-center" key={index}>
           <div className="modal-info">
-            <div className="card-banner" style={{ position: "relative" }}>
+            <div
+              className="card-banner"
+              style={{ position: "relative", height: "137px" }}
+            >
               <img
                 className="d-card-icon w-100 fit__image"
                 src={
                   subscription?.logoURL
                     ? subscription?.logoURL === "TBA"
-                      ? Hbo
+                      ? DefaultImag(subscription?.category)
                       : subscription?.logoURL
-                    : Hbo
+                    : DefaultImag(subscription?.category)
                 }
                 alt="loading"
               />
@@ -111,7 +120,11 @@ const CardModal = ({ slicedSubscription, favorite, addFavorite }) => {
                 <Rating value={parseFloat(subscription?.rating) || 0} />
               </div>
               <div className="ott__card__content mt-2">
-                <p>{subscription?.subscriptionDescriptionLong}</p>
+                <p>
+                  {subscription?.subscriptionDescriptionLong.slice(0, 130)}
+                  <br />
+                  ...
+                </p>
               </div>
               <div className="ott-card-btn">
                 <Link
@@ -121,8 +134,8 @@ const CardModal = ({ slicedSubscription, favorite, addFavorite }) => {
                   More
                 </Link>
               </div>
-              <div className="ott-plan-rate mt-4">
-                <h6>
+              <div className=" mt-3">
+                <h6 className="ott-plan-rate">
                   {" "}
                   {/* {ExtreactPriceNumber(subscription?.premiumSubscriptionsFrom)} */}
                   {subscription?.premiumSubscriptionsFrom || 0}

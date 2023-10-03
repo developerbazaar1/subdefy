@@ -792,9 +792,10 @@ const Discover = () => {
                   <div className="list card-list">
                     <div className="discover-card-list d-flex">
                       <CardModal
-                        slicedSubscription={slicedSubscription}
+                        subscription={subscription}
                         favorite={favorite}
                         addFavorite={addFavorite}
+                        categories={categories}
                       />
                     </div>
                   </div>

@@ -1629,9 +1629,9 @@ span.rbc-btn-group:nth-child(3) > button:nth-child(1)::after {
   flex-direction: column;
 }
 .ott__card__content {
-  flex-basis: 203px;
+  flex-basis: 146px;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 @media only screen and (min-width: 760px) {
@@ -1661,7 +1661,7 @@ span.rbc-btn-group:nth-child(3) > button:nth-child(1)::after {
   text-overflow: ellipsis;
   text-wrap: nowrap;
   overflow: hidden;
-  height: 54px;
+  height: 33px;
 }
 
 .card__container {
@@ -1745,4 +1745,10 @@ span.rbc-btn-group:nth-child(3) > button:nth-child(1)::after {
   box-shadow: 0px 2px 5px #26334d4f !important;
   font-weight: 900;
   color: #000000;
+}
+.ott-plan-rate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

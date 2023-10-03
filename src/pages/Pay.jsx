@@ -63,7 +63,7 @@ const Pay = () => {
             way to manage your recurring expenses.
           </p>
           <p className="pay__paragraph">
-            group multiple recurring payments into one payment then pay when it
+            Group multiple recurring payments into one payment then pay when it
             suits you!
           </p>
           <div className="container mt-5">
