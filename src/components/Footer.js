@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { OpenRoute } from "../utility/ApiServices";
@@ -159,12 +159,20 @@ function Footer() {
             <div className="social-icons mt-4">
               <ul>
                 <li>
-                  <a href="facebook">
+                  <a
+                    href="https://www.facebook.com/subdefy/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <FontAwesomeIcon icon={faFacebookF} />
                   </a>
                 </li>
                 <li>
-                  <a href="instagram">
+                  <a
+                    href="https://www.instagram.com/subdefy"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <FontAwesomeIcon icon={faInstagram} />
                   </a>
                 </li>

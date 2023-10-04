@@ -14,6 +14,7 @@ import { faRightFromBracket, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "../services/auth";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 const SideBar = ({ buttonClicked, onButtonClick }) => {
   const { user, token } = useAuth();
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const SideBar = ({ buttonClicked, onButtonClick }) => {
       })
       .catch((error) => {
         console.log(error);
+        return toast.error("Something went wrong");
       });
   }
   return (
@@ -70,7 +72,7 @@ const SideBar = ({ buttonClicked, onButtonClick }) => {
           </div>
           <ul className="app-menu">
             <li>
-              <NavLink className="app-menu__item" to="/">
+              <NavLink className="app-menu__item" to="/manage">
                 <img
                   src={HomeIcon}
                   className="app-menu__icon mx-3 w-20"

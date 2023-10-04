@@ -67,12 +67,11 @@ function App() {
     <Router>
       <Routes>
         <Route
-          exact
           path="/login"
-          element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+          element={isLoggedIn ? <Navigate to="/manage" /> : <Login />}
         />
+        <Route index path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/article/:id" element={<Article />} />
@@ -80,22 +79,18 @@ function App() {
         <Route path="/affilate-disclouser" element={<AffilateDisclouser />} />
         <Route path="/info/:pagename" element={<FooterPage />} />
         <Route path="/pay" element={<Pay />} />
-        {/* <Route path="/card" element={<CardModal />} /> */}
-
         <Route path="/support" element={<Support />} />
         <Route path="/coomin" element={<CoominSoon />} />
-        {/* <Route path="/service" element={<Service />} /> */}
         <Route path="/discover" element={<Discover />} />
         <Route path="/investerhub" element={<InvesterHub />} />
         <Route exact path="/service/:name" element={<Service />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/api/auth/reset-password" element={<ResetPassword />} />
-        {/* <Route path="/test" element={<ApiTest />} /> */}
 
         {/* protected route */}
         <Route
           exact
-          path="/"
+          path="/manage"
           element={
             <ProtectedRoutes isLoggedIn={isLoggedIn} component={<Manage />} />
           }

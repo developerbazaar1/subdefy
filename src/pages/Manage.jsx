@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import LineChart from "../components/LineChart";
 import LoadingSpinner from "../components/Spinner";
-import DupPie from "../app/dupPie";
+import PieChart from "../components/PieCharts";
 const Manage = () => {
   const [loading, setLoading] = useState(false);
   // this code is used to restricted the from selecting the past date
@@ -298,7 +298,7 @@ const Manage = () => {
             </div>
             {/* <!-- 2nd column sidebox --> */}
             <div className="col-md-3 sidebox-col px-0 py-0 pie">
-              <DupPie subscriptions={subscriptions} />
+              <PieChart subscriptions={subscriptions} />
             </div>
           </div>
         </section>

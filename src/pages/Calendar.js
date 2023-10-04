@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import LineChart from "../components/LineChart";
 import LoadingSpinner from "../components/Spinner";
 import DupPie from "../app/dupPie";
+import PieChart from "../components/PieCharts";
 const Calendar = () => {
   const [loading, setLoading] = useState(false);
   const categories = useSelector((state) => state.category);
@@ -290,7 +291,7 @@ const Calendar = () => {
               </div>
             </div>
             <div className="col-md-3 sidebox-col px-0 py-0">
-              <DupPie subscriptions={subscriptions} />
+              <PieChart subscriptions={subscriptions} />
             </div>
           </div>
         </section>

@@ -28,7 +28,6 @@ const CardModal = ({ subscription, favorite, addFavorite, categories }) => {
 
   const DefaultImag = (name) => {
     const { image } = categories?.find((item) => item.name === name);
-    console.log("null image cat", image);
     return `${process.env.REACT_APP_global_url}/public/${image}`;
   };
 

@@ -26,11 +26,11 @@ const Blogs = () => {
         }
         setData(response.data.blogs);
         totalPages = response.data.total_blogs;
-        console.log(response.data.blogs);
+        // console.log(response.data.blogs);
       })
       .catch((error) => {
         // console.log(error);
-        toast.error(error.message);
+        // toast.error(error.message);
       });
   };
   const loadMore = () => {

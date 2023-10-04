@@ -19,7 +19,7 @@ const NotFound = () => {
 
                   <p>the page you are looking for not avaible!</p>
 
-                  <Link to="/home" className="link_404">
+                  <Link to="/" className="link_404">
                     Go to Home
                   </Link>
                 </div>
