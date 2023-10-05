@@ -7,13 +7,13 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCSw6EXhw-5lqzkKkGwkSr7B1p8H8rKDvo",
-  authDomain: "subdefy-c29ee.firebaseapp.com",
-  projectId: "subdefy-c29ee",
-  storageBucket: "subdefy-c29ee.appspot.com",
-  messagingSenderId: "169948186724",
-  appId: "1:169948186724:web:79a419451214176bfbf771",
-  measurementId: "G-40J5JJFHM0",
+  apiKey: "AIzaSyBCj7LdXxlc-FB1Ivatik6gSAb5S--A5Zs",
+  authDomain: "subdefy-6f81a.firebaseapp.com",
+  projectId: "subdefy-6f81a",
+  storageBucket: "subdefy-6f81a.appspot.com",
+  messagingSenderId: "824107801910",
+  appId: "1:824107801910:web:0b3911eff7dd3d1e39a797",
+  measurementId: "G-4QYVRBD7RM",
 };
 
 const app = initializeApp(firebaseConfig);

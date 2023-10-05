@@ -52,6 +52,7 @@ const Login = () => {
   const loginSubmit = (data, e) => {
     setLoading(true);
     e.preventDefault();
+    console.log(data, "login");
 
     let config = {
       method: "post",
@@ -199,6 +200,7 @@ const Login = () => {
 
   const registerSubmit = (data, e) => {
     e.preventDefault();
+    console.log(data, "signup");
     setLoading(true);
     let config = {
       method: "post",
@@ -509,7 +511,7 @@ const Login = () => {
                             <div className="error-div">
                               <label
                                 className="form-head acc-label"
-                                htmlFor="email"
+                                htmlFor="emailS"
                               >
                                 Email Id
                               </label>
@@ -519,7 +521,7 @@ const Login = () => {
                             </div>
                             <input
                               className="form-control mt-2 log-control"
-                              id="email"
+                              id="emailS"
                               type="text"
                               aria-describedby="title"
                               {...register1("email", {
@@ -540,7 +542,7 @@ const Login = () => {
                             <div className="error-div">
                               <label
                                 className="form-head  acc-label"
-                                htmlFor="password"
+                                htmlFor="passwordS"
                               >
                                 Password
                               </label>
@@ -551,7 +553,7 @@ const Login = () => {
                             <div className="user_password">
                               <input
                                 className="form-control mt-2 log-control"
-                                id="password"
+                                id="passwordS"
                                 type={showPassword ? "text" : "password"}
                                 aria-describedby="title"
                                 {...register1("password", {

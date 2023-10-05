@@ -108,6 +108,7 @@ const CardModal = ({ subscription, favorite, addFavorite, categories }) => {
                   style={{
                     overflow: "hidden",
                     display: "block",
+                    height: "28px",
                   }}
                 >
                   {subscription?.subscriptionName?.split(" ").map((word) => {

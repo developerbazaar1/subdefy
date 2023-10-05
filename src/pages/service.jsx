@@ -68,7 +68,7 @@ const Service = () => {
       <Navbar />
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           zIndex: "999",
 
           left: "48%",

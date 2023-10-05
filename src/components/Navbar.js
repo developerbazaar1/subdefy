@@ -22,7 +22,7 @@ function Navbar({ onButtonClick }) {
       <div className="header-bottom">
         <div className="container">
           <nav className="navbar navbar-expand-md navbar-light">
-            <NavLink className="navbar-brand" to="/home">
+            <NavLink className="navbar-brand" to="/">
               <img src={logo} className="logo" alt="logo" />
             </NavLink>
             <div

@@ -141,6 +141,7 @@ const Discover = () => {
       })
       .catch((error) => {
         console.log(error.message);
+        toast.error("Something went Wrong");
       })
       .finally(() => {
         // console.log(subscription);
@@ -192,6 +193,7 @@ const Discover = () => {
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Something Went wrong");
       })
       .finally(() => {
         setLoading(false);
@@ -229,12 +231,10 @@ const Discover = () => {
     axios
       .request(config)
       .then((response) => {
-        // console.log(JSON.stringify(response.data));
         if (response.data.message === "Favorite deleted successfully") {
           GetFavorite();
           return toast.warning(response.data.message);
         }
-        // console.log("sucess", response.data.message);
         GetFavorite();
         return toast.success(response.data.message);
       })

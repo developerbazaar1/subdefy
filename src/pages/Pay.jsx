@@ -30,10 +30,11 @@ const Pay = () => {
 
     OpenRoute.investerHub({ email: data.payHub, name: "pay" })
       .then((response) => {
-        // console.log(response.data.message);
+        console.log(response.data.message);
         toast.success(response.data.message);
       })
       .catch((error) => {
+        console.log(error);
         toast.error(error.message);
       })
       .finally(() => {
