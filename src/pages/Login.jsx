@@ -18,10 +18,10 @@ import LoadingSpinner from "../components/Spinner.jsx";
 import axios from "axios";
 import { login } from "../features/authSlice.js";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-import { linkWithPopup, linkWithRedirect } from "firebase/auth";
+import { linkWithRedirect } from "firebase/auth";
 import { OpenRoute } from "../utility/ApiServices.js";
 
 const Login = () => {
@@ -52,7 +52,6 @@ const Login = () => {
   const loginSubmit = (data, e) => {
     setLoading(true);
     e.preventDefault();
-    console.log(data, "login");
 
     let config = {
       method: "post",
@@ -164,8 +163,6 @@ const Login = () => {
 
       OpenRoute.signinWithProvider({ email, name, provider: "facebook" })
         .then((response) => {
-          // console.log("response message", response);
-
           dispatch(
             login({
               user: response.data.user,
@@ -179,6 +176,7 @@ const Login = () => {
           console.log("error message", error);
         });
     } catch (error) {
+      console.log(error);
       if (error.code === "auth/account-exists-with-different-credential") {
         // Existing user with different credentials, prompt for account linking
         // console.log(auth.currentUser.user);
@@ -188,11 +186,13 @@ const Login = () => {
             facebookProvider
           );
 
-          // console.log("linkup result ", result);
+          console.log("linkup result ", result);
         } catch (linkingError) {
+          console.log(linkingError);
           console.error("Error linking Facebook account:", linkingError);
         }
       } else {
+        console.log(error);
         console.error("Error signing in with Facebook:", error.message);
       }
     }
@@ -690,21 +690,6 @@ const Login = () => {
 
       {/**************** Back to top component ****************/}
       <BackToTopButton />
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />
     </div>
   );
 };

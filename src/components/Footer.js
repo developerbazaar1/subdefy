@@ -45,7 +45,7 @@ function Footer() {
         setPages(response.data.pages);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
