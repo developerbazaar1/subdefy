@@ -157,7 +157,6 @@ const Login = () => {
 
       const name = result.user.displayName;
       const email = result.user.email;
-      // const profilePic = result.user.photoURL;
 
       OpenRoute.signinWithProvider({ email, name, provider: "facebook" })
         .then((response) => {
