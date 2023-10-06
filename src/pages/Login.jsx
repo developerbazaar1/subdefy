@@ -48,7 +48,7 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  //        function to handle login    //
+  //function to handle login    //
   const loginSubmit = (data, e) => {
     setLoading(true);
     e.preventDefault();
@@ -74,9 +74,7 @@ const Login = () => {
             token: response.data.token,
           })
         );
-
-        // const token = "your-token-value"; // Replace with your actual token value
-        localStorage.setItem("auth", token);
+        localStorage.setItem("subdefy_token", token);
         return toast.success(response.data.message);
       })
       .catch((error) => {
@@ -130,7 +128,7 @@ const Login = () => {
             );
 
             // const token = "your-token-value"; // Replace with your actual token value
-            localStorage.setItem("auth", token);
+            localStorage.setItem("subdefy_token", token);
             return toast.success(response.data.message);
           })
           .catch((error) => {
@@ -169,7 +167,7 @@ const Login = () => {
               token: response.data.token,
             })
           );
-          localStorage.setItem("auth", response.data.token);
+          localStorage.setItem("subdefy_token", response.data.token);
           return toast.success(response.data.message);
         })
         .catch((error) => {
@@ -226,7 +224,7 @@ const Login = () => {
         );
 
         // const token = "your-token-value"; // Replace with your actual token value
-        localStorage.setItem("auth", token);
+        localStorage.subdefy_token("auth", token);
         return toast.success(response.data.message);
       })
       .catch((error) => {

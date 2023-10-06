@@ -8,15 +8,12 @@ import { toast } from "react-toastify";
 import LoadingSpinner from "../components/Spinner";
 import ReCAPTCHA from "react-google-recaptcha";
 const InvesterHub = () => {
-  const [isActive, setIsActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
   const [captchaError, setCaptchaError] = useState("");
   const [isCpatchea, setCaptecha] = useState(false);
-  const handleClick = (event) => {
-    setIsActive((current) => !current);
-  };
+
   const NotRobot = (value) => {
     setCaptecha(true);
     setCaptchaError("");

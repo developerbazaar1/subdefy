@@ -13,7 +13,7 @@ import Alert from "react-bootstrap/Alert";
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const loginForm = useForm();
   const { register, handleSubmit, formState, reset } = loginForm;
   const { errors } = formState;
@@ -24,11 +24,10 @@ const ForgotPassword = () => {
 
     OpenRoute.forgotPassword({ email: data.email })
       .then((response) => {
-        console.log(response);
+        setShow(true);
       })
       .catch((error) => {
         toast.error("Enternal server Error");
-        console.log(error);
       })
       .finally(() => {
         setLoading(false);

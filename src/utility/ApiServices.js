@@ -129,4 +129,17 @@ export const OpenRoute = {
     });
     return response;
   },
+  resetPassword: async function ({ email, token, password }) {
+    const requestData = JSON.stringify({ email, token, password });
+    console.log(email, token, password);
+    const response = await api.request({
+      url: `/api/auth/reset-password`,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: requestData,
+    });
+    return response;
+  },
 };

@@ -62,7 +62,7 @@ const SideBar = ({ buttonClicked, onButtonClick }) => {
               alt="User"
             />
             <div>
-              <h6 className="app-sidebar__user-name">{user.name}</h6>
+              <h6 className="app-sidebar__user-name">{user?.name}</h6>
             </div>
             <div className="sign-out error-div mx-4 pb-1" onClick={handleLogut}>
               <span>

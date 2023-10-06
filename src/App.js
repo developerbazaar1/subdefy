@@ -55,7 +55,6 @@ function App() {
           dispatch(setCategory(response.data.categories));
         })
         .catch((error) => {
-          // console.log(error);
           toast.error(error.message);
         });
     };
@@ -85,7 +84,7 @@ function App() {
         <Route path="/investerhub" element={<InvesterHub />} />
         <Route exact path="/service/:name" element={<Service />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/api/auth/reset-password" element={<ResetPassword />} />
+        <Route path="/subdefy-reset-password" element={<ResetPassword />} />
 
         {/* protected route */}
         <Route

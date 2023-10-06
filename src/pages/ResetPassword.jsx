@@ -6,31 +6,73 @@ import { useForm } from "react-hook-form";
 import LoginIcon from "../img/login-icon.png";
 import Reset_Password from "../img/reset-password.png";
 import LoadingSpinner from "../components/Spinner.jsx";
-import axios from "axios";
 import { login } from "../features/authSlice.js";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import Alert from "react-bootstrap/Alert";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { OpenRoute } from "../utility/ApiServices.js";
 const ResetPassword = () => {
+  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
+  let [searchParams, setSearchParams] = useSearchParams();
+  const [passwordMatch, setPasswordMatch] = useState(false);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
   const loginForm = useForm();
-  const { register, handleSubmit, formState } = loginForm;
+  const { register, handleSubmit, formState, reset } = loginForm;
+  const dispatch = useDispatch();
+  const [passwordVisibility, setPasswordVisibility] = useState({
+    showPassword1: false,
+    showPassword2: false,
+  });
 
-  const [showPassword, setShowPassword] = useState(false);
-
-  //form to cheange the active tab
-
+  const token = searchParams.get("token");
+  const email = searchParams.get("email");
   const { errors } = formState;
+
+  //reset password function
   const forgotpassword = (data, e) => {
+    setLoading(true);
     e.preventDefault();
+    const { password, Confirmpassword } = data;
+    if (password !== Confirmpassword) {
+      setPasswordMatch(true);
+      return;
+    }
+    setPasswordMatch(false);
+
+    OpenRoute.resetPassword({ email: email, token: token, password: password })
+      .then((response) => {
+        dispatch(
+          login({
+            user: response.data.user,
+            token: response.data.token,
+          })
+        );
+
+        localStorage.setItem("subdefy_token", token);
+        toast.success(response.data.message);
+        return navigate("/manage");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+        reset();
+      });
   };
 
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
+  const handleTogglePassword = (fieldName) => {
+    setPasswordVisibility((prevState) => ({
+      ...prevState,
+      [fieldName]: !prevState[fieldName],
+    }));
   };
   return (
     <div>
@@ -59,6 +101,27 @@ const ResetPassword = () => {
               {/* <!--:: form content --> */}
               <div className="login-signup-form">
                 <div className="login_box box bg-white">
+                  <Alert
+                    variant="success"
+                    show={show}
+                    dismissible
+                    onClose={() => setShow(false)}
+                  >
+                    <p>
+                      Password Reset Successful Your password has been
+                      successfully reset.You can now proceed to log in with your
+                      new password.
+                      <Link
+                        to="/login"
+                        style={{
+                          marginLeft: "5px",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        Go to Login Page
+                      </Link>
+                    </p>
+                  </Alert>
                   <div className="form-head pt-4 log-top-label">
                     <h2 className="text-center">Reset Your Password</h2>
                     <p className="text-center">
@@ -98,7 +161,11 @@ const ResetPassword = () => {
                               <input
                                 className="form-control mt-2 log-control"
                                 id="password"
-                                type={showPassword ? "text" : "password"}
+                                type={
+                                  passwordVisibility.showPassword1
+                                    ? "text"
+                                    : "password"
+                                }
                                 aria-describedby="title"
                                 {...register("password", {
                                   minLength: {
@@ -118,9 +185,11 @@ const ResetPassword = () => {
 
                               <span
                                 className="password-toggle"
-                                onClick={handleTogglePassword}
+                                onClick={() =>
+                                  handleTogglePassword("showPassword1")
+                                }
                               >
-                                {showPassword ? (
+                                {passwordVisibility.showPassword1 ? (
                                   <FontAwesomeIcon icon={faEye} />
                                 ) : (
                                   <FontAwesomeIcon icon={faEyeSlash} />
@@ -133,21 +202,25 @@ const ResetPassword = () => {
                             <div className="error-div">
                               <label
                                 className="form-head  acc-label"
-                                htmlFor="password"
+                                htmlFor="Confirmpassword"
                               >
                                 Confirm New Password
                               </label>
                               <span className="text-[red]">
-                                {errors.password?.message}
+                                {errors.Confirmpassword?.message}
                               </span>
                             </div>
                             <div className="user_password">
                               <input
                                 className="form-control mt-2 log-control"
-                                id="password"
-                                type={showPassword ? "text" : "password"}
+                                id="Confirmpassword"
+                                type={
+                                  passwordVisibility.showPassword2
+                                    ? "text"
+                                    : "password"
+                                }
                                 aria-describedby="title"
-                                {...register("password", {
+                                {...register("Confirmpassword", {
                                   minLength: {
                                     value: 6, // Minimum length required
                                     message:
@@ -165,9 +238,11 @@ const ResetPassword = () => {
 
                               <span
                                 className="password-toggle"
-                                onClick={handleTogglePassword}
+                                onClick={() =>
+                                  handleTogglePassword("showPassword2")
+                                }
                               >
-                                {showPassword ? (
+                                {passwordVisibility.showPassword2 ? (
                                   <FontAwesomeIcon icon={faEye} />
                                 ) : (
                                   <FontAwesomeIcon icon={faEyeSlash} />
@@ -175,6 +250,21 @@ const ResetPassword = () => {
                               </span>
                             </div>
                           </div>
+                        </div>
+                        <div
+                          style={{
+                            marginTop: "21px",
+                          }}
+                        >
+                          {passwordMatch && (
+                            <span
+                              style={{
+                                color: "red",
+                              }}
+                            >
+                              password not match
+                            </span>
+                          )}
                         </div>
 
                         <div className="form-group mt-3">
