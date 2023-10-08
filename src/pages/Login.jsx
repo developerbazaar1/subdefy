@@ -92,106 +92,106 @@ const Login = () => {
   };
 
   // login with google sso
-  // const signInWithGoogle = () => {
-  //   signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       const gname = result.user.displayName;
-  //       const gemail = result.user.email;
-  //       const profilePic = result.user.photoURL;
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const gname = result.user.displayName;
+        const gemail = result.user.email;
+        const profilePic = result.user.photoURL;
 
-  //       const data = {
-  //         name: gname,
-  //         email: gemail,
-  //         provider: "google",
-  //       };
+        const data = {
+          name: gname,
+          email: gemail,
+          provider: "google",
+        };
 
-  //       let config = {
-  //         method: "post",
-  //         maxBodyLength: Infinity,
-  //         url: `${process.env.REACT_APP_global_url}/api/auth/sso`,
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         data: JSON.stringify(data),
-  //       };
+        let config = {
+          method: "post",
+          maxBodyLength: Infinity,
+          url: `${process.env.REACT_APP_global_url}/api/auth/sso`,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: JSON.stringify(data),
+        };
 
-  //       axios
-  //         .request(config)
-  //         .then((response) => {
-  //           const token = response.data.token;
+        axios
+          .request(config)
+          .then((response) => {
+            const token = response.data.token;
 
-  //           dispatch(
-  //             login({
-  //               user: response.data.user,
-  //               token: response.data.token,
-  //             })
-  //           );
+            dispatch(
+              login({
+                user: response.data.user,
+                token: response.data.token,
+              })
+            );
 
-  //           // const token = "your-token-value"; // Replace with your actual token value
-  //           localStorage.setItem("subdefy_token", token);
-  //           return toast.success(response.data.message);
-  //         })
-  //         .catch((error) => {
-  //           if (error.response && error.response.status === 401) {
-  //             return toast.warning(error.response.data.message);
-  //             // You can display an error message to the user here
-  //           } else {
-  //             // console.log("An error occurred:", error.message);
-  //             return toast.error(error.message);
-  //           }
-  //         })
-  //         .finally(() => {
-  //           setLoading(false);
-  //         });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+            // const token = "your-token-value"; // Replace with your actual token value
+            localStorage.setItem("subdefy_token", token);
+            return toast.success(response.data.message);
+          })
+          .catch((error) => {
+            if (error.response && error.response.status === 401) {
+              return toast.warning(error.response.data.message);
+              // You can display an error message to the user here
+            } else {
+              // console.log("An error occurred:", error.message);
+              return toast.error(error.message);
+            }
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-  // const signInWithFacebook = async () => {
-  //   try {
-  //     const result = await signInWithPopup(auth, facebookProvider);
+  const signInWithFacebook = async () => {
+    try {
+      const result = await signInWithPopup(auth, facebookProvider);
 
-  //     const name = result.user.displayName;
-  //     const email = result.user.email;
+      const name = result.user.displayName;
+      const email = result.user.email;
 
-  //     OpenRoute.signinWithProvider({ email, name, provider: "facebook" })
-  //       .then((response) => {
-  //         dispatch(
-  //           login({
-  //             user: response.data.user,
-  //             token: response.data.token,
-  //           })
-  //         );
-  //         localStorage.setItem("subdefy_token", response.data.token);
-  //         return toast.success(response.data.message);
-  //       })
-  //       .catch((error) => {
-  //         console.log("error message", error);
-  //       });
-  //   } catch (error) {
-  //     console.log(error);
-  //     if (error.code === "auth/account-exists-with-different-credential") {
-  //       // Existing user with different credentials, prompt for account linking
-  //       // console.log(auth.currentUser.user);
-  //       try {
-  //         const result = await linkWithRedirect(
-  //           auth.currentUser,
-  //           facebookProvider
-  //         );
+      OpenRoute.signinWithProvider({ email, name, provider: "facebook" })
+        .then((response) => {
+          dispatch(
+            login({
+              user: response.data.user,
+              token: response.data.token,
+            })
+          );
+          localStorage.setItem("subdefy_token", response.data.token);
+          return toast.success(response.data.message);
+        })
+        .catch((error) => {
+          console.log("error message", error);
+        });
+    } catch (error) {
+      console.log(error);
+      if (error.code === "auth/account-exists-with-different-credential") {
+        // Existing user with different credentials, prompt for account linking
+        // console.log(auth.currentUser.user);
+        try {
+          const result = await linkWithRedirect(
+            auth.currentUser,
+            facebookProvider
+          );
 
-  //         console.log("linkup result ", result);
-  //       } catch (linkingError) {
-  //         console.log(linkingError);
-  //         console.error("Error linking Facebook account:", linkingError);
-  //       }
-  //     } else {
-  //       console.log(error);
-  //       console.error("Error signing in with Facebook:", error.message);
-  //     }
-  //   }
-  // };
+          console.log("linkup result ", result);
+        } catch (linkingError) {
+          console.log(linkingError);
+          console.error("Error linking Facebook account:", linkingError);
+        }
+      } else {
+        console.log(error);
+        console.error("Error signing in with Facebook:", error.message);
+      }
+    }
+  };
 
   const registerSubmit = (data, e) => {
     e.preventDefault();
@@ -434,7 +434,7 @@ const Login = () => {
                       <div className="social-log-container">
                         <div className="fb-log">
                           <span
-                            // onClick={signInWithFacebook}
+                            onClick={signInWithFacebook}
                             className="btn fb-log-btn fb-log-btn w-100"
                           >
                             <FontAwesomeIcon
@@ -449,7 +449,7 @@ const Login = () => {
                           <span
                             // href="#"
                             className="btn google-log-btn w-100"
-                            // onClick={signInWithGoogle}
+                            onClick={signInWithGoogle}
                           >
                             <img
                               src={Google}
@@ -645,7 +645,7 @@ const Login = () => {
                         <div className="social-log-container">
                           <div className="fb-log">
                             <span
-                              // onClick={signInWithFacebook}
+                              onClick={signInWithFacebook}
                               className="btn fb-log-btn fb-log-btn w-100"
                             >
                               <FontAwesomeIcon
@@ -658,7 +658,7 @@ const Login = () => {
                           </div>
                           <div className="fb-log mt-4">
                             <span
-                              // onClick={signInWithGoogle}
+                              onClick={signInWithGoogle}
                               className="btn google-log-btn w-100"
                             >
                               <img
