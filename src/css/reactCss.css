@@ -62,8 +62,7 @@ body {
   align-items: center;
   height: 60vh;
 }
-
-.wishListLoder {
+a .wishListLoder {
   position: fixed;
   z-index: 100;
   left: 50%;

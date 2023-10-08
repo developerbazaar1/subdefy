@@ -22,7 +22,6 @@ import Seeting from "./pages/Seeting";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { useAuth } from "./services/auth";
 import Manage from "./pages/Manage";
-import CoominSoon from "./pages/CoominSoon";
 import Discover from "./pages/Discover";
 import InvesterHub from "./pages/InvesterHub";
 import WishList from "./components/WishList";
@@ -79,7 +78,6 @@ function App() {
         <Route path="/info/:pagename" element={<FooterPage />} />
         <Route path="/pay" element={<Pay />} />
         <Route path="/support" element={<Support />} />
-        <Route path="/coomin" element={<CoominSoon />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/investerhub" element={<InvesterHub />} />
         <Route exact path="/service/:name" element={<Service />} />

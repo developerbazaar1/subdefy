@@ -1,5 +1,4 @@
 import React from "react";
-import Hbo from "../img/HBO-MAX.png";
 import Rating from "./Rating";
 import { Link, useNavigate } from "react-router-dom";
 import OldModal from "./OldModal";

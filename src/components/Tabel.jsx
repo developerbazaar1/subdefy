@@ -11,8 +11,6 @@ import EditModal from "./EditModal";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useSelector } from "react-redux";
-import { GrFormPrevious, GrFormNext } from "react-icons/gr";
-import { color } from "framer-motion";
 
 const MySwal = withReactContent(Swal);
 const Tabel = ({
