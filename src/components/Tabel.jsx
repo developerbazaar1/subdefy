@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FadeLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import NoDataImage from "../img/Subscription-Not-Found-Monster.png";
+import noSub from "../img/no-subscription_manage.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -297,15 +297,39 @@ const Tabel = ({
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="7" className="text-center">
-                          <img
-                            src={NoDataImage}
-                            alt="no data"
-                            style={{
-                              height: "50vh",
-                            }}
+                        <td className="bg-white br-left">
+                          <input
+                            className="form-check-input tab-check"
+                            type="checkbox"
                           />
                         </td>
+                        <td
+                          className="bg-white c-pointer br-top-bottom"
+                          style={{
+                            textAlign: "start",
+                          }}
+                        >
+                          <img
+                            alt="defalut"
+                            className="tab-icon me-2 w-20"
+                            src={noSub}
+                          />
+                          add subscription
+                        </td>
+
+                        <td className="bg-white c-pointer br-top-bottom">
+                          ....
+                        </td>
+                        <td className="bg-white c-pointer br-top-bottom">
+                          ....
+                        </td>
+                        <td className="bg-white c-pointer  br-top-bottom">
+                          ....
+                        </td>
+                        <td className="bg-white c-pointer br-top-bottom">
+                          ...
+                        </td>
+                        <td className="bg-white c-pointer br-right">....</td>
                       </tr>
                     )}
 
