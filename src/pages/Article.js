@@ -9,7 +9,6 @@ import axios from "axios";
 const Article = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
-
   const GetBlog = () => {
     let config = {
       method: "get",
@@ -21,7 +20,7 @@ const Article = () => {
     axios
       .request(config)
       .then((response) => {
-        // console.log(JSON.stringify(response.data));
+        console.log(JSON.stringify(response.data));
         setData(response.data.blog);
       })
       .catch((error) => {
@@ -52,12 +51,17 @@ const Article = () => {
       </section>
 
       <section className="article-content pb-5">
-        <div className="container text-center max-w mt-4">
-          <div className="article head ">
-            <h4>{data[0]?.blog_short_desc}</h4>
+        <div className="container  max-w mt-4">
+          <div className="article head mb-4">
+            <h1>{data[0]?.blog_title}</h1>
+          </div>
+          <div className="article head my-4 ">
+            <h5 className="article_short_description">
+              {data[0]?.blog_short_desc}
+            </h5>
           </div>
           <div className="row">
-            <div className="col-md-8 m-auto">
+            <div className="col-md-12 m-auto">
               <div className="article-para">
                 {/* <p>{data[0]?.blog_long_description}</p> */}
                 <div

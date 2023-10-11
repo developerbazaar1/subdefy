@@ -69,6 +69,19 @@ a .wishListLoder {
   top: 50%;
 }
 
+.article > h1,
+h4 {
+  color: #000;
+  /* font-size: 22px !important; */
+  line-height: 38px !important;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.article_short_description {
+  color: #000;
+}
+
 .fixed-number {
   width: 335px;
   line-height: 11px;
