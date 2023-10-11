@@ -69,8 +69,7 @@ a .wishListLoder {
   top: 50%;
 }
 
-.article > h1,
-h4 {
+.article_title {
   color: #000;
   /* font-size: 22px !important; */
   line-height: 38px !important;

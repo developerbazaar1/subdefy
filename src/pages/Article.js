@@ -53,7 +53,7 @@ const Article = () => {
       <section className="article-content pb-5">
         <div className="container  max-w mt-4">
           <div className="article head mb-4">
-            <h1>{data[0]?.blog_title}</h1>
+            <h1 className="article_title">{data[0]?.blog_title}</h1>
           </div>
           <div className="article head my-4 ">
             <h5 className="article_short_description">
