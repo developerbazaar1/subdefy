@@ -172,8 +172,14 @@ const Tabel = ({
   };
 
   const DefaultImag = (name) => {
-    const { image } = cat?.find((item) => item.name === name);
-    // console.log("null image cat", image);
+    const foundCat = cat.find((item) => item.name === name);
+
+    // If no matching cat is found or image is not available, return a default or placeholder image
+    if (!foundCat || !foundCat.image) {
+      return `${process.env.REACT_APP_global_url}/default-image.jpg`; // Provide a default image URL
+    }
+
+    const { image } = foundCat;
     return `${process.env.REACT_APP_global_url}/public/${image}`;
   };
 
